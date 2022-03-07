@@ -18,6 +18,28 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+## Running Tests
+
+### Cypress: End-to-End (E2E) and Integration Testing
+
+To run Cypress tests use:
+
+```bash
+npm run cypress
+```
+
+> :warning:
+> 
+> 1. Cypress tests require the application to be running first.
+> 2. E2E tests require a production application build to be available (via `npm run build`)
+
+There are a set of command script variations in `npm run <SCRIPT>`, which are as follows:
+
+- `cypress` - Runs the Cypress tests in browser. Requires UI.
+- `cypress:headless` - Runs Cypress tests in CLI.
+- `e2e` OR `test` - Runs E2E tests in browser. Requires UI.
+- `e2e:headless` - Runs E2E tests in CLI.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
