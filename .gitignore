@@ -33,3 +33,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Extras
+## Next.js types for TypeScript compiler
+next-env.d.ts
