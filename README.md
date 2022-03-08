@@ -20,6 +20,16 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 ## Running Tests
 
+### Jest: Unit Tests
+
+To run Jest unit tests uses:
+
+```bash
+npm run test
+```
+
+This will start and preserve a watch session that will run unit tests for all files affected by any changes made throughout the development of the application.
+
 ### Cypress: End-to-End (E2E) and Integration Testing
 
 To run Cypress tests use:
