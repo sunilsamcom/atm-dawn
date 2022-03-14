@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "stylelint-check": "stylelint-config-prettier-check",
     "unit_test": "jest --watch",
     "test": "jest --watch",
     "cypress": "cypress open",
@@ -29,7 +30,12 @@
     "cypress": "^9.5.1",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
+    "eslint-config-prettier": "^8.5.0",
     "jest": "^27.5.1",
-    "start-server-and-test": "^1.14.0"
+    "prettier": "^2.5.1",
+    "start-server-and-test": "^1.14.0",
+    "stylelint": "^14.5.3",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-prettier": "^2.0.0"
   }
 }

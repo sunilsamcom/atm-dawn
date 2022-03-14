@@ -1,0 +1,25 @@
+{
+  "tabWidth": 2,
+  "printWidth": -1,
+  "endOfLine": "auto",
+  "arrowParens": "avoid",
+  "trailingComma": "none",
+  "semi": false,
+  "useTabs": false,
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "proseWrap": "preserve",
+  "htmlWhitespaceSensitivity": "strict",
+  "bracketSameLine": true,
+  "embeddedLanguageFormatting": "off",
+  "overrides": [
+    {
+      "files": "*.css",
+      "options": {
+        "trailingComma": "es5",
+        "bracketSpacing": false,
+        "printWidth": 80
+      }
+    }
+  ]
+}
