@@ -1,5 +1,23 @@
 {
   "extends": [
-    "next/core-web-vitals"
+    "next",
+    "next/core-web-vitals",
+    "eslint:recommended"
+  ],
+  "rules": {
+    "indent": ["warn", 2],
+    "no-unused-vars": "warn"
+  },
+  "overrides": [
+    // Unit and Integration Tests
+    {
+      "files": [
+        "__tests__/**/*.{js,jsx,ts,tsx}",
+        "cypress/**/*.{js,jsx,ts,tsx}"
+      ],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
   ]
 }
