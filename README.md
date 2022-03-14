@@ -68,16 +68,6 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 - [TypeScript](https://www.typescriptlang.org/docs/)
 - [~~RxJS~~](https://rxjs.dev/guide/overview)
 
-## Linting
-
-- [ESLint](https://eslint.org/)
-    - [Next.js eslint-config-next](https://nextjs.org/docs/basic-features/eslint)
-    - [GitHub eslint-config-prettier](https://github.com/prettier/eslint-config-prettier)
-- [Prettier](https://prettier.io/)
-- [Styleint](https://stylelint.io/)
-    - [NPM stylelint-prettier](https://www.npmjs.com/package/stylelint-prettier)
-    - [NPM stylelint-config-prettier](https://www.npmjs.com/package/stylelint-config-prettier)
-
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
