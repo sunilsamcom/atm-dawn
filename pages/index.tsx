@@ -11,6 +11,9 @@ function Home() {
   const { data: session } = useSession() //const session = useSession().data
   if(session) {
     return <>
+      <h1 className="text-3xl font-bold underline">
+        Hello world!
+      </h1>
       Signed in as {session.user.email} <br/>
       Access Token: {session.access_token} <br/>
       {/*<div>Access Token: {session.access_token}</div>*/}

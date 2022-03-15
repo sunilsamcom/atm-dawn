@@ -11,6 +11,7 @@
     "font-family-name-quotes": null,
     "value-list-comma-newline-after": null,
     "declaration-colon-newline-after": null,
-    "shorthand-property-no-redundant-values": null
+    "shorthand-property-no-redundant-values": null,
+    "at-rule-no-unknown": null
   }
 }
