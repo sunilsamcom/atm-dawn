@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "stylelint": "stylelint ./styles",
     "unit_test": "jest --watch",
     "test": "jest --watch",
     "cypress": "cypress open",
@@ -30,6 +31,8 @@
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
     "jest": "^27.5.1",
-    "start-server-and-test": "^1.14.0"
+    "start-server-and-test": "^1.14.0",
+    "stylelint": "^14.5.3",
+    "stylelint-config-standard": "^25.0.0"
   }
 }
