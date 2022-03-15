@@ -18,6 +18,16 @@
       "rules": {
         "no-undef": "off"
       }
+    },
+    // Types
+    {
+      "files": [
+        "types/**/*.d.{js,jsx,ts,tsx}"
+      ],
+      "rules": {
+        "indent": ["warn", 2], // This rule is not working
+        "no-unused-vars": "off"
+      }
     }
   ]
 }
