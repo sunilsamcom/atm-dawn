@@ -1,8 +1,38 @@
 import NextLink from 'next/link';
+import React, {HTMLAttributes} from "react";
+import {LinkProps} from "next/dist/client/link";
 
-export { Link };
+// function LinkReact(Elem: React.ComponentType) {
+//   Link()
+// }
 
-function Link({ href, children, ...props }) {
+// export declare type MyLinkProps = LinkProps & {
+//   href: Url;
+//   as?: Url;
+//   replace?: boolean;
+//   scroll?: boolean;
+//   shallow?: boolean;
+//   passHref?: boolean;
+//   prefetch?: boolean;
+//   locale?: string | false;
+// };
+//
+// declare function Link(props: React.PropsWithChildren<LinkProps>): React.DetailedReactHTMLElement<{
+//   onMouseEnter?: React.MouseEventHandler<Element> | undefined;
+//   onClick: React.MouseEventHandler;
+//   href?: string | undefined;
+//   ref?: any;
+// }, HTMLElement>;
+
+export default Link;
+
+type MyLinkProps = {
+  href: string,
+  children?: React.ReactNode,
+  props?: (LinkProps & HTMLAttributes<HTMLElement>)[]
+}
+
+function Link({ href, children, ...props }: React.PropsWithChildren<MyLinkProps>) {
   return (
     <NextLink href={href}>
       <a {...props}>

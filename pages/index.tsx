@@ -4,8 +4,9 @@ import Image from 'next/image'
 import styles from '../styles/home.module.css'
 
 import { useSession, signIn, signOut } from "next-auth/react"
+import NavigationDashboard from "../components/tailwindui/NavigationDashboard";
 
-export default Home;
+export default Home
 
 function Home() {
   const { data: session } = useSession() //const session = useSession().data
@@ -18,6 +19,8 @@ function Home() {
       Access Token: {session.access_token} <br/>
       {/*<div>Access Token: {session.access_token}</div>*/}
       <button onClick={() => signOut()}>Sign out</button>
+
+      <NavigationDashboard />
     </>
   }
   return <>

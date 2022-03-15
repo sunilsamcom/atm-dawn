@@ -66,7 +66,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
     - [~~React Hook Form~~](https://react-hook-form.com/get-started)
 - [React](https://reactjs.org/docs/getting-started.html)
 - [TypeScript](https://www.typescriptlang.org/docs/)
+    - [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
 - [~~RxJS~~](https://rxjs.dev/guide/overview)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## Deploy on Vercel
 
