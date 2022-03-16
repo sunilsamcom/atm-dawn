@@ -30,16 +30,16 @@ function Page2() {
         MyHelloComponent Children
       </MyHelloComponent>
       <p>----------</p>
-      {/*<p>(ATM)Link</p>*/}
-      {/*<Link href={'/pages/page-1'}>*/}
-      {/*  <p>Link for Page-1</p>*/}
-      {/*</Link>*/}
-      {/*<p>----------</p>*/}
-      {/*<p>CustomLink</p>*/}
-      {/*<CustomLink href={'/pages/page-1'}>*/}
-      {/*  <p>Custom Link for Page-1</p>*/}
-      {/*</CustomLink>*/}
-      {/*<p>----------</p>*/}
+      <p>(ATM)Link</p>
+      <Link href={'/pages/page-1'}>
+        <p>Link for Page-1</p>
+      </Link>
+      <p>----------</p>
+      <p>CustomLink</p>
+      <CustomLink href={'/pages/page-1'}>
+        <p>Custom Link for Page-1</p>
+      </CustomLink>
+      <p>----------</p>
       <NavigationDashboard />
     </div>
   )
