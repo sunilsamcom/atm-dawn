@@ -29,13 +29,14 @@ export default Link;
 type MyLinkProps = {
   href: string,
   children?: React.ReactNode,
+  className?: string,
   props?: (LinkProps & HTMLAttributes<HTMLElement>)[]
 }
 
-function Link({ href, children, ...props }: React.PropsWithChildren<MyLinkProps>) {
+function Link({ href, children, className, ...props }: React.PropsWithChildren<MyLinkProps>) {
   return (
     <NextLink href={href}>
-      <a {...props}>
+      <a className={className} {...props}>
         {children}
       </a>
     </NextLink>

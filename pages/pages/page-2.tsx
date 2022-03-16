@@ -30,6 +30,11 @@ function Page2() {
         MyHelloComponent Children
       </MyHelloComponent>
       <p>----------</p>
+      <p>MyHelloComponent with Title (Tooltip)</p>
+      <MyHelloComponent title={"Test Title"}>
+        MyHelloComponent Children with Title (Tooltip on Mouse hover)
+      </MyHelloComponent>
+      <p>----------</p>
       <p>(ATM)Link</p>
       <Link href={'/pages/page-1'}>
         <p>Link for Page-1</p>

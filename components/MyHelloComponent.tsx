@@ -1,4 +1,7 @@
-import React from "react";
+import React, {ComponentProps} from "react";
+
+// import NextPage generic type
+import { NextPage } from "next";
 
 export default MyHelloComponent
 
@@ -7,6 +10,7 @@ export default MyHelloComponent
 import {JSX} from "@babel/types"; // This is the type import which is necessary for explicit type declarations
 function MyHelloComponent({ children, ...props }: {
   children?: React.ReactNode,
+  title?: string,
   props?: any[]
 }): JSX.Element {
   return (
