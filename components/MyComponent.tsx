@@ -6,15 +6,15 @@ export default MyComponent
 // All these functions are JSX.Element components
 //
 import {JSX} from "@babel/types"; // This is the type import which is necessary for explicit type declarations
-function MyComponent({ href, children, className, props }: {
+/** @deprecated **/
+function MyComponent({ href, children, props }: {
   href: string,
-  children?: React.ReactNode,
-  className?: string,
+  children?: React.ReactNode
   props?: any[]
-}): JSX.Element {
+} & HTMLAttributes<HTMLElement>): JSX.Element {
   return (
     <Link href={href}>
-      <a className={className} {...props}>
+      <a {...props}>
         {children}
       </a>
     </Link>

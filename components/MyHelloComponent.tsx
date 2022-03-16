@@ -7,7 +7,8 @@ export default MyHelloComponent
 
 // All these functions are JSX.Element components
 //
-import {JSX} from "@babel/types"; // This is the type import which is necessary for explicit type declarations
+import {JSX} from "@babel/types";
+/** @deprecated **/
 function MyHelloComponent({ children, ...props }: {
   children?: React.ReactNode,
   title?: string,

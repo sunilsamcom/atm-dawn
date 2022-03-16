@@ -32,6 +32,7 @@ type CustomLinkProps = {
   props?: (LinkProps & HTMLAttributes<HTMLElement>)[]
 }
 
+/** @deprecated **/
 function CustomLink({ href, children, ...props }: React.PropsWithChildren<CustomLinkProps>) {
   return (
     <Link href={href}>
