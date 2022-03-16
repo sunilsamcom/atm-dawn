@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, {ComponentProps, HTMLAttributes, PropsWithChildren} from "react";
+import React, {HTMLAttributes} from "react";
 
 export default MyComponent
 

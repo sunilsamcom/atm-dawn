@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import NavigationDashboard from "../../components/tailwindui/NavigationDashboard";
 import MyComponent from "../../components/MyComponent";
-import MyHelloComponent from "../../components/MyHelloComponent";
 import Link from "../../components/Link";
 
 function classNames(...classes) {
@@ -23,16 +22,6 @@ function Page2() {
       <MyComponent href={'/pages/page-1'} >
         <p>MyComponent (for Page-1) (Default Styling)</p>
       </MyComponent>
-      <p>----------</p>
-      <p>MyHelloComponent</p>
-      <MyHelloComponent>
-        MyHelloComponent Children
-      </MyHelloComponent>
-      <p>----------</p>
-      <p>MyHelloComponent with Title (Tooltip)</p>
-      <MyHelloComponent title={"Test Title"}>
-        MyHelloComponent Children with Title (Tooltip on Mouse hover)
-      </MyHelloComponent>
       <p>----------</p>
       <p>(ATM)Link</p>
       <Link href={'/pages/page-1'}>
