@@ -1,22 +1,17 @@
 import Head from 'next/head'
 import NavigationDashboard from "../../components/tailwindui/NavigationDashboard";
-import MyComponent from "../../components/MyComponent";
 
-function Page2() {
+function Page4() {
   return (
     <div>
       <Head>
-        <title>Page 2</title>
+        <title>Page 4</title>
       </Head>
-      <p>This is Page 2</p>
-
-      <p>MyComponent</p>
-      <MyComponent />
-
+      <p>This is Page 4</p>
 
       <NavigationDashboard />
     </div>
   )
 }
 
-export default Page2
+export default Page4
