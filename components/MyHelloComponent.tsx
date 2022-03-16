@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React from "react";
 
 export default MyHelloComponent
@@ -11,12 +10,10 @@ function MyHelloComponent({ children, ...props }: {
   props?: any[]
 }): JSX.Element {
   return (
-    <MyHelloComponent {...props}>
-      <div {...props} className="pt-32 text-sky-500 bg-slate-800 h-screen text-center">
-        <h1 className="text-5xl">Hey! How are you?</h1>
-        {children}
-      </div>
-    </MyHelloComponent>
+    <div {...props}>
+      <h1 className="text-5xl">Hey! How are you?</h1>
+      {children}
+    </div>
   );
 }
 

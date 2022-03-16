@@ -25,9 +25,11 @@ function Page2() {
         <p>MyComponent (for Page-1) (Default Styling)</p>
       </MyComponent>
       <p>----------</p>
-      {/*<p>MyHelloComponent</p>*/}
-      {/*<MyHelloComponent />*/}
-      {/*<p>----------</p>*/}
+      <p>MyHelloComponent</p>
+      <MyHelloComponent>
+        MyHelloComponent Children
+      </MyHelloComponent>
+      <p>----------</p>
       {/*<p>(ATM)Link</p>*/}
       {/*<Link href={'/pages/page-1'}>*/}
       {/*  <p>Link for Page-1</p>*/}
