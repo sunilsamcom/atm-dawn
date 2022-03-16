@@ -5,6 +5,10 @@ import MyHelloComponent from "../../components/MyHelloComponent";
 import Link from "../../components/Link";
 import CustomLink from "../../components/CustomLink";
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
 function Page2() {
   return (
     <div>
@@ -14,8 +18,11 @@ function Page2() {
       <p>This is Page 2</p>
 
       <p>MyComponent</p>
-      <MyComponent href={'/pages/page-1'} className={''}>
-        <p>MyComponent (for Page-1)</p>
+      <MyComponent href={'/pages/page-1'} className={classNames("underline", "text-red-600", "hover:text-red-800", "visited:text-red-600")} >
+        <p>MyComponent (for Page-1) (Red Styling)</p>
+      </MyComponent>
+      <MyComponent href={'/pages/page-1'} >
+        <p>MyComponent (for Page-1) (Default Styling)</p>
       </MyComponent>
       <p>----------</p>
       {/*<p>MyHelloComponent</p>*/}
