@@ -63,12 +63,18 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 - [Next.js](https://nextjs.org/docs)
     - [NextAuth.js](https://next-auth.js.org/getting-started/introduction)
-    - [~~React Hook Form~~](https://react-hook-form.com/get-started)
 - [React](https://reactjs.org/docs/getting-started.html)
+    - [~~React Hook Form~~](https://react-hook-form.com/get-started)
+- [~~RxJS~~](https://rxjs.dev/guide/overview)
 - [TypeScript](https://www.typescriptlang.org/docs/)
     - [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
-- [~~RxJS~~](https://rxjs.dev/guide/overview)
 - [Tailwind CSS](https://tailwindcss.com/)
+
+## Linting
+
+- [ESLint](https://eslint.org/)
+    - [~~NPM - eslint-plugin-react-hooks~~](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+- [Stylelint.io](https://stylelint.io/)
 
 ## Deploy on Vercel
 
