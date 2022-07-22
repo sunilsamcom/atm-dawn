@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import NavigationDashboard from "../../components/tailwindui/NavigationDashboard";
-import MyComponent from "../../components/MyComponent";
-import Link from "../../components/Link";
+import NavigationDashboard from "@app/components/tailwindui/NavigationDashboard";
+import MyComponent from "@app/components/MyComponent";
+import Link from "@app/components/Link";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
