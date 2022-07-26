@@ -1,0 +1,13 @@
+2022-07-26 00:04:51 [development] info: JSON: 
+2022-07-26 00:04:51 [development] error: Error: some error on some error.
+    at handler (webpack-internal:///(api)/./pages/api/hello.tsx:16:15)
+    at Object.apiResolver (/Users/lalekidman/Desktop/developments/element7/apps/clients/atm-dawn/node_modules/next/dist/server/api-utils/node.js:182:15)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async DevServer.runApi (/Users/lalekidman/Desktop/developments/element7/apps/clients/atm-dawn/node_modules/next/dist/server/next-server.js:386:9)
+    at async Object.fn (/Users/lalekidman/Desktop/developments/element7/apps/clients/atm-dawn/node_modules/next/dist/server/base-server.js:488:37)
+    at async Router.execute (/Users/lalekidman/Desktop/developments/element7/apps/clients/atm-dawn/node_modules/next/dist/server/router.js:228:32)
+    at async DevServer.run (/Users/lalekidman/Desktop/developments/element7/apps/clients/atm-dawn/node_modules/next/dist/server/base-server.js:600:29)
+    at async DevServer.run (/Users/lalekidman/Desktop/developments/element7/apps/clients/atm-dawn/node_modules/next/dist/server/dev/next-dev-server.js:445:20)
+    at async DevServer.handleRequest (/Users/lalekidman/Desktop/developments/element7/apps/clients/atm-dawn/node_modules/next/dist/server/base-server.js:307:20)
+2022-07-26 00:04:57 [development] info: Hello from client-side
+2022-07-26 00:06:17 [development] info: Hello from client-side
