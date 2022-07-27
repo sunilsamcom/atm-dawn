@@ -7,6 +7,8 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { LogoutIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import { useSession, signIn, signOut } from "next-auth/react"
+
 import {
   BellIcon,
   CogIcon,
@@ -26,14 +28,10 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Dashboard", href: "", current: true },
-  { name: "Page 1", href: "/pages/page-1", current: false },
-  { name: "Page 2", href: "/pages/page-2", current: false },
-  { name: "Page 3", href: "/pages/page-3", current: false },
-  { name: "Page 4", href: "/pages/page-4", current: false },
-  { name: "Page 5", href: "/pages/page-5", current: false },
-  { name: "Reports", href: "#", current: false },
+  { name: "Tracker", href: "#", current: false },
+  { name: "Automizer", href: "#", current: false },
 ];
+
 const userNavigation = [
   { name: "Profile", href: "#" },
   { name: "Security", href: "#" },
@@ -63,6 +61,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+
 export default function NavigationDashboard() {
   return (
     <>
@@ -90,35 +89,22 @@ export default function NavigationDashboard() {
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-7">
-                        <Link
-                          href="https://github.com/"
-                          className="text-sm uppercase tracking-widest text-gray-500 font-semibold border-white border-b-2 pb-2 mt-2 hover:text-indigo-600 hover:border-indigo-600
-                         focus:text-indigo-600 focus:border-indigo-600"
-                        >
-                          Tracker
-                        </Link>
-                        <Link
-                          href="https://github.com/"
-                          className="text-sm uppercase tracking-widest text-gray-500 font-semibold border-white border-b-2 pb-2 mt-2 hover:text-indigo-600 hover:border-indigo-600
-                         focus:text-indigo-600 focus:border-indigo-600"
-                        >
-                          Automizer
-                        </Link>
-                        {/* {navigation.map((item) => (
+                        {navigation.map((item) => (
                           <Link
                             key={item.name}
                             href={item.href}
                             className={classNames(
                               item.current
-                                ? 'bg-gray-900 text-white'
-                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                              'px-3 py-2 rounded-md text-sm font-medium'
+                                ? 'border-b-2 border-indigo-600 '
+                                : '',
+                              `text-sm uppercase tracking-widest text-gray-500 font-semibold border-white border-b-2 pb-2 mt-2 hover:text-indigo-600 hover:border-indigo-600
+                              focus:text-indigo-600 focus:border-indigo-600`
                             )}
                             aria-current={item.current ? 'page' : undefined}
                           >
                             {item.name}
                           </Link>
-                        ))} */}
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -134,7 +120,7 @@ export default function NavigationDashboard() {
                           <BellIcon className="h-6 w-6" aria-hidden="true" />
                         </button>
 
-                        <Menu as="div">
+                        <Menu as="div" className="relative">
                           <div>
                             <Menu.Button className="p-1 rounded-full text-gray-600 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                               {/* <span className="sr-only">Open user menu</span> */}
@@ -159,7 +145,7 @@ export default function NavigationDashboard() {
                             leaveFrom="transform opacity-100 scale-100"
                             leaveTo="transform opacity-0 scale-95"
                           >
-                            <Menu.Items className="origin-top-left divide-y divide-gray-100 absolute right-[80px] mt-2 w-48 shadow-xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <Menu.Items className="origin-top-left divide-y divide-gray-100 absolute right-[0px] mt-2 w-48 shadow-xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                               <label className="bg-gray-100 text-gray-400 pl-5 pr-[130px] py-1.5 w-[200px] text-xs">
                                 Support
                               </label>
@@ -240,7 +226,7 @@ export default function NavigationDashboard() {
                               className="flex bg-gray-100 text-gray-400 text-right pl-28 py-1 text-xs"
                             >
                               <LogoutIcon className="w-5 h-5 mr-1 text-gray-400" />
-                              <label className="text-gray-400">SignOut</label>
+                              <label className="text-gray-400 cursor-pointer" onClick={()=>signOut()}>SignOut</label>
                             </Link>
                           </Menu.Items>
                         </Transition>
@@ -396,6 +382,8 @@ export default function NavigationDashboard() {
           <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             {/* Replace with your content */}
             <div className="px-4 py-4 sm:px-0">
+              sa
+              dsadas
               <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
             </div>
             {/* /End replace */}
