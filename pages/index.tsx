@@ -5,6 +5,7 @@ import styles from '../styles/home.module.css'
 
 import { useSession, signIn, signOut } from "next-auth/react"
 import NavigationDashboard from "../components/tailwindui/NavigationDashboard";
+import NavBar from  "organisms/common/NavBar";
 
 export default Home
 
@@ -20,7 +21,10 @@ function Home() {
       {/*<div>Access Token: {session.access_token}</div>*/}
       {/* <button onClick={() => signOut()}>Sign out</button> */}
 
-      <NavigationDashboard />
+    
+
+      <NavBar/>
+        <NavigationDashboard/>
     </>
   }
   return <>
