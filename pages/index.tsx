@@ -5,7 +5,7 @@ import styles from '../styles/home.module.css'
 
 import { useSession, signIn, signOut } from "next-auth/react"
 import NavigationDashboard from "../components/tailwindui/NavigationDashboard";
-import NavBar from  "organisms/common/NavBar";
+import NavBarComponent from  "organisms/common/NavBar";
 
 export default Home
 
@@ -23,8 +23,8 @@ function Home() {
 
     
 
-      <NavBar/>
-        <NavigationDashboard/>
+      <NavBarComponent/>
+        {/* <NavigationDashboard/> */}
     </>
   }
   return <>
