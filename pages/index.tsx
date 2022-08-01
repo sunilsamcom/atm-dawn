@@ -5,9 +5,9 @@ import styles from '../styles/home.module.css'
 
 import { useSession, signIn, signOut } from "next-auth/react"
 import NavigationDashboard from "../components/tailwindui/NavigationDashboard";
-import NavBarComponent from  "organisms/common/NavBar";
+// import NavBarComponent from  "organisms/common/NavBar";
 
-export default Home
+
 
 function Home() {
   const { data: session } = useSession() //const session = useSession().data
@@ -97,3 +97,5 @@ function Home() {
   //   </div>
   // )
 }
+
+export default Home;

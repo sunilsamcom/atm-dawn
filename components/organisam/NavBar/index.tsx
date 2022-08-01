@@ -22,7 +22,7 @@ function NavBar({mainIcon, leftMenuItems, rightMenuItems}: Props) {
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-7">
                 {leftMenuItems.map((item) => (
-                  <SimpleMenuItem
+                  <SimpleMenuItem 
                     key={item.name}
                     name={item.name}
                     href={item.href}
