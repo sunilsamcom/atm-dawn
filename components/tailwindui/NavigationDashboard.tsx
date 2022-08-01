@@ -4,84 +4,65 @@
  */
 
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { LogoutIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { useSession, signIn, signOut } from "next-auth/react"
+import React from "react";
 
-import {
-  BellIcon,
-  CogIcon,
-  QuestionMarkCircleIcon,
-  UserIcon,
-  LockClosedIcon,
-  LightBulbIcon,
-  ChatAltIcon,
-} from "@heroicons/react/solid";
+import {BellIcon, CogIcon, QuestionMarkCircleIcon,} from "@heroicons/react/solid";
+import NavBar from "../organisam/NavBar";
 
-import Link from "components/Link";
-
-const user = {
-  name: "Tom Cook",
-  email: "tom@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
 const navigation = [
-  { name: "Tracker", href: "#", current: false },
-  { name: "Automizer", href: "#", current: false },
+  {name: "Tracker", href: "#", isActive: false},
+  {name: "Automizer", href: "#", isActive: false},
 ];
 
-const userNavigation = [
-  { name: "Profile", href: "#" },
-  { name: "Security", href: "#" },
-  { name: "Key features", href: "#" },
-  { name: "General settings", href: "#" },
-  { name: "Give Feedback", href: "#" },
-];
-
-const userNaviIcons = [
-  { name: "<UserIcon/>" },
-  { name: "<LockClosedIcon/>" },
-  { name: "<LightBulbIcon/>" },
-  { name: "<CogIcon/>" },
-  { name: "<ChatAltIcon/>" },
-];
-
-const faqNavigation = [
-  { name: "Technical Docs", href: "#" },
-  { name: "Academy", href: "#" },
-  { name: "Webinars", href: "#" },
-  { name: "Video Tutorials", href: "#" },
-  { name: "Blog", href: "#" },
-  { name: "Contact us", href: "#" },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+const rightMenuItem = [
+  {
+    name: "Notifications",
+    icon: <BellIcon className="h-6 w-6" aria-hidden="true"/>,
+    submenu: [],
+  },
+  {
+    name: "Support",
+    icon: <QuestionMarkCircleIcon className="h-6 w-6" aria-hidden="true"/>,
+    submenu: [{title: "Technical Docs", href: "#"},
+      {title: "Academy", href: "#"},
+      {title: "Webinars", href: "#"},
+      {title: "Video Tutorials", href: "#"},
+      {title: "Blog", href: "#"},
+      {title: "Contact us", href: "#"},],
+  },
+  {
+    name: "Settings",
+    icon: <CogIcon className="h-6 w-6" aria-hidden="true"/>,
+    submenu: []
+  },
+  {
+    name: "Profile",
+    icon: <img
+      className="h-8 w-8 rounded-full cursor-pointer"
+      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      alt="Workflow"
+    />,
+    submenu: [
+      {title: "Profile", href: "#"},
+      {title: "Security", href: "#"},
+      {title: "Key features", href: "#"},
+      {title: "General settings", href: "#"},
+      {title: "Give Feedback", href: "#"},
+    ]
+  }
+]
 
 
 export default function NavigationDashboard() {
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
       <div className="min-h-full">
-     
-
         <header className="bg-white shadow-sm">
-          <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-            <h1 className="text-lg leading-6 font-semibold text-gray-900">
-              Dashboard
-            </h1>
-          </div>
+          <NavBar leftMenuItems={navigation} rightMenuItems={rightMenuItem} mainIcon={<img
+            className="h-8 w-8"
+            src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+            alt="Workflow"
+          />}/>
         </header>
         <main>
           <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -89,7 +70,7 @@ export default function NavigationDashboard() {
             <div className="px-4 py-4 sm:px-0">
               sa
               dsadas
-              <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
+              <div className="border-4 border-dashed border-gray-200 rounded-lg h-96"/>
             </div>
             {/* /End replace */}
           </div>

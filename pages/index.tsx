@@ -21,10 +21,10 @@ function Home() {
       {/*<div>Access Token: {session.access_token}</div>*/}
       {/* <button onClick={() => signOut()}>Sign out</button> */}
 
-    
 
-      <NavBarComponent/>
-        {/* <NavigationDashboard/> */}
+
+      {/*<NavBarComponent/>*/}
+         <NavigationDashboard/>
     </>
   }
   return <>
