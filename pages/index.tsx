@@ -9,28 +9,36 @@ import NavigationDashboard from "../components/tailwindui/NavigationDashboard";
 
 
 
-function Home() {
-  const { data: session } = useSession() //const session = useSession().data
-  if(session) {
-    return <>
-      {/* <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-      Signed in as {session.user.email} <br/>
-      Access Token: {session.access_token} <br/> */}
-      {/*<div>Access Token: {session.access_token}</div>*/}
-      {/* <button onClick={() => signOut()}>Sign out</button> */}
+function Home(props) {
+
+  // const { data: session } = useSession() 
+  //const session = useSession().data
+  // if(session) {
+  //   return <>
+  //     {/* <h1 className="text-3xl font-bold underline">
+  //       Hello world!
+  //     </h1>
+  //     Signed in as {session.user.email} <br/>
+  //     Access Token: {session.access_token} <br/> */}
+  //     {/*<div>Access Token: {session.access_token}</div>*/}
+  //     {/* <button onClick={() => signOut()}>Sign out</button> */}
 
 
 
-      {/*<NavBarComponent/>*/}
-         <NavigationDashboard/>
-    </>
-  }
-  return <>
-    Not signed in <br/>
-    <button onClick={() => signIn()}>Sign in</button>
-  </>
+  //     {/*<NavBarComponent/>*/}
+  return(
+        <NavigationDashboard/>
+  )
+        //   </>
+  // }
+  // return <>
+  //   Not signed in <br/>
+  //   <button onClick={() => signIn()}>Sign in</button>
+  // </>
+
+
+
+
 
   // return (
   //   <div className={styles.container}>

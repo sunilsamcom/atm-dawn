@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+/* @layer base {
   a {
     @apply underline text-blue-600 hover:text-blue-800 visited:text-purple-600
   }
@@ -12,7 +12,7 @@
   a {
     @apply underline text-blue-600 hover:text-blue-800 visited:text-purple-600
   }
-}
+} */
 
 /*@layer utilities {*/
 /*  a {*/
