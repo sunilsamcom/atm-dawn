@@ -13,17 +13,17 @@ export default {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     backgroundColor: { control: 'color' },
+    leftMenuItems:{ control:''},
+    rightMenuItems:{ control:''},
   },
 } ;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-export const Template = (args) => <NavBar {...args} />;
+const Template = (args) => <NavBar {...args} />;
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  primary: true,
-  label: 'Navbar',
+Default.args = {
     leftMenuItems: [
       {name: "Tracker", href: "#", isActive: false},
       {name: "Automizer", href: "#", isActive: false},
@@ -71,4 +71,3 @@ Primary.args = {
       }
     ],
 }
-
