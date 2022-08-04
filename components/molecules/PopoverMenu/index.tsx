@@ -10,10 +10,10 @@ type MenuSubItem = {
 type Props = {
   title: string;
   icon: JSX.Element;
-  submenu: MenuSubItem[];
+  children: JSX.Element;
 }
 
-export default function PopoverMenu({title, icon, submenu}: Props) {
+export default function PopoverMenu({title, icon, children}: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const wrapperRef = useRef(null);
@@ -51,7 +51,7 @@ export default function PopoverMenu({title, icon, submenu}: Props) {
       <div
         className="origin-top-right absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
         <div>
-          {submenu}
+          {children}
         </div>
       </div>
       }

@@ -13,8 +13,10 @@ export default {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     backgroundColor: { control: 'color' },
-    leftMenuItems:{ control:''},
-    rightMenuItems:{ control:''},
+    leftMenuItems:{ control:' ',description:"Left side menu items in navabar"},
+    rightMenuItems:{ control:' ',description:"Right side menu items in navabar"},
+    mainIcon:{ control:' ',description:"mainIcon is prop used to set Left logo on navigation bar"},
+    
   },
 } ;
 
@@ -70,4 +72,9 @@ Default.args = {
             />,
       }
     ],
+    mainIcon:<img
+    className="h-8 w-8"
+    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+    alt="Workflow"
+  />
 }
