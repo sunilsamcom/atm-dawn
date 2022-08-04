@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import  NavBar  from "../components/organisam/NavBar/index";
+import  {NavBar}  from "./NavBar";
 import {BellIcon, CogIcon, QuestionMarkCircleIcon,} from "@heroicons/react/solid";
 
 

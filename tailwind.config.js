@@ -28,13 +28,7 @@ console.log(`   ✅ purgeEnabled=${purgeEnabled}\n`)
 
 
 module.exports = {
-  purge: {
-    enabled: purgeEnabled,
-    // This is not present inside the default configuration
-    // but it's good to build your production application
-    // Read more about this here: https://tailwindcss.com/docs/installation#building-your-css
-    content: ["./pages/**/*.html", "./pages/**/*.tsx", "./pages/**/*.jsx"]
-  },
+  purge: ["./pages/**/*.html", "./pages/**/*.tsx", "./pages/**/*.jsx","./stories/**/*.{js,jsx,ts,tsx}"],
   darkMode: false,
   theme: {
     extend: {},

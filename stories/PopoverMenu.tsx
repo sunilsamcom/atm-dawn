@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {QuestionMarkCircleIcon} from "@heroicons/react/solid";
 import PopoverMenuSubItem from "../components/molecules/PopoverMenuSubItem"
+import {Button} from "./Button.tsx"
 
 type MenuSubItem = {
   title: string;
@@ -45,8 +46,8 @@ export default function PopoverMenu({title, icon, subItems}: Props) {
     <div className="relative inline-block text-left">
       <div onClick={() => toogleMenu()} ref={wrapperRef}>
         <span className="sr-only">{title}</span>
-        <button>click on me</button>
-      </div>
+        <Button primary backgroundColor="#1EA7FD" size="medium" label="Click on me" />
+      </div>  
       {menuOpen &&
       <div
         className="origin-top-right absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
