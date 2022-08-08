@@ -6,7 +6,7 @@ import PopoverMenuItem from "../../molecules/PopoverMenuItem";
 type Props = {
   leftMenuItems: LeftMenuItem[]
   rightMenuItems: RightMenuItem[]
-  mainIcon: JSX.Element;
+  mainIcon?: JSX.Element;
 }
 
 function NavBar({mainIcon, leftMenuItems, rightMenuItems}: Props) {

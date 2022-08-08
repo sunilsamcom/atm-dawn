@@ -38,6 +38,7 @@ export default function PopoverMenuItem({icon, subItems, title}: Props) {
     <div className="relative inline-block text-left">
       <div className="space-x-8 flex" onClick={() => toogleMenu()} ref={wrapperRef}>
         <button
+          aria-label ={`${title}`}
           type="button"
           className="p-1 rounded-full text-gray-600 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
         >
