@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 
-import styles from '../styles/home.module.css'
+import styles from '@app/styles/home.module.css'
 
 import { useSession, signIn, signOut } from "next-auth/react"
-import NavigationDashboard from "../components/tailwindui/NavigationDashboard";
+import NavigationDashboard from "@app/components/tailwindui/NavigationDashboard";
 
 export default Home
 
