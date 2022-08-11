@@ -10,6 +10,7 @@ export default Home
 
 function Home() {
   const { data: session } = useSession() //const session = useSession().data
+  console.log("session: ", session)
   if(session) {
     return <>
       <h1 className="text-3xl font-bold underline">
