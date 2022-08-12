@@ -28,6 +28,12 @@ jobs:
           architecture: ${{ matrix.architecture }}
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm run test:headless
+      - name: NPM Clean Install
+        run: npm ci
+      - name: NPM run build (if present)
+        run: npm run build --if-present
+      - name: NPM run Jest Tests
+        run: npm run test:headless
+        env:
+          CI: true # This sets the CI environment variable to true which means that warnings from tests will be treated as errors and cause the build to fail.
+          # https://mvolkmann.github.io/blog/github/actions/?v=1.0.9
