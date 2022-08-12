@@ -24,6 +24,9 @@ function Home() {
     </>
   }
   return <>
+    <h1 className="text-3xl font-bold underline">
+      Please login:
+    </h1>
     Not signed in <br/>
     <button onClick={() => signIn()}>Sign in</button>
   </>
