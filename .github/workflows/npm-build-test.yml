@@ -2,9 +2,9 @@ name: NPM CI - Build and Test
 
 on:
   push:
-    branches: [ "main", "stable", "sandbox", "experimental/github-actions/core", "env/*" ]
+    branches: [ "main", "stable", "sandbox", "env/*", "feature/*", "fix/*" ]
   pull_request:
-    branches: [ "main", "stable", "sandbox", "experimental/github-actions/core", "env/*" ]
+    branches: [ "main", "stable", "sandbox", "env/*" ]
   workflow_dispatch:
 
 jobs:
@@ -30,4 +30,4 @@ jobs:
           cache-dependency-path: '**/package-lock.json'
       - run: npm ci
       - run: npm run build --if-present
-      - run: npm test
+      - run: npm test:headless
