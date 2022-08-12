@@ -5,6 +5,13 @@ describe('Navigation Session', () => {
 
     cy.get('h1').contains('Please login:')
 
+    cy.visit('http://localhost:3000/page1', { failOnStatusCode: false })
+
+    cy.get('h1').contains('404')
+    cy.get('h2').contains('This page could not be found.')
+
+    cy.visit('http://localhost:3000/')
+
     // // Reference default test
     // // Find a link with an href attribute containing "docs" and click it
     // cy.get('a[href*="docs"]').click()
