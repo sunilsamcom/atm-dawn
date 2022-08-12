@@ -15,13 +15,15 @@ const customJestConfig = {
         "^@app/pages/(.*)$": '<rootDir>/pages/$1',
         "^@app/components/(.*)$": '<rootDir>/components/$1',
         "^@app/styles/(.*)$": '<rootDir>/styles/$1'
-        // "^@app/pages/(.*)$": '<rootDir>/pages/$1',
     },
     testEnvironment: 'jest-environment-jsdom',
     // Enable jest-dom custom jest matchers for asserting on DOM nodes
     "setupFilesAfterEnv": [
         "<rootDir>/setupTests.js"
     ],
+    testMatch: [
+        "**/__tests__/**/*.(tsx|js)"
+    ]
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
