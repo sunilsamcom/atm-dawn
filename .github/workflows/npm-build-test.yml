@@ -2,7 +2,7 @@ name: NPM CI - Build and Test
 
 on:
   push:
-    branches: [ "main", "stable", "sandbox", "env/*", "feature/*", "fix/*" ]
+    branches: [ "main", "stable", "sandbox", "env/*" ] #, "feature/*", "fix/*" ]
   pull_request:
     branches: [ "main", "stable", "sandbox", "env/*" ]
   workflow_dispatch:
