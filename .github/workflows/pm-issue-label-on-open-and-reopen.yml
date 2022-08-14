@@ -24,8 +24,8 @@ jobs:
         with:
           add-labels: "triage"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: alex-page/github-project-automation-plus@v0.8.1
-        with:
-          project: ATM Project
-          column: Triage
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+#      - uses: alex-page/github-project-automation-plus@v0.8.1
+#        with:
+#          project: ATM Project
+#          column: Triage
+#          repo-token: ${{ secrets.GITHUB_TOKEN }} # This token isn't enough for this step, and results in: "Error: Resource not accessible by integration"
