@@ -16,6 +16,7 @@ on:
 jobs:
   label_issues:
     runs-on: ubuntu-latest
+    timeout-minutes: 1
     permissions:
       issues: write
     steps:
