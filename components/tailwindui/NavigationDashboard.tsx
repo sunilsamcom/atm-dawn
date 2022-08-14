@@ -21,6 +21,8 @@ const navigation = [
   { name: 'Page 1', href: '/pages/page-1', current: false },
   { name: 'Page 2', href: '/pages/page-2', current: false },
   { name: 'Page 3', href: '/pages/page-3', current: false },
+  { name: 'Page 4', href: '/pages/page-4', current: false },
+  { name: 'Page 5', href: '/pages/page-5', current: false },
   { name: 'Reports', href: '#', current: false },
 ]
 const userNavigation = [
