@@ -4,6 +4,7 @@ import GoogleProvider from 'next-auth/providers/google'
 //import EmailProvider from 'next-auth/providers/email'
 import CredentialsProvider from "next-auth/providers/credentials";
 import { AuthData, Login } from '../../../services/voluum/login';
+import { Dummy } from '../../../services/voluum/dummy';
 
 export default NextAuth({
   providers: [
@@ -54,6 +55,26 @@ export default NextAuth({
 
         //global catch thats trhow an error and log it
       }
+    }),
+    CredentialsProvider({
+      // The name to display on the sign in form (e.g. "Sign in with...")
+      name: "Dummy",
+      id: "dummy",
+      // The credentials is used to generate a suitable form on the sign in page.
+      // You can specify whatever fields you are expecting to be submitted.
+      // e.g. domain, username, password, 2FA token, etc.
+      // You can pass any HTML attribute to the <input> tag through the object.
+      credentials: {
+
+      },
+      async authorize(credentials, req) {
+        // Add logic here to look up the user from the credentials supplied
+
+
+        return (new Dummy).login(credentials);
+
+        //global catch thats trhow an error and log it
+      }
     })
   ],
   callbacks: {
@@ -61,10 +82,10 @@ export default NextAuth({
 
       // Persist the OAuth access_token to the token right after signin
       if (user) {
-        
+
         token.accessToken = user.authToken.token; //with acessToken we can query
         let token_expire_ts = (new Date(user.authToken.expirationTimestamp)).getTime();
-        token.tokenExpires = parseInt(token_expire_ts/1000);
+        token.tokenExpires = parseInt(token_expire_ts / 1000);
         token.email = user.profile.email;
         token.sub = user.profile.id;
         token.name = user.profile.firstName + " " + user.profile.lastName;
@@ -73,13 +94,13 @@ export default NextAuth({
     },
     async session({ session, token, user }) {
       // Send properties to the client, like an access_token from a provider.
-      
-      let now = parseInt((new Date()).getTime()/1000);
-      if (now > token.tokenExpires){
+
+      let now = parseInt((new Date()).getTime() / 1000);
+      if (now > token.tokenExpires) {
         return {};
       }
       session.accessToken = token.accessToken;
-      session.expires = (new Date(token.tokenExpires*1000))
+      session.expires = (new Date(token.tokenExpires * 1000))
 
       return session
     }
