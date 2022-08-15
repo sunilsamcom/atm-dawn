@@ -7,6 +7,7 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
+# This flow actually works but it's not being useful and triggers 1 min billing for each few seconds of processing
 name: Label and Project move to Triage issues
 on:
   issues:
