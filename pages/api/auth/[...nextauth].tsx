@@ -2,6 +2,7 @@ import NextAuth from 'next-auth'
 import AppleProvider from 'next-auth/providers/apple'
 import FacebookProvider from 'next-auth/providers/facebook'
 import GoogleProvider from 'next-auth/providers/google'
+import AWSCognitoProvider from 'next-auth/providers/cognito'
 //import EmailProvider from 'next-auth/providers/email'
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -11,6 +12,11 @@ export default NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET
+    }),
+    AWSCognitoProvider({
+      clientId: process.env.AWS_COGNITO_APP_CLIENT_ID,
+      clientSecret: process.env.AWS_COGNITO_APP_CLIENT_SECRET,
+      issuer: process.env.AWS_COGNITO_APP_DOMAIN,
     }),
     // // Passwordless / email magic links sign in
     // EmailProvider({
@@ -29,6 +35,8 @@ export default NextAuth({
         password: {  label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
+        console.log("credentials :  " , credentials)
+        console.log("req :  " , req)
         // Add logic here to look up the user from the credentials supplied
         const user = { id: 1, name: "J Smith", email: "jsmith@example.com" }
 

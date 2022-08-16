@@ -16,7 +16,7 @@ function Home() {
         Hello world!
       </h1>
       Signed in as {session.user.email} <br/>
-      Access Token: {session.access_token} <br/>
+      Access Token: {session.accessToken} <br/>
       {/*<div>Access Token: {session.access_token}</div>*/}
       <button onClick={() => signOut()}>Sign out</button>
 
