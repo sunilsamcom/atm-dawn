@@ -7,11 +7,11 @@ export class Dummy {
 
 
   }
-  public async login(credentials: AuthData): Promise<VoluumUser> {
+  public async login(credentials?: AuthData): Promise<VoluumUser> {
     let authData =
     {
-      token: "NzYhFtdIGniLpOj8o-2OChNGOtsyMjKQ",
-      expirationTimestamp: "2022-08-11T03:22:21.564Z",
+      token: "1NzYhFtdIGniLpOj8o-2OChNGOtsyMjKQ",
+      expirationTimestamp: "2022-08-11T23:59:59.564Z",
       inaugural: false,
     };
     let userProfileData = {
