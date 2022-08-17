@@ -17,11 +17,21 @@ export class AuthData {
   }
 }
 export class VoluumUser /*implements User*/ {
+  public get authToken() {
+    return this._authToken;
+  }
+  public get profile() {
+    return this._profile;
+  }
+  public get id():string {
+    return this._id;
+  }
   constructor(
-    protected authToken: any,
-    protected profile: Profile,
+    protected _authToken: any,
+    protected _profile: Profile,
+    protected _id?: string
   ) {
-
+     
   }
 }
 //export 
@@ -78,7 +88,7 @@ export class Login {
     return this;
 
   }
-  public async login(credentials: AuthData): Promise<VoluumUser> {
+  public async login(credentials): Promise<VoluumUser> {
 
     const authData = await VoluumAnonApiPost(this.fetchImplementation, this.sessionEndpoint, credentials);
     if (!authData.token || authData.error) {
@@ -94,7 +104,7 @@ export class Login {
       VoluumHandleError(userProfileData);
       throw new Error("Can't get user profile");
     }
-    let user = new VoluumUser(authData, userProfileData);
+    let user = new VoluumUser(authData, userProfileData,userProfileData.id);
     return user;
   }
 }

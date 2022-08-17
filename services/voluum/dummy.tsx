@@ -7,11 +7,11 @@ export class Dummy {
 
 
   }
-  public async login(credentials?: AuthData): Promise<VoluumUser> {
+  public async login(): Promise<VoluumUser> {
     let authData =
     {
-      token: "1NzYhFtdIGniLpOj8o-2OChNGOtsyMjKQ",
-      expirationTimestamp: "2022-08-11T23:59:59.564Z",
+      token: "DEV",
+      expirationTimestamp: (new Date()).toUTCString(),
       inaugural: false,
     };
     let userProfileData = {
@@ -19,9 +19,9 @@ export class Dummy {
       created: "2022-04-11T17:26:25.000Z",
       state: "ACTIVATED",
       role: "ROLE_USER",
-      email: "david@rise.io",
-      firstName: "David ",
-      lastName: "Santos",
+      email: "dev@rise.io",
+      firstName: "FIRSTDEV",
+      lastName: "LASTDEV",
       memberships: [
         {
           role: "ADMIN",
@@ -48,7 +48,7 @@ export class Dummy {
       currency: "USD",
     }
 
-    let user = new VoluumUser(authData, userProfileData);
+    let user = new VoluumUser(authData, userProfileData,userProfileData.id);
     return user;
   }
 }
