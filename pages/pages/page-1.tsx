@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import NavigationDashboard from "../../components/tailwindui/NavigationDashboard";
+import NavigationDashboard from "@app/components/tailwindui/NavigationDashboard";
 
 function Page1() {
   return (

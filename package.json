@@ -12,6 +12,7 @@
     "stylelint-fix": "stylelint ./styles --fix",
     "unit_test": "jest --watch",
     "test": "jest --watch",
+    "test:headless": "jest",
     "cypress": "cypress open",
     "cypress:headless": "cypress run",
     "e2e": "start-server-and-test start http://localhost:3000 cypress",
@@ -51,13 +52,13 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.5",
     "@types/node": "^17.0.21",
-    "@types/react": "^17.0.48",
-    "autoprefixer": "^9.8.8",
+
     "babel-loader": "^8.2.5",
-    "cypress": "^9.5.1",
+    "cypress": "^10.4.0",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
-    "eslint-plugin-storybook": "^0.6.1",
+ "eslint-plugin-cypress": "^2.12.1",
+"eslint-plugin-storybook": "^0.6.1",
     "jest": "^27.5.1",
     "jest-environment-jsdom": "^27.4.4",
     "postcss": "^7.0.39",
@@ -66,10 +67,8 @@
     "start-server-and-test": "^1.14.0",
     "stylelint": "^14.5.3",
     "stylelint-config-standard": "^25.0.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
-    "typescript": "^4.7.4"
+  "typescript": "^4.7.4"
   },
   "resolutions": {
-    "webpack": "^5"
-  }
+    "webpack": "^5"  }
 }
