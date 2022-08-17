@@ -23,7 +23,7 @@ describe('Login', () => {
 
     //submit the form
     cy.get(".provider > form:nth-child(1) > button:nth-child(4)").click();
-    cy.wait(3);
+    //cy.wait(3);
 
     //visit logged in page
     cy.visit("http://localhost:3000/pages/page-1");
@@ -44,7 +44,7 @@ describe('Login', () => {
 
     //submit the form
     cy.get(".provider > form:nth-child(1) > button:nth-child(4)").click();
-    cy.wait(3);
+    //cy.wait(3);
 
     //visit logged in page
     cy.visit("http://localhost:3000/pages/page-1");
