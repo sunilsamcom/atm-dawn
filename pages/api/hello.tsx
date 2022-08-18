@@ -6,6 +6,10 @@ export default function handler(req, res) {
     console.log("Hello world")
     console.groupEnd()
     logger.info("JSON: ", JSON.stringify({hello: "world"}))
+    logger.info("Hey there!!!")
+    logger.info("Goodbye!\r\nAnother line Goodbye!")
+    logger.verbose("Verbose message")
+    logger.silly("Silly message")
     throw new Error("some error on some error.")
   } catch (error) {
     logger.error(error.stack)
