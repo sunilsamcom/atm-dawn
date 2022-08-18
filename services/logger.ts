@@ -30,6 +30,16 @@ const transportsFile: TransportStream[] = [
 
 const transportConsole: TransportStream = new transports.Console()
 
+/**
+ * This logger is meant to be used only by back-end components.
+ * For front-end please use console.log and its associated
+ *
+ * If you need to get a Front-end working Winston logger, please discuss with project lead and refer to:
+ * https://github.com/winstonjs/winston/issues/287#issuecomment-647196496
+ *
+ * Although there are solutions provided there for TypeScript and JavaScript, this is likely suboptimal and
+ * it's likely better to keep winston's usage to backend
+ */
 export const logger = createLogger({
   level: 'info',
   format: myFormat,
