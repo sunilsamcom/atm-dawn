@@ -4,7 +4,7 @@ import {
   IHTTPRequestResponse
 } from './interfaces'
 
-export function http (options: IHTTPRequestOptions): Promise<IHTTPRequestResponse>  {
+export function HttpRequest (options: IHTTPRequestOptions): Promise<IHTTPRequestResponse>  {
   const {
     // can be still enhance here,
     ..._options

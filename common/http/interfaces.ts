@@ -1,5 +1,5 @@
 export interface IHTTPRequestOptions {
-  baseUrl?: string
+  baseURL?: string
   url?: string
   headers?: any
   data?: any
@@ -7,5 +7,5 @@ export interface IHTTPRequestOptions {
 }
 export interface IHTTPRequestResponse {
   data: any,
-  status: any,
+  status: number,
 }
