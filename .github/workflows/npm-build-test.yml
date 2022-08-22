@@ -31,7 +31,9 @@ jobs:
           cache-dependency-path: '**/package-lock.json'
       - name: NPM Clean Install
         run: |
-          if [ -e package-lock.json ]; then
+          if [ -e yarn.lock ]; then
+          yarn install --frozen-lockfile
+          elif [ -e package-lock.json ]; then
           npm ci
           else
           npm i
