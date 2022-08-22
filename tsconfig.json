@@ -39,6 +39,9 @@
       ],
       "@app/types/*": [
         "./types/*"
+      ],
+      "@app/services/*": [
+        "./services/*"
       ]
     }
   },

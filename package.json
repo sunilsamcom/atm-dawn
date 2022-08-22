@@ -13,6 +13,7 @@
     "unit_test": "jest --watch",
     "test": "jest --watch",
     "test:headless": "jest",
+    "test:update-snapshot": "jest --updateSnapshot",
     "cypress": "cypress open",
     "cypress:headless": "cypress run",
     "e2e": "start-server-and-test start http://localhost:3000 cypress",
@@ -35,8 +36,9 @@
     "postcss-cli": "^10.0.0",
     "postcss-loader": "^7.0.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "storybook-addon-next-router": "^4.0.0"
+    "storybook-addon-next-router": "^4.0.0",
+    "winston": "^3.8.1",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
