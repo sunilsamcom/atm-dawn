@@ -50,10 +50,10 @@ jobs:
         run: npm ci
       - name: NPM run build (if present)
         run: npm run build --if-present
-      - name: NPM run start
-        run: npm run start
       - name: NPM run cypress:headless Tests
         run: npm run cypress:headless
+        with:
+          start: npm run start
         env:
           CI: true # This sets the CI environment variable to true which means that warnings from tests will be treated as errors and cause the build to fail.
           # https://mvolkmann.github.io/blog/github/actions/?v=1.0.9
