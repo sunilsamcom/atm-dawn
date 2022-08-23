@@ -99,6 +99,7 @@ export default NextAuth({
       let now = parseInt((new Date()).getTime() / 1000);
       if (process.env.NODE_ENV !== "development") {
         // only run this condition if the environment is not in `development`
+        // to make the Dummy Login Credential Provider work.
         if (now > token.tokenExpires) {
           return {};
         }
