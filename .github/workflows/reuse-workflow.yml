@@ -19,4 +19,5 @@ jobs:
         architecture: [x64]
 
     steps:
-      - uses: Rise-io/atm-dawn/.github/workflows/npm-build-cypress-headless-test.yml
+      - uses: actions/checkout@v3
+      - uses: Rise-io/atm-dawn/.github/workflows/npm-build-cypress-headless-test.yml@
