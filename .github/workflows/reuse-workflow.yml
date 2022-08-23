@@ -2,9 +2,9 @@ name: Reuse existing workflow - npm run cypress:headless
 
 on:
   push:
-    branches: [ "issue/41_github-action-reuse-workflow" ]
+    branches: [ "main", "staging" ]
   workflow_dispatch:
 
 jobs:
   steps:
-      uses: Rise-io/atm-dawn/.github/workflows/npm-build-cypress-headless-test.yml@issue/41_github-action-reuse-workflow
+      uses: Rise-io/atm-dawn/.github/workflows/npm-build-cypress-headless-test.yml@staging
