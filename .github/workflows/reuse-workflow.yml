@@ -6,17 +6,5 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 5
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-        os: [ubuntu-latest] #[ubuntu-latest, windows-latest, macOS-latest]
-        architecture: [x64]
-
-    steps:
-      - uses: Rise-io/atm-dawn/.github/workflows/npm-build-cypress-headless-test.yml@issue/41_github-action-reuse-workflow
+  steps:
+      uses: Rise-io/atm-dawn/.github/workflows/npm-build-cypress-headless-test.yml@issue/41_github-action-reuse-workflow
