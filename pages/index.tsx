@@ -18,6 +18,9 @@ function Home() {
       Signed in as {session.user.email} <br/>
       Access Token: {session.accessToken} <br/>
       {/*<div>Access Token: {session.access_token}</div>*/}
+      <p></p>
+      <button onClick={() => console.log("You clicked index page button!")}>Click me to log something!</button>
+      <p></p>
       <button onClick={() => signOut()}>Sign out</button>
 
       <NavigationDashboard />

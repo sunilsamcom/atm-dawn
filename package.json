@@ -13,6 +13,7 @@
     "unit_test": "jest --watch",
     "test": "jest --watch",
     "test:headless": "jest",
+    "test:update-snapshot": "jest --updateSnapshot",
     "cypress": "cypress open",
     "cypress:headless": "cypress run",
     "e2e": "start-server-and-test start http://localhost:3000 cypress",
@@ -25,7 +26,9 @@
     "next": "12.1.0",
     "next-auth": "^4.3.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "winston": "^3.8.1",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "engines" : { 
     "node" : ">=16.14.0"

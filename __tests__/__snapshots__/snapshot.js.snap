@@ -1,0 +1,219 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage unchanged 1`] = `
+<div>
+  <h1
+    class="text-3xl font-bold underline"
+  >
+    Hello world!
+  </h1>
+  Signed in as 
+   
+  <br />
+  Access Token: 
+   
+  <br />
+  <p />
+  <button>
+    Click me to log something!
+  </button>
+  <p />
+  <button>
+    Sign out
+  </button>
+  <div
+    class="min-h-full"
+  >
+    <nav
+      class="bg-gray-800"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <div
+          class="flex items-center justify-between h-16"
+        >
+          <div
+            class="flex items-center"
+          >
+            <div
+              class="flex-shrink-0"
+            >
+              <img
+                alt="Workflow"
+                class="h-8 w-8"
+                src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+              />
+            </div>
+            <div
+              class="hidden md:block"
+            >
+              <div
+                class="ml-10 flex items-baseline space-x-4"
+              >
+                <a
+                  aria-current="page"
+                  class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  href="/"
+                >
+                  Dashboard
+                </a>
+                <a
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  href="/pages/page-1"
+                >
+                  Page 1
+                </a>
+                <a
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  href="/pages/page-2"
+                >
+                  Page 2
+                </a>
+                <a
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  href="/pages/page-3"
+                >
+                  Page 3
+                </a>
+                <a
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  href="/pages/page-4"
+                >
+                  Page 4
+                </a>
+                <a
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  href="/pages/page-5"
+                >
+                  Page 5
+                </a>
+                <a
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  href="/#"
+                >
+                  Reports
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="hidden md:block"
+          >
+            <div
+              class="ml-4 flex items-center md:ml-6"
+            >
+              <button
+                class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                type="button"
+              >
+                <span
+                  class="sr-only"
+                >
+                  View notifications
+                </span>
+                <svg
+                  aria-hidden="true"
+                  class="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <div
+                class="ml-3 relative"
+              >
+                <div>
+                  <button
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                    id="headlessui-menu-button-1"
+                    type="button"
+                  >
+                    <span
+                      class="sr-only"
+                    >
+                      Open user menu
+                    </span>
+                    <img
+                      alt=""
+                      class="h-8 w-8 rounded-full"
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="-mr-2 flex md:hidden"
+          >
+            <button
+              aria-expanded="false"
+              class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              id="headlessui-disclosure-button-2"
+              type="button"
+            >
+              <span
+                class="sr-only"
+              >
+                Open main menu
+              </span>
+              <svg
+                aria-hidden="true"
+                class="block h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4 6h16M4 12h16M4 18h16"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <header
+      class="bg-white shadow-sm"
+    >
+      <div
+        class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8"
+      >
+        <h1
+          class="text-lg leading-6 font-semibold text-gray-900"
+        >
+          Dashboard
+        </h1>
+      </div>
+    </header>
+    <main>
+      <div
+        class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8"
+      >
+        <div
+          class="px-4 py-4 sm:px-0"
+        >
+          <div
+            class="border-4 border-dashed border-gray-200 rounded-lg h-96"
+          />
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+`;
