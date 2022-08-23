@@ -1,7 +1,7 @@
 name: Reuse existing workflow - npm run cypress:headless
 
 on:
-  pull_request:
+  push:
     branches: [ "issue/41_github-action-reuse-workflow" ]
   workflow_dispatch:
 
