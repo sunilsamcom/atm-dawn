@@ -48,7 +48,7 @@ export default NextAuth({
         let user = await voluumLogin.login(authData);
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
-          return user
+          return user as any
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
           return null
@@ -72,7 +72,8 @@ export default NextAuth({
         // Add logic here to look up the user from the credentials supplied
 
 
-        return (new Dummy).login(credentials);
+        // implement as any here because
+        return (new Dummy).login(credentials as any) as any
 
         //global catch thats trhow an error and log it
       }
@@ -86,7 +87,7 @@ export default NextAuth({
           // this means that this auth is came from Voluum Integration and Dummy login using Voluum User class
           token.accessToken = user.authToken.token; //with acessToken we can query
           let token_expire_ts = (new Date(user.authToken.expirationTimestamp)).getTime();
-          token.tokenExpires = parseInt(token_expire_ts / 1000);
+          token.tokenExpires = Math.floor(token_expire_ts / 1000);
           token.email = user.profile.email;
           token.sub = user.profile.id;
           token.name = user.profile.firstName + " " + user.profile.lastName;
@@ -96,7 +97,7 @@ export default NextAuth({
     },
     async session({ session, token, user }: any) {
       // Send properties to the client, like an access_token from a provider.
-      let now = parseInt((new Date()).getTime() / 1000);
+      let now = Math.floor((new Date()).getTime() / 1000);
       if (process.env.NODE_ENV !== "development") {
         // only run this condition if the environment is not in `development`
         // to make the Dummy Login Credential Provider work.
