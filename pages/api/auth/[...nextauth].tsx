@@ -18,6 +18,7 @@ export default NextAuth({
       clientId: process.env.AWS_COGNITO_APP_CLIENT_ID,
       clientSecret: process.env.AWS_COGNITO_APP_CLIENT_SECRET,
       issuer: process.env.AWS_COGNITO_APP_DOMAIN,
+      
     }),
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -78,22 +79,24 @@ export default NextAuth({
     })
   ],
   callbacks: {
-    async jwt({ token, user, account, profile, isNewUser }) {
+    async jwt({ token, user, account, profile, isNewUser }: any) {
       console.log("token ", token)
       console.log("user ", user)
       // Persist the OAuth access_token to the token right after signin
       if (user) {
-
-        token.accessToken = user.authToken.token; //with acessToken we can query
-        let token_expire_ts = (new Date(user.authToken.expirationTimestamp)).getTime();
-        token.tokenExpires = parseInt(token_expire_ts / 1000);
-        token.email = user.profile.email;
-        token.sub = user.profile.id;
-        token.name = user.profile.firstName + " " + user.profile.lastName;
+        if (user.authToken) {
+          // this means that this auth is came from Voluum Integration and Dummy login using Voluum User class
+          token.accessToken = user.authToken.token; //with acessToken we can query
+          let token_expire_ts = (new Date(user.authToken.expirationTimestamp)).getTime();
+          token.tokenExpires = parseInt(token_expire_ts / 1000);
+          token.email = user.profile.email;
+          token.sub = user.profile.id;
+          token.name = user.profile.firstName + " " + user.profile.lastName;
+        }
       }
       return token
     },
-    async session({ session, token, user }) {
+    async session({ session, token, user }: any) {
       // Send properties to the client, like an access_token from a provider.
       console.log(" session ", session)
       console.log(" token ", token)
