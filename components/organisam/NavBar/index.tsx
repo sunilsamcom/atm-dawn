@@ -19,7 +19,7 @@ function NavBar({mainIcon, leftMenuItems, rightMenuItems}: Props) {
             <div className="flex-shrink-0">
               {mainIcon}
             </div>
-            <div className="hidden md:block">
+            <div>
               <div className="ml-10 flex items-baseline space-x-7">
                 {leftMenuItems.map((item) => (
                   <SimpleMenuItem 
@@ -32,8 +32,8 @@ function NavBar({mainIcon, leftMenuItems, rightMenuItems}: Props) {
               </div>
             </div>
           </div>
-          <div className="hidden md:block">
-            <div className="ml-4 flex items-center md:ml-6 space-x-8">
+          <div>
+            <div className="ml-4 flex items-center md:ml-6 space-x-4">
               {
                 rightMenuItems.map((item) => (
                   <PopoverMenuItem icon={item.icon} subItems={item.submenu} title={item.name} key={item.name}/>
