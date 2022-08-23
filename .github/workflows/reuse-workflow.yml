@@ -20,4 +20,4 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/workflows/npm-build-cypress-headless-test.yml
+      - uses: Rise-io/atm-dawn/.github/workflows/npm-build-cypress-headless-test.yml
