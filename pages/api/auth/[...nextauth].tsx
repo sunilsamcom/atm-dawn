@@ -1,11 +1,11 @@
 import NextAuth from 'next-auth'
 
-import GoogleProvider from 'next-auth/providers/google'
+// import GoogleProvider from 'next-auth/providers/google'
 import AWSCognitoProvider from 'next-auth/providers/cognito'
 //import EmailProvider from 'next-auth/providers/email'
 import CredentialsProvider from "next-auth/providers/credentials";
-import { AuthData, Login } from '../../../services/voluum/login';
-import { Dummy } from '../../../services/voluum/dummy';
+import { AuthData, Login } from '@app/services/voluum/login';
+import { Dummy } from '@app/services/voluum/dummy';
 
 export default NextAuth({
   providers: [
@@ -80,8 +80,6 @@ export default NextAuth({
   ],
   callbacks: {
     async jwt({ token, user, account, profile, isNewUser }: any) {
-      console.log("token ", token)
-      console.log("user ", user)
       // Persist the OAuth access_token to the token right after signin
       if (user) {
         if (user.authToken) {
@@ -98,9 +96,6 @@ export default NextAuth({
     },
     async session({ session, token, user }: any) {
       // Send properties to the client, like an access_token from a provider.
-      console.log(" session ", session)
-      console.log(" token ", token)
-      console.log(" user ", user)
       let now = parseInt((new Date()).getTime() / 1000);
       if (process.env.NODE_ENV !== "development") {
         // only run this condition if the environment is not in `development`
