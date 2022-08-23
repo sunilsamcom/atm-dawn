@@ -3,7 +3,7 @@ describe('Navigation Session', () => {
     // Start from the index page
     cy.visit('http://localhost:3000/')
 
-    cy.get('h1').contains('Please login:')
+    cy.get('h1').contains('Sign in')
 
     // // Reference default test
     // // Find a link with an href attribute containing "docs" and click it
