@@ -1,5 +1,6 @@
 import "../styles/global.css";
 
+import { RouterContext } from "next/dist/shared/lib/router-context";
 import * as NextImage from "next/image";
 
 const OriginalNextImage = NextImage.default;
@@ -19,5 +20,8 @@ export const parameters = {
   },
   previewTabs: {
     "storybook/docs/panel": { index: -1 },
+  },
+  nextRouter: {
+    Provider: RouterContext.Provider,
   },
 };
