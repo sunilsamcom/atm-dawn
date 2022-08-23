@@ -19,4 +19,5 @@ jobs:
         architecture: [x64]
 
     steps:
+      - uses: actions/checkout@v3
       - uses: ./.github/workflows/npm-build-cypress-headless-test
