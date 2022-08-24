@@ -30,7 +30,7 @@ function Home(props) {
    }
   return <>
     Not signed in <br/>
-    <button onClick={() => signIn()}>Sign in</button>
+    <button  id="signInBtn" onClick={() => signIn()}>Sign in</button>
     {/* <button onClick={() => signOut()}>Sign out</button> */}
   </>
 }
