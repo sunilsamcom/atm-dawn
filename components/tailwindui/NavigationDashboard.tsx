@@ -8,7 +8,7 @@ import React from "react";
 
 import {BellIcon, CogIcon, QuestionMarkCircleIcon,} from "@heroicons/react/solid";
 import NavBar from "../organisam/NavBar";
-import UserIcon from "assets/user.png";
+import UserIcon from "../../assets/user.png";
 import Image from "next/image";
 
 const navigation = [
