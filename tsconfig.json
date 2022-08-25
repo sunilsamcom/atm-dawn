@@ -1,8 +1,5 @@
 {
   "compilerOptions": {
-    "paths": {
-      "@/components/*": ["components/*"]
-    },
     "target": "es5",
     "lib": [
       "dom",
@@ -25,6 +22,7 @@
     // Make all imports without a dot '.' prefix relative to the base url
     "baseUrl": ".",
     "paths": {
+      "@/components/*": ["components/*"],
       "@app/pages/*": [
         "./pages/*"
       ],

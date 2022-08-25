@@ -1,50 +1,58 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import  NavBarComponent  from "../components/organisam/NavBar/index";
+import React from "react";
+import PropTypes from "prop-types";
+import NavBarComponent from "../components/organisam/NavBar/index";
 import SimpleMenuItem from "../components/atoms/SimpleMenuItem";
 import PopoverMenuItem from "../components/molecules/PopoverMenuItem";
-import "../styles/global.css"
+import "../styles/global.css";
 
 /**
  * Primary UI component for user interaction
  */
- export const NavBar = ({mainIcon, leftMenuItems, rightMenuItems,backgroundColor}) => {
-    return (
-        <div >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-            <div className="flex items-center justify-between h-16" style={{backgroundColor}} >
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  {mainIcon}
-                </div>
-                <div className="hidden md:block">
-                  <div className="ml-10 flex items-baseline space-x-7">
-                    {leftMenuItems?.map((item) => (
-                      <SimpleMenuItem 
-                        key={item.name}
-                        name={item.name}
-                        href={item.href}
-                        isActive={item.isActive}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div className="hidden md:block">
-                <div className="ml-4 flex items-center md:ml-6 space-x-8">
-                  {
-                    rightMenuItems?.map((item) => (
-                      <PopoverMenuItem icon={item.icon} subItems={item.submenu} title={item.name} key={item.name}/>
-                    ))
-                  }
-                </div>
+export const NavBar = ({
+  mainIcon,
+  leftMenuItems,
+  rightMenuItems,
+  backgroundColor,
+}) => {
+  return (
+    <div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+        <div
+          className="flex items-center justify-between h-16"
+          style={{ backgroundColor }}
+        >
+          <div className="flex items-center">
+            <div className="flex-shrink-0">{mainIcon}</div>
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-baseline space-x-7">
+                {leftMenuItems?.map((item) => (
+                  <SimpleMenuItem
+                    key={item.name}
+                    name={item.name}
+                    href={item.href}
+                    isActive={item.isActive}
+                  />
+                ))}
               </div>
             </div>
           </div>
+          <div className="hidden md:block">
+            <div className="ml-4 flex items-center md:ml-6 space-x-8">
+              {rightMenuItems?.map((item) => (
+                <PopoverMenuItem
+                  icon={item.icon}
+                  subItems={item.submenu}
+                  title={item.name}
+                  key={item.name}
+                />
+              ))}
+            </div>
+          </div>
         </div>
-      )
+      </div>
+    </div>
+  );
 };
-
 
 // Button.propTypes = {
 //   /**
