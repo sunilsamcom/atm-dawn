@@ -2,7 +2,8 @@
   "extends": [
     "next",
     "next/core-web-vitals",
-    "eslint:recommended"
+    "eslint:recommended",
+    "plugin:cypress/recommended"
   ],
   "rules": {
     "indent": ["warn", 2],

@@ -20,7 +20,27 @@
     "jsx": "preserve",
 
     // Make all imports without a dot '.' prefix relative to the base url
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@app/pages/*": [
+        "./pages/*"
+      ],
+      "@app/components/*": [
+        "./components/*"
+      ],
+      "@app/styles/*": [
+        "./styles/*"
+      ],
+      "@app/public/*": [
+        "./public/*"
+      ],
+      "@app/types/*": [
+        "./types/*"
+      ],
+      "@app/services/*": [
+        "./services/*"
+      ]
+    }
   },
   "include": [
     "next-env.d.ts",
