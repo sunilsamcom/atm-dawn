@@ -18,6 +18,21 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+## Storybook
+
+You may test components using storybook, to start:
+
+```bash
+npm run storybook
+```
+
+Open [http://localhost:6006](http://localhost:6006) with your browser to open storybook.
+
+### Prerequisities:
+
+- Must install storybook dependencies via `npm install`
+- Tested working on Node 16
+
 ## Running Tests
 
 ### Jest: Unit Tests
@@ -39,7 +54,7 @@ npm run cypress
 ```
 
 > :warning:
-> 
+>
 > 1. Cypress tests require the application to be running first.
 > 2. E2E tests require a production application build to be available (via `npm run build`)
 
@@ -62,18 +77,19 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 ## Frameworks and Libraries Documentation
 
 - [Next.js](https://nextjs.org/docs)
-    - [NextAuth.js](https://next-auth.js.org/getting-started/introduction)
+  - [NextAuth.js](https://next-auth.js.org/getting-started/introduction)
 - [React](https://reactjs.org/docs/getting-started.html)
-    - [~~React Hook Form~~](https://react-hook-form.com/get-started)
+  - [~~React Hook Form~~](https://react-hook-form.com/get-started)
 - [~~RxJS~~](https://rxjs.dev/guide/overview)
 - [TypeScript](https://www.typescriptlang.org/docs/)
-    - [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+  - [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Storybook](https://storybook.js.org/docs/react/get-started/introduction)
 
 ## Linting
 
 - [ESLint](https://eslint.org/)
-    - [~~NPM - eslint-plugin-react-hooks~~](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+  - [~~NPM - eslint-plugin-react-hooks~~](https://www.npmjs.com/package/eslint-plugin-react-hooks)
 - [Stylelint.io](https://stylelint.io/)
 
 ## Deploy on Vercel
