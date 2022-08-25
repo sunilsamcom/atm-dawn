@@ -1,11 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {QuestionMarkCircleIcon} from "@heroicons/react/solid";
 
-
-type MenuSubItem = {
-  title: string;
-  href: string;
-}
 
 type Props = {
   title: string;
