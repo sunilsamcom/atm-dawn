@@ -21,6 +21,7 @@ module.exports = {
     "^.+\\.(css|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
 
     // Handle image imports
+    "\\.(jpg|jpeg|png)$": "identity-obj-proxy",
     // https://jestjs.io/docs/webpack#handling-static-assets
     "^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i": `<rootDir>/__mocks__/fileMock.js`,
 
