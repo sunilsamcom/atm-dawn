@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Image from "next/image";
 import { NavBar } from "./NavBar";
+import useIcon from "../assets/user.png"
 import {
   BellIcon,
   CogIcon,
@@ -66,11 +67,14 @@ Default.args = {
     {
       name: "Profile",
       icon: (
-        <Image
-          className="h-8 w-8 rounded-full cursor-pointer"
-          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-          alt="Workflow"
-        />
+        <div className="h-8 w-8">
+          <Image
+            src={useIcon}
+            alt="Workflow"
+            height="100%"
+            width="100%"
+          />
+        </div>
       ),
       submenu: [
         { title: "Profile", href: "#" },
@@ -80,19 +84,25 @@ Default.args = {
         { title: "Give Feedback", href: "#" },
       ],
       mainIcon: (
-        <Image
-          className="h-8 w-8"
-          src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-          alt="Workflow"
-        />
+        <div className="h-8 w-8">
+          <Image
+            src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+            alt="Workflow"
+            height="100%"
+            width="100%"
+          />
+        </div>
       ),
     },
   ],
   mainIcon: (
-    <Image
-      className="h-8 w-8"
-      src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-      alt="Workflow"
-    />
+    <div className="h-8 w-8">
+      <Image
+        src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+        alt="Workflow"
+        height="100%"
+        width="100%"
+      />
+    </div>
   ),
 };

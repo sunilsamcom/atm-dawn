@@ -69,11 +69,14 @@ export default function NavigationDashboard() {
             leftMenuItems={navigation}
             rightMenuItems={rightMenuItem}
             mainIcon={
-              <Image
-                className="h-8 w-8"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                alt="Workflow"
-              />
+              <div className="h-8 w-8">
+                <Image
+                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                  alt="Workflow"
+                  height="100%"
+                  width="100%"
+                />
+              </div>
             }
           />
         </header>

@@ -16,13 +16,14 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
+    "isolatedModules": true,
     "jsx": "preserve",
-
     // Make all imports without a dot '.' prefix relative to the base url
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
+      "@/components/*": [
+        "components/*"
+      ],
       "@app/pages/*": [
         "./pages/*"
       ],
