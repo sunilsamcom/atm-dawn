@@ -28,7 +28,7 @@ export default NextAuth({
         password: { label: "Password", type: "password" }
         //  mfa: { label: "Multifactor Token", type: "text", style:"display:none" }
       },
-      async authorize(credentials,req) {
+      async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
         var credentials2 = credentials;
 
