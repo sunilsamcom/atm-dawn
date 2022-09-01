@@ -38,5 +38,8 @@ yarn-error.log*
 ## Next.js types for TypeScript compiler
 next-env.d.ts
 
+#VSCode extension
+.history
+
 # logger(winston)
 /logs
