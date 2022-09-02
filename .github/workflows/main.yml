@@ -81,6 +81,7 @@ jobs:
       # and run all Cypress tests
       - name: Cypress.io
         uses: cypress-io/github-action@v4.2.0
+        run: npm run start
         with:
           build: npm run build
           start: npm run cypress
