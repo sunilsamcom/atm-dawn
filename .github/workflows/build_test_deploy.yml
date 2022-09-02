@@ -75,13 +75,14 @@ jobs:
     runs-on: ubuntu-latest
     name: cypress-run
     steps:
-      - uses: actions/checkout@v2
-      - name: cypress-run
-        uses: actions/setup-node@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run cypress:headless
+          build: npm run build
 
   releaseStats:
     name: Release Stats
