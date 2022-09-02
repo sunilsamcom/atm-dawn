@@ -57,44 +57,33 @@ jobs:
           restore-keys: npm-
       - name: NPM Clean Install
         run: npm install --package-lock-only
-  testUnit:
-    name: Test Unit
+  unit-test:
+    name: Unit tests
     runs-on: ubuntu-latest
     needs: [build]
-    env:
-      NEXT_TELEMETRY_DISABLED: 1
-      NEXT_TEST_JOB: 1
     steps:
-      - name: Setup node
-        uses: actions/setup-node@v3
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
+    - uses: actions/checkout@v1
+    - name: Run Jest
+      uses: stefanoeb/jest-action@1.0.3
+  cypress-run:
+    runs-on: ubuntu-latest
+    name: cypress-run
+    needs: [unit-test]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
         with:
-          node-version: 16
-          check-latest: true
-
-      - uses: actions/cache@v3
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
-        id: restore-build
-        with:
-          path: ./*
-          key: ${{ github.sha }}-${{ github.run_number }}
-
-      - uses: actions/download-artifact@v3
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
-        with:
-          name: next-swc-test-binary
-          path: packages/next-swc/native
-
-      - run: npm i -g pnpm@${PNPM_VERSION}
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
-
-      - run: npm run test:headless
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
+          build: npm run build
+          start: npm start
 
   releaseStats:
     name: Release Stats
     runs-on: ubuntu-latest
-    needs: [testUnit]
+    needs: [cypress-run]
     steps:
       - name: Setup node
         uses: actions/setup-node@v3
