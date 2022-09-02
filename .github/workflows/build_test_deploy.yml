@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Setup node
+      - name: next lint
         uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -58,104 +58,11 @@ jobs:
         with:
           path: ./*
           key: ${{ github.sha }}-${{ github.run_number }}
-      - run: ./scripts/check-manifests.js
-      - run: pnpm lint
-
-  rust-check:
-    runs-on: ubuntu-latest
-    needs: lint
-    steps:
-      - uses: actions/cache@v3
-        id: restore-build
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
-        with:
-          path: ./*
-          key: ${{ github.sha }}-${{ github.run_number }}
-
-      - run: echo ::set-output name=SWC_CHANGE::$(node scripts/run-for-change.js --type next-swc --exec echo 'yup')
-        id: swc-change
-
-      - run: echo ${{ steps.swc-change.outputs.SWC_CHANGE }}
-
-      - name: Install
-        uses: actions-rs/toolchain@v1
-        if: ${{ steps.swc-change.outputs.SWC_CHANGE == 'yup' }}
-        with:
-          profile: minimal
-          toolchain: ${{ env.RUST_TOOLCHAIN }}
-          components: rustfmt, clippy
-
-      - name: Cache cargo registry
-        uses: actions/cache@v3
-        if: ${{ steps.swc-change.outputs.SWC_CHANGE == 'yup' }}
-        with:
-          path: ~/.cargo/registry
-          key: stable-ubuntu-clippy-cargo-registry
-
-      - name: Cache cargo index
-        uses: actions/cache@v3
-        if: ${{ steps.swc-change.outputs.SWC_CHANGE == 'yup' }}
-        with:
-          path: ~/.cargo/git
-          key: stable-ubuntu-clippy-cargo-index
-
-      - name: Check
-        if: ${{ steps.swc-change.outputs.SWC_CHANGE == 'yup' }}
-        run: |
-          cargo fmt -- --check
-          cargo clippy --all -- -D warnings
-        working-directory: packages/next-swc
-
-  checkPrecompiled:
-    name: Check Pre-compiled
-    runs-on: ubuntu-latest
-    needs: rust-check
-    env:
-      NEXT_TELEMETRY_DISABLED: 1
-    steps:
-      - name: Setup node
-        uses: actions/setup-node@v3
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
-        with:
-          node-version: 16
-          check-latest: true
-
-      # https://github.com/actions/virtual-environments/issues/1187
-      - name: tune linux network
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
-        run: sudo ethtool -K eth0 tx off rx off
-
-      - uses: actions/checkout@v3
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
-
-      - run: mv .git .git-bak
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
-
-      - uses: actions/cache@v3
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
-        id: restore-build
-        with:
-          path: ./*
-          key: ${{ github.sha }}-${{ github.run_number }}
-
-      - run: npm i -g pnpm@${PNPM_VERSION}
-
-      - run: rm -rf .git && mv .git-bak .git
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
-
-      - run: ./scripts/check-pre-compiled.sh
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
-
-      - uses: EndBug/add-and-commit@v7
-        if: ${{ failure() }}
-        with:
-          add: 'packages/next/compiled packages/next/bundles --force'
-          message: '⚙ Update compiled files'
-
+      - run: npm run lint
   testUnit:
     name: Test Unit
     runs-on: ubuntu-latest
-    needs: [checkPrecompiled]
+    needs: [lint]
     env:
       NEXT_TELEMETRY_DISABLED: 1
       NEXT_TEST_JOB: 1
