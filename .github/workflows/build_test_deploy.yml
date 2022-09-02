@@ -74,7 +74,6 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     name: cypress-run
-    needs: [unit-test]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
