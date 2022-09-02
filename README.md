@@ -2,7 +2,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, create a `.env.local` file. 
+
+You should use the `.env.local.template` and replace the variables `VOLUUM_USERNAME` and `VOLUUM_PASSWORD` with your Voluum credentials.
+
+This will enable you to perform the sign in on the app.
+You can use the Dummy Authentication to create a fake session.
+
+Then run the development server:
 
 ```bash
 npm run dev
