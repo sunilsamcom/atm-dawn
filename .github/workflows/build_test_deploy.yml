@@ -17,8 +17,10 @@ jobs:
     name: NPM CI - Build and Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - name: NPM CI - Build and Test
+        uses: actions/checkout@v3
+        with:
+          includes: ./npm-install-force.yml
   lint:
     runs-on: ubuntu-latest
     needs: npm-ci
