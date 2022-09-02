@@ -2,9 +2,9 @@ name: NPM CI - Build and Test
 
 on:
   push:
-    branches: [ "main", "staging", "env/*" ]
+    branches: [ "master", "staging", "env/*" ]
   pull_request:
-    branches: [ "main", "staging", "env/*" ]
+    branches: [ "master", "staging", "env/*" ]
   workflow_dispatch:
 
 jobs:
