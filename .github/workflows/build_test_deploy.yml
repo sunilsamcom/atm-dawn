@@ -19,14 +19,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install moreutils
-        run: sudo apt install moreutils
   lint:
     runs-on: ubuntu-latest
     needs: npm-ci
     steps:
       - uses: actions/checkout@v3
       - name: Install lint
-        run: sudo apt install moreutils
 
   rust-check:
     runs-on: ubuntu-latest
