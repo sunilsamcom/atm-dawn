@@ -77,7 +77,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: cypress-run
-      - run: npm run cypress:headless
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm run test:headless
 
   releaseStats:
     name: Release Stats
