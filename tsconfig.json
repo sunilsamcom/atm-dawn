@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+
+    // Make all imports without a dot '.' prefix relative to the base url
+    "baseUrl": ".",
+    "paths": {
+      "@app/pages/*": [
+        "./pages/*"
+      ],
+      "@app/components/*": [
+        "./components/*"
+      ],
+      "@app/styles/*": [
+        "./styles/*"
+      ],
+      "@app/public/*": [
+        "./public/*"
+      ],
+      "@app/types/*": [
+        "./types/*"
+      ],
+      "@app/services/*": [
+        "./services/*"
+      ],
+      "@app/common/*": [
+        "./common/*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

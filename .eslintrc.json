@@ -1,0 +1,34 @@
+{
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:cypress/recommended"
+  ],
+  "rules": {
+    "indent": ["warn", 2],
+    "no-unused-vars": "warn"
+  },
+  "overrides": [
+    // Unit and Integration Tests
+    {
+      "files": [
+        "__tests__/**/*.{js,jsx,ts,tsx}",
+        "cypress/**/*.{js,jsx,ts,tsx}"
+      ],
+      "rules": {
+        "no-undef": "off"
+      }
+    },
+    // Types
+    {
+      "files": [
+        "types/**/*.d.{js,jsx,ts,tsx}"
+      ],
+      "rules": {
+        "indent": ["warn", 2], // This rule is not working
+        "no-unused-vars": "off"
+      }
+    }
+  ]
+}

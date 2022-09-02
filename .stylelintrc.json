@@ -1,0 +1,22 @@
+{
+  "extends": "stylelint-config-standard",
+  "configBaseDir": ".",
+  "rules": {
+    "indentation": [
+      2,
+      {
+        "severity": "warning"
+      }
+    ],
+    "font-family-name-quotes": null,
+    "value-list-comma-newline-after": null,
+    "declaration-colon-newline-after": null,
+    "shorthand-property-no-redundant-values": null,
+    "at-rule-no-unknown": null,
+    "declaration-block-trailing-semicolon": null,
+    "block-closing-brace-newline-before": null,
+    "max-empty-lines": 2,
+    "comment-empty-line-before": null,
+    "comment-whitespace-inside": null
+  }
+}
