@@ -1,7 +1,7 @@
 describe('Navigation Session', () => {
   it('should navigate to the login page', () => {
     // Start from the index page
-    cy.visit('http://localhost:3000/pages/page-1');
+    cy.visit('http://127.0.0.1:3000/pages/page-1');
 
     // cy.get('h1').contains('Please login:');
 
