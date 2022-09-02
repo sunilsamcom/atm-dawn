@@ -17,7 +17,7 @@ jobs:
 
       - run: yarn upgrade react@next react-dom@next -W --dev
 
-      - run: node run-tests.js --timings --write-timings -g 1/1
+      - run: npm run test:headless --timings --write-timings -g 1/1
 
       - uses: actions/cache@v3
         id: cache-build
@@ -48,4 +48,4 @@ jobs:
 
       - run: npm i -g playwright-chromium@1.22.2 && npx playwright install-deps
 
-      - run: node run-tests.js --timings -g ${{ matrix.group }}/6
+      - run: yarn run test:headless --timings -g ${{ matrix.group }}/6
