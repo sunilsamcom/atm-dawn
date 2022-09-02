@@ -592,17 +592,3 @@ jobs:
         run: |
           yarn --cwd bench/nested-deps install
           node bench/nested-deps/bench.mjs build
-      - uses: datadog/agent-github-action@v1
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
-        with:
-          api_key: ${{ secrets.DATA_DOG_API_KEY }}
-      - name: Sending metrics data to Datadog
-        if: ${{needs.build.outputs.docsChange == 'nope'}}
-        run: |
-          node scripts/trace-dd.mjs bench/nested-deps/.next/trace build ${GIT_SHORT_SHA} ./bench/nested-deps/next.config.js
-        env:
-          DATA_DOG_API_KEY: ${{ secrets.DATA_DOG_API_KEY }}
-          DD_TRACE_PARTIAL_FLUSH_MIN_SPANS: 10
-          DD_ENV: canary
-          DD_SERVICE: nextjs-dev-build
-          DD_TRACE_DEBUG: true
