@@ -26,6 +26,7 @@ jobs:
           file: package.json
           tagFormat: v${version}-beta
         id: version_check_staging
+        name: Echo
         run: |
           echo "Version ${{steps.version_check_staging.outputs.releaseVersion}}"
   # npm-ci:
