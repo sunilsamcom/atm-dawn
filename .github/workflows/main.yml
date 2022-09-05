@@ -22,6 +22,11 @@ jobs:
           node-version: 16
       - name: NPM Clean Install
         run: node -v && export VERSION=$(node -p "require('./package.json').version") && echo $VERSION
+      - uses: actions/checkout@v2
+      - uses: christophebedard/tag-version-commit@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version_assertion_command: 'grep -q "\"version\": \"$VERSION\"" package.json'
   # npm-ci:
   #   name: NPM CI - Build and Test
   #   runs-on: ubuntu-latest
