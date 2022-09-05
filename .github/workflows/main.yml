@@ -16,12 +16,18 @@ jobs:
   tag:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: christophebedard/tag-version-commit@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        version_regex: 'Version: \"$version\"'
-        version_assertion_command: 'grep -q "\"version\": \"$version\"" package.json'
+      - uses: actions/checkout@v2
+
+      - run: git fetch --all --tags
+
+      - name: Check Release Version
+        uses: thebongy/version-check@v1
+        with:
+          file: package.json
+          tagFormat: v${version}-beta
+        id: version_check_staging
+        run: |
+          echo "Version ${{steps.version_check_staging.outputs.releaseVersion}}"
   # npm-ci:
   #   name: NPM CI - Build and Test
   #   runs-on: ubuntu-latest
