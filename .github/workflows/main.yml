@@ -27,8 +27,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit: '"\"version\": \"$VERSION\"" package.json'
-          version_regex: '"\"version\": \"$VERSION\"" package.json'
-          version_assertion_command: 'grep -q "\"version\": \"$VERSION\"" package.json'
+          annotated: true
+          dry_run: true
   # npm-ci:
   #   name: NPM CI - Build and Test
   #   runs-on: ubuntu-latest
