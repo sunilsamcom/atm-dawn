@@ -26,6 +26,7 @@ jobs:
       - uses: christophebedard/tag-version-commit@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          commit: '"\"version\": \"$VERSION\"" package.json'
           version_regex: '"\"version\": \"$VERSION\"" package.json'
           version_assertion_command: 'grep -q "\"version\": \"$VERSION\"" package.json'
   # npm-ci:
