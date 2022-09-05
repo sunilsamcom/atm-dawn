@@ -1,20 +1,26 @@
 import NextAuth from 'next-auth'
 
-import GoogleProvider from 'next-auth/providers/google'
+// import GoogleProvider from 'next-auth/providers/google'
+import AWSCognitoProvider from 'next-auth/providers/cognito'
 //import EmailProvider from 'next-auth/providers/email'
 import CredentialsProvider from "next-auth/providers/credentials";
-import { AuthData, Login,VoluumUser } from '../../../services/voluum/login';
+import { AuthData, Login, VoluumUser } from '@app/services/voluum/login';
+import { Dummy } from '@app/services/voluum/dummy';
 
-import { Dummy } from '../../../services/voluum/dummy';
 //import { VoluumUser } from "../../../services/voluum/login";
 export default NextAuth({
   providers: [
-
-    // // Passwordless / email magic links sign in
-    // EmailProvider({
-    //     server: process.env.MAIL_SERVER,
-    //     from: 'NextAuth.js <no-reply@example.com>'
+    // OAuth authentication providers...
+    // GoogleProvider({
+    //   clientId: process.env.GOOGLE_ID,
+    //   clientSecret: process.env.GOOGLE_SECRET
     // }),
+    AWSCognitoProvider({
+      clientId: process.env.AWS_COGNITO_APP_CLIENT_ID,
+      clientSecret: process.env.AWS_COGNITO_APP_CLIENT_SECRET,
+      issuer: process.env.AWS_COGNITO_APP_DOMAIN,
+      
+    }),
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Voluum",
@@ -42,19 +48,14 @@ export default NextAuth({
 
         let voluumLogin = new Login(fetch);
         let user = await voluumLogin.login(authData);
-
-        //console.log(authData);
-
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
-          return user
+          return user as any
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
           return null
-
           // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
-
         //global catch thats trhow an error and log it
       }
     }),
@@ -73,9 +74,8 @@ export default NextAuth({
         // Add logic here to look up the user from the credentials supplied
 
 
-        return (new Dummy).login();
-
-        //global catch thats trhow an error and log it
+        // set return type as `any` because authorize method required it to be `UserCredentialsConfig` type
+        return (new Dummy).login() as any
       }
     })
   ],
@@ -85,23 +85,25 @@ export default NextAuth({
       let voluum_user = (user as unknown as VoluumUser);
       // Persist the OAuth access_token to the token right after signin
       if (user) {
-
-        token.accessToken = voluum_user.authToken.token; //with acessToken we can query
-        let token_expire_ts = (new Date(voluum_user.authToken.expirationTimestamp)).getTime();
-        token.tokenExpires = token_expire_ts / 1000;
-        token.email = voluum_user.profile.email;
-        token.sub = voluum_user.profile.id+"";
-        //token.name = voluum_user.profile.firstName;// + " " + (user.profile.lastName+"");
+        // added this condition to make sure that this implementation below will only work in Voluum Auth.
+        // could enhance this more in the future if we will support more auth providers.
+        if (user.authToken) {
+          token.accessToken = voluum_user.authToken.token; //with acessToken we can query
+          let token_expire_ts = (new Date(voluum_user.authToken.expirationTimestamp)).getTime();
+          token.tokenExpires = Math.floor(token_expire_ts / 1000);
+          token.email = voluum_user.profile.email;
+          token.sub = voluum_user.profile.id+"";
+          //token.name = voluum_user.profile.firstName;// + " " + (user.profile.lastName+"");
+        }
       }
       return token
     },
-    async session({ session, token, user }) {
+    async session({ session, token, user }: any) {
       // Send properties to the client, like an access_token from a provider.
       
       let token_expires = token.tokenExpires as number;
       
-      let now = (new Date()).getTime()/1000;
-
+      let now = Math.floor((new Date()).getTime() / 1000);
       if (now > token_expires) {
         session.expires = (new Date())+"";
         session.token = "EXPIRED";

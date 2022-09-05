@@ -1,5 +1,5 @@
-import { Profile } from "next-auth";
-import { VoluumUser } from "./login";
+// import { Profile } from "next-auth";
+import { AuthData, VoluumUser } from "./login";
 
 
 export class Dummy {
