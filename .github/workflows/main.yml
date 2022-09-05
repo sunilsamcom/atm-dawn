@@ -13,13 +13,13 @@ env:
   PNPM_VERSION: 7.2.1
 
 jobs:
-  npm-ci:
-    name: NPM CI - Build and Test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: NPM CI
-        run: sudo apt install moreutils
+  # npm-ci:
+  #   name: NPM CI - Build and Test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: NPM CI
+  #       run: sudo apt install moreutils
 
   build:
     runs-on: ubuntu-latest
@@ -57,68 +57,50 @@ jobs:
           restore-keys: npm-
       - name: NPM Clean Install
         run: npm install --package-lock-only
-  unit-test:
-    name: Unit tests
+  # unit-test:
+  #   name: Unit tests
+  #   runs-on: ubuntu-latest
+  #   needs: [build]
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Use Node.js ${{ matrix.node-version }}
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #     - run: npm ci
+  #     - run: npm run jest
+
+  # cypress-run:
+  #   runs-on: ubuntu-latest
+  #   name: cypress-run
+  #   needs: [unit-test]
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2.4.2
+  #     # Install NPM dependencies, cache them correctly
+  #     # and run all Cypress tests
+  #     - name: Cypress.io
+  #       uses: cypress-io/github-action@v4.2.0
+  #       timeout-minutes: 10
+  #       with:
+  #         build: npm run build
+  #         start: npm start
+  #         browser: chrome
+  #         headless: true
+  #       env:
+  #         # pass the Dashboard record key as an environment variable
+  #         CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
+
+  releaseStats:
+    name: Version Tag Commit
     runs-on: ubuntu-latest
     needs: [build]
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: christophebedard/tag-version-commit@v1
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run jest
-
-  cypress-run:
-    runs-on: ubuntu-latest
-    name: cypress-run
-    needs: [unit-test]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2.4.2
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypress.io
-        uses: cypress-io/github-action@v4.2.0
-        timeout-minutes: 10
-        with:
-          build: npm run build
-          start: npm start
-          browser: chrome
-          headless: true
-        env:
-          # pass the Dashboard record key as an environment variable
-          CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
-
-  releaseStats:
-    name: Release Stats
-    runs-on: ubuntu-latest
-    needs: [cypress-run]
-    steps:
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          check-latest: true
-
-      - uses: actions/cache@v3
-        id: restore-build
-        with:
-          path: ./*
-          key: ${{ github.sha }}-${{ github.run_number }}
-
-      - uses: actions/download-artifact@v3
-        with:
-          name: next-swc-test-binary
-          path: packages/next-swc/native
-
-      - run: cp -r packages/next-swc/native .github/actions/next-stats-action/native
-
-      - run: ./scripts/release-stats.sh
-      - uses: ./.github/actions/next-stats-action
-        env:
-          PR_STATS_COMMENT_TOKEN: ${{ secrets.PR_STATS_COMMENT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version_assertion_command: 'grep -q "\"version\": \"$version\"" package.json'
 
   build-performance-metrics:
     name: Performance Metrics for Release Build
