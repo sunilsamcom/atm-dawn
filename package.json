@@ -19,7 +19,9 @@
     "e2e:headless": "start-server-and-test start http://localhost:3000 cypress:headless",
     "integration_test": "start-server-and-test start http://localhost:3000 cypress",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "jest": "jest --coverage -c ./jest.config.js",
+    "jest:watch": "jest -c ./jest.config.js --watch"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
