@@ -85,7 +85,8 @@ export default NextAuth({
       let voluum_user = (user as unknown as VoluumUser);
       // Persist the OAuth access_token to the token right after signin
       if (user) {
-        // added this condition, this should
+        // added this condition to make sure that this implementation below will only work in Voluum Auth.
+        // could enhance this more in the future if we will support more auth providers.
         if (user.authToken) {
           token.accessToken = voluum_user.authToken.token; //with acessToken we can query
           let token_expire_ts = (new Date(voluum_user.authToken.expirationTimestamp)).getTime();
