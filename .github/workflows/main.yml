@@ -16,6 +16,10 @@ jobs:
   tag:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: NPM Clean Install
         run: export VERSION=$(node -p "require('./package.json').version") 
   # npm-ci:
