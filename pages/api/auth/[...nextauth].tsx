@@ -4,9 +4,10 @@ import NextAuth from 'next-auth'
 import AWSCognitoProvider from 'next-auth/providers/cognito'
 //import EmailProvider from 'next-auth/providers/email'
 import CredentialsProvider from "next-auth/providers/credentials";
-import { AuthData, Login } from '@app/services/voluum/login';
+import { AuthData, Login, VoluumUser } from '@app/services/voluum/login';
 import { Dummy } from '@app/services/voluum/dummy';
 
+//import { VoluumUser } from "../../../services/voluum/login";
 export default NextAuth({
   providers: [
     // OAuth authentication providers...
@@ -35,13 +36,14 @@ export default NextAuth({
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
+        var credentials2 = credentials;
 
         let authData;
         if (process.env.NODE_ENV == "development") {
           authData = new AuthData(process.env.VOLUUM_USERNAME, process.env.VOLUUM_PASSWORD);
           console.log("Using (.env) dev login");
         } else {
-          authData = new AuthData(credentials.email, credentials.password);
+          authData = new AuthData(credentials2.email, credentials2.password);
         }
 
         let voluumLogin = new Login(fetch);
@@ -72,41 +74,43 @@ export default NextAuth({
         // Add logic here to look up the user from the credentials supplied
 
 
-        // implement as any here because
-        return (new Dummy).login(credentials as any) as any
-
-        //global catch thats trhow an error and log it
+        // set return type as `any` because authorize method required it to be `UserCredentialsConfig` type
+        return (new Dummy).login() as any
       }
     })
   ],
   callbacks: {
-    async jwt({ token, user, account, profile, isNewUser }: any) {
+    async jwt({ token, user, account, profile, isNewUser }) {
+
+      let voluum_user = (user as unknown as VoluumUser);
       // Persist the OAuth access_token to the token right after signin
       if (user) {
+        // added this condition, this should
         if (user.authToken) {
-          // this means that this auth is came from Voluum Integration and Dummy login using Voluum User class
-          token.accessToken = user.authToken.token; //with acessToken we can query
-          let token_expire_ts = (new Date(user.authToken.expirationTimestamp)).getTime();
+          token.accessToken = voluum_user.authToken.token; //with acessToken we can query
+          let token_expire_ts = (new Date(voluum_user.authToken.expirationTimestamp)).getTime();
           token.tokenExpires = Math.floor(token_expire_ts / 1000);
-          token.email = user.profile.email;
-          token.sub = user.profile.id;
-          token.name = user.profile.firstName + " " + user.profile.lastName;
+          token.email = voluum_user.profile.email;
+          token.sub = voluum_user.profile.id+"";
+          //token.name = voluum_user.profile.firstName;// + " " + (user.profile.lastName+"");
         }
       }
       return token
     },
     async session({ session, token, user }: any) {
       // Send properties to the client, like an access_token from a provider.
+      
+      let token_expires = token.tokenExpires as number;
+      
       let now = Math.floor((new Date()).getTime() / 1000);
-      if (process.env.NODE_ENV !== "development") {
-        // only run this condition if the environment is not in `development`
-        // to make the Dummy Login Credential Provider work.
-        if (now > token.tokenExpires) {
-          return {};
-        }
+      if (now > token_expires) {
+        session.expires = (new Date())+"";
+        session.token = "EXPIRED";
+        return session;
       }
-      session.accessToken = token.accessToken;
-      session.expires = (new Date(token.tokenExpires * 1000))
+      session.token = token.accessToken;
+      
+      session.expires = (new Date((token_expires * 1000)))+"";
 
       return session
     }
