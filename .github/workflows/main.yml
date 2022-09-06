@@ -30,9 +30,9 @@ jobs:
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ steps.tag_version.outputs.changelog }}
+          tag: PACKAGE_VERSION
+          name: Release PACKAGE_VERSION
+          body: PACKAGE_VERSION
   # npm-ci:
   #   name: NPM CI - Build and Test
   #   runs-on: ubuntu-latest
