@@ -128,6 +128,11 @@ jobs:
           npm version patch
         env:
           GH_USERNAME: sunilsamcom
+      - name: Commit and push changes
+        uses: devops-infra/action-commit-push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: Commit and push changes
   deploy:
     name: Upload to S3
     runs-on: ubuntu-latest
