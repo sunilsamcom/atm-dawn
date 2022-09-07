@@ -20,9 +20,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+      - name: Update package.json version
+        run: npm version patch
       - name: Set output
         id: vars
-        run: npm version patch && echo ::set-output name=tag::$(node -p "require('./package.json').version")
+        run: echo ::set-output name=tag::$(node -p "require('./package.json').version")
       - name: Check output
         env:
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
