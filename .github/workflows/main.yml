@@ -103,12 +103,11 @@ jobs:
       - uses: actions/checkout@master
       - name: Set git username and email
         run: | 
-          git config --global user.email "${GH_USERNAME}@users.noreply.github.com"
-          git config --global user.name "${GH_USERNAME}"
-          npm --version
+          git config --global user.email "sunil.k@samcomtechnobrains.com"
+          git config --global user.name "sunilsamcom"
           npm version patch
         env:
-          GH_USERNAME: ${{ github.event.schedule.user.login }}
+          GH_USERNAME: sunilsamcom
       - name: Set output
         id: vars
         run: echo ::set-output name=tag::$(node -p "require('./package.json').version")
