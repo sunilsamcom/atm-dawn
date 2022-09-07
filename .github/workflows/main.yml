@@ -100,14 +100,6 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-      - uses: actions/checkout@master
-      - name: Set git username and email
-        run: | 
-          git config --global user.email "sunil.k@samcomtechnobrains.com"
-          git config --global user.name "sunilsamcom"
-          npm version patch
-        env:
-          GH_USERNAME: sunilsamcom
       - name: Set output
         id: vars
         run: echo ::set-output name=tag::$(node -p "require('./package.json').version")
@@ -128,6 +120,14 @@ jobs:
           tag: ${{ steps.vars.outputs.tag }}
           name: ${{ steps.vars.outputs.tag }}
           body: ${{ steps.vars.outputs.tag }}
+      - uses: actions/checkout@master
+      - name: Set git username and email
+        run: | 
+          git config --global user.email "sunil.k@samcomtechnobrains.com"
+          git config --global user.name "sunilsamcom"
+          npm version patch
+        env:
+          GH_USERNAME: sunilsamcom
   deploy:
     name: Upload to S3
     runs-on: ubuntu-latest
