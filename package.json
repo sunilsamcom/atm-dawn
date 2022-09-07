@@ -1,6 +1,6 @@
 {
   "name": "atm-dawn",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -38,8 +38,8 @@
     "winston": "^3.8.1",
     "winston-daily-rotate-file": "^4.7.1"
   },
-  "engines" : { 
-    "node" : ">=16.14.0"
+  "engines": {
+    "node": ">=16.14.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
