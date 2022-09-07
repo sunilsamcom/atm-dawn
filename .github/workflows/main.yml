@@ -12,88 +12,88 @@ env:
   RUST_TOOLCHAIN: nightly-2022-02-23
   PNPM_VERSION: 7.2.
 jobs:
-  # npm-ci:
-  #   name: NPM CI
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: NPM CI
-  #       run: sudo apt install moreutils
-  # build:
-  #   runs-on: ubuntu-latest
-  #   needs: [npm-ci]
-  #   name: Build
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: Use Node.js ${{ matrix.node-version }} - ${{ matrix.architecture }} on ${{ matrix.os }}
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-  #         architecture: ${{ matrix.architecture }}
-  #         cache: 'npm'
-  #         cache-dependency-path: '**/package-lock.json'
-  #     - name: Cache dependencies
-  #       uses: actions/cache@v2
-  #       with:
-  #         path: ~/.npm
-  #         key: npm-${{ hashFiles('package-lock.json') }}
-  #         restore-keys: npm-
-  #     - name: NPM Clean Install
-  #       run: npm install --force
-  #     - uses: actions/checkout@v3
-  #     - name: Use Node.js ${{ matrix.node-version }} - ${{ matrix.architecture }} on ${{ matrix.os }}
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-  #         architecture: ${{ matrix.architecture }}
-  #         cache: 'npm'
-  #         cache-dependency-path: '**/package-lock.json'
-  #     - name: Cache dependencies
-  #       uses: actions/cache@v2
-  #       with:
-  #         path: ~/.npm
-  #         key: npm-${{ hashFiles('package-lock.json') }}
-  #         restore-keys: npm-
-  #     - name: NPM Clean Install
-  #       run: npm install --package-lock-only
-  # unit-test:
-  #   name: Unit tests
-  #   runs-on: ubuntu-latest
-  #   needs: [build]
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: Use Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-  #     - run: npm ci
-  #     - run: npm run jest
+  npm-ci:
+    name: NPM CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: NPM CI
+        run: sudo apt install moreutils
+  build:
+    runs-on: ubuntu-latest
+    needs: [npm-ci]
+    name: Build
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }} - ${{ matrix.architecture }} on ${{ matrix.os }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          architecture: ${{ matrix.architecture }}
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+      - name: NPM Clean Install
+        run: npm install --force
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }} - ${{ matrix.architecture }} on ${{ matrix.os }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          architecture: ${{ matrix.architecture }}
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+      - name: NPM Clean Install
+        run: npm install --package-lock-only && npm run build
+  unit-test:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run jest
 
-  # cypress-run:
-  #   runs-on: ubuntu-latest
-  #   name: cypress-run
-  #   needs: [unit-test]
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2.4.2
-  #     # Install NPM dependencies, cache them correctly
-  #     # and run all Cypress tests
-  #     - name: Cypress.io
-  #       uses: cypress-io/github-action@v4.2.0
-  #       timeout-minutes: 10
-  #       with:
-  #         build: npm run build
-  #         start: npm start
-  #         browser: chrome
-  #         headless: true
-  #       env:
-  #         # pass the Dashboard record key as an environment variable
-  #         CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
+  cypress-run:
+    runs-on: ubuntu-latest
+    name: cypress-run
+    needs: [unit-test]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.4.2
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress.io
+        uses: cypress-io/github-action@v4.2.0
+        timeout-minutes: 10
+        with:
+          build: npm run build
+          start: npm start
+          browser: chrome
+          headless: true
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
 
   tag:
     runs-on: ubuntu-latest
     name: Version Tag Commit
-    # needs: [build]
+    needs: [build]
     steps:
         - uses: actions/checkout@v3
         - uses: actions/setup-node@v3
@@ -112,39 +112,6 @@ jobs:
             tag: ${{ steps.tag_version.outputs.new_tag }}
             name: Release ${{ steps.tag_version.outputs.new_tag }}
             body: ${{ steps.tag_version.outputs.changelog }}
-      # - uses: actions/checkout@v3
-      # - uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 16
-      #     cache: 'npm'
-      # - name: Set output
-      #   id: vars
-      #   run: echo ::set-output name=tag::$(node -p "require('./package.json').version")
-      # - name: Check output
-      #   env:
-      #     RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-      #   run: |
-      #     echo $RELEASE_VERSION
-      #     echo ${{ steps.vars.outputs.tag }}
-      # - name: Bump version and push tag
-      #   id: tag_version
-      #   uses: mathieudutour/github-tag-action@v6.0
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Create a GitHub release
-      #   uses: ncipollo/release-action@v1
-      #   with:
-      #     tag: ${{ steps.tag_name.outputs }}
-      #     name: ${{ steps.tag_name.outputs }}
-      #     body: ${{ steps.tag_name.outputs }}
-      # - uses: actions/checkout@master
-      # - name: Set git username and email
-      #   run: | 
-      #     git config --global user.email "sunil.k@samcomtechnobrains.com"
-      #     git config --global user.name "sunilsamcom"
-      #     npm version patch
-      #   env:
-      #     GH_USERNAME: sunilsamcom
   deploy:
     name: Upload to S3
     runs-on: ubuntu-latest
