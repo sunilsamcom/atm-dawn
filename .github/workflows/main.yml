@@ -114,6 +114,20 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_name.outputs }}
+          name: ${{ steps.tag_name.outputs }}
+          body: ${{ steps.tag_name.outputs }}
+      - uses: actions/checkout@master
+      - name: Set git username and email
+        run: | 
+          git config --global user.email "sunil.k@samcomtechnobrains.com"
+          git config --global user.name "sunilsamcom"
+          npm version patch
+        env:
+          GH_USERNAME: sunilsamcom
   deploy:
     name: Upload to S3
     runs-on: ubuntu-latest
