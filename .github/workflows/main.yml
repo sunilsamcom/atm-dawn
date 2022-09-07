@@ -30,7 +30,7 @@ jobs:
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          tag: \"$PACKAGE_VERSION"/
+          tag: $(node -p "require('./package.json').version")
           name: "$PACKAGE_VERSION"
           body: "$$PACKAGE_VERSION"
   # npm-ci:
