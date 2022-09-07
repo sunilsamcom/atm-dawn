@@ -23,6 +23,8 @@ jobs:
           cache: 'npm'
       - name: Update package.json version
         run: npm version patch
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Set output
         id: vars
         run: echo ::set-output name=tag::$(node -p "require('./package.json').version")
