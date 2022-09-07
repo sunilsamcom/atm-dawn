@@ -117,7 +117,6 @@ jobs:
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ steps.vars.outputs.tag }}
           name: ${{ steps.vars.outputs.tag }}
           body: ${{ steps.vars.outputs.tag }}
       - uses: actions/checkout@master
@@ -128,11 +127,6 @@ jobs:
           npm version patch
         env:
           GH_USERNAME: sunilsamcom
-      - name: Commit and push changes
-        uses: devops-infra/action-commit-push@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          commit_message: Commit and push changes
   deploy:
     name: Upload to S3
     runs-on: ubuntu-latest
