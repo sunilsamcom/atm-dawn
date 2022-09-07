@@ -20,9 +20,17 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: package.json version key
-        id: tag_name
-        run: node -v && export VERSION=$(node -p "require('./package.json').version") && echo $VERSION
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=tag::$(node -p "require('./package.json').version")
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check output
+        env:
+          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ steps.vars.outputs.tag }}
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.0
@@ -31,9 +39,9 @@ jobs:
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ steps.tag_name.run }}
-          name: ${{ steps.tag_name.run }}
-          body: ${{ steps.tag_name.run }}
+          tag: $RELEASE_VERSION
+          name: $RELEASE_VERSION
+          body: $RELEASE_VERSION
   # npm-ci:
   #   name: NPM CI - Build and Test
   #   runs-on: ubuntu-latest
