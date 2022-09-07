@@ -21,6 +21,7 @@ jobs:
         with:
           node-version: 16
       - name: package.json version key
+        id: tag_name
         run: node -v && export VERSION=$(node -p "require('./package.json').version") && echo $VERSION
       - name: Bump version and push tag
         id: tag_version
@@ -30,9 +31,9 @@ jobs:
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          tag: $(node -p "require('./package.json').version")
-          name: "$PACKAGE_VERSION"
-          body: "$$PACKAGE_VERSION"
+          tag: ${{ steps.tag_name.outputs }}
+          name: ${{ steps.tag_name.outputs }}
+          body: ${{ steps.tag_name.outputs }}
   # npm-ci:
   #   name: NPM CI - Build and Test
   #   runs-on: ubuntu-latest
