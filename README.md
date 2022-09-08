@@ -176,6 +176,11 @@ For example, we are going to translate the word "Please Login:"
 
    You can also set your browser's default language to automatically route the appropriate locale.
 
+8. Lastly, don't forget to export getStaticProps from `configs/i18n/getStaticProps.tsx`
+   ```js
+   export { getStaticProps } from "../configs/i18n/getStaticProps";
+   ```
+
 For more examples: [Lingui API Reference](https://lingui.js.org/ref/react.html)
 
 ### Prerequisities:

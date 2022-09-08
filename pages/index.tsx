@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import styles from '@app/styles/home.module.css'
-
+import { Trans } from '@lingui/react'
 import { useSession, signIn, signOut } from "next-auth/react"
 import NavigationDashboard from "@app/components/tailwindui/NavigationDashboard";
 
@@ -29,8 +29,11 @@ function Home() {
   return <>
     <h1 className="text-3xl font-bold underline">
       Please login:
+      <Trans id="login" />
     </h1>
     Not signed in <br/>
     <button onClick={() => signIn()}>Sign in</button>
   </>
 }
+
+export { getStaticProps } from '../configs/i18n/getStaticProps'
