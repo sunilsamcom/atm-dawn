@@ -31,7 +31,7 @@ exports[`renders homepage unchanged 1`] = `
         class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div
-          class="flex items-center justify-between h-16"
+          class="flex items-center justify-between"
         >
           <div
             class="flex items-center"
@@ -46,51 +46,65 @@ exports[`renders homepage unchanged 1`] = `
               />
             </div>
             <div
-              class="hidden md:block"
+              class="hidden md:block nav_links"
             >
               <div
-                class="ml-10 flex items-baseline space-x-4"
+                class="ml-10 flex flex-wrap items-baseline space-x-4"
               >
                 <a
                   aria-current="page"
                   class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                   href="/"
+                  style="max-width: 185px; overflow: hidden;"
                 >
                   Dashboard
                 </a>
                 <a
                   class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   href="/pages/page-1"
+                  style="max-width: 185px; overflow: hidden;"
                 >
-                  Page 1
+                  Campaigns and source Report
+                </a>
+                <a
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  href="/pages/page-1-g"
+                  style="max-width: 185px; overflow: hidden;"
+                >
+                  Campaigns and source Report - Data Source Mix
                 </a>
                 <a
                   class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   href="/pages/page-2"
+                  style="max-width: 185px; overflow: hidden;"
                 >
                   Page 2
                 </a>
                 <a
                   class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   href="/pages/page-3"
+                  style="max-width: 185px; overflow: hidden;"
                 >
                   Page 3
                 </a>
                 <a
                   class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   href="/pages/page-4"
+                  style="max-width: 185px; overflow: hidden;"
                 >
                   Page 4
                 </a>
                 <a
                   class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   href="/pages/page-5"
+                  style="max-width: 185px; overflow: hidden;"
                 >
                   Page 5
                 </a>
                 <a
                   class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   href="/#"
+                  style="max-width: 185px; overflow: hidden;"
                 >
                   Reports
                 </a>
@@ -104,7 +118,7 @@ exports[`renders homepage unchanged 1`] = `
               class="ml-4 flex items-center md:ml-6"
             >
               <button
-                class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                class="mr-2 bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 type="button"
               >
                 <span
@@ -128,6 +142,40 @@ exports[`renders homepage unchanged 1`] = `
                   />
                 </svg>
               </button>
+              <a
+                href="/workspace-management"
+              >
+                <button
+                  class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  type="button"
+                >
+                  <span
+                    class="sr-only"
+                  >
+                    View notifications
+                  </span>
+                  <svg
+                    aria-hidden="true"
+                    class="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </a>
               <div
                 class="ml-3 relative"
               >
@@ -135,7 +183,7 @@ exports[`renders homepage unchanged 1`] = `
                   <button
                     aria-expanded="false"
                     aria-haspopup="true"
-                    class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                    class="icon max-w-xs bg-gray-800 rounded-full flex items-center text-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                     id="headlessui-menu-button-1"
                     type="button"
                   >
@@ -148,6 +196,7 @@ exports[`renders homepage unchanged 1`] = `
                       alt=""
                       class="h-8 w-8 rounded-full"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      style="min-width: 25px;"
                     />
                   </button>
                 </div>
@@ -209,7 +258,7 @@ exports[`renders homepage unchanged 1`] = `
           class="px-4 py-4 sm:px-0"
         >
           <div
-            class="border-4 border-dashed border-gray-200 rounded-lg h-96"
+            class="border-4 border-dashed border-gray-200 rounded-lg h-96 h-full"
           />
         </div>
       </div>
