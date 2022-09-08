@@ -1,0 +1,21 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language: \n"
+"Language-Team: \n"
+"Content-Type: \n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#~ msgid "login"
+#~ msgstr "الرجاء تسجيل الدخول:"
+
+#~ msgid "welcome"
+#~ msgstr "أهلا وسهلا"
+
+#~ msgid "welcome-profile-page"
+#~ msgstr "مرحبا بكم في صفحة الملف الشخصي"

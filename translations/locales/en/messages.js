@@ -1,0 +1,1 @@
+/*eslint-disable*/module.exports={messages:{"login":"Please Login:","welcome":"Welcome","welcome-profile-page":"Welcome to the profile page"}};
