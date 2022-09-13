@@ -373,7 +373,7 @@ function WorkspaceManagement(session: any) {
   };
   useEffect(() => {
     menuCollapse();
-  }, [color, setColor]);
+  }, [color, menuCollapse, setColor]);
   const addPrivateWorkSpaceHandler = () => {
     const id = Math.floor(Math.random() * 1000000000);
     const data = {
@@ -492,53 +492,55 @@ function WorkspaceManagement(session: any) {
                 onChange={handleChange}
                 aria-label="basic tabs example border border-b-1"
               >
-                <Tab
-                  className={
-                    value === 0
-                      ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
-                      : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
-                  }
-                  // sx={{
-                  //   // border: "1px solid rgb(196, 204, 224)",
-                  //   // borderRight: "none",
-                  //   // borderBottom:
-                  //     // value === 0 ? "none" : "1px solid rgb(196, 204, 224)",
-                  // }}
-                  label="Workspace(2)"
-                  {...a11yProps(0)}
-                />
-                <Tab
-                  className={
-                    value === 1
-                      ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
-                      : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
-                  }
-                  sx={{
-                    // border: "1px solid rgb(196, 204, 224)",
-                    borderRight: "none",
-                    // borderBottom:
-                    //   value === 1 ? "none" : "1px solid rgb(196, 204, 224)",
-                  }}
-                  label="MULTI-USER(7)"
-                  {...a11yProps(1)}
-                />
-                {console.log(value === 2, "value === 2")}
-                <Tab
-                  className={
-                    value === 2
-                      ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-b-0"
-                      : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded]"
-                  }
-                  sx={
-                    {
-                      // border: "1px solid rgb(196, 204, 224)",
-                      // borderBottom:
-                      //   value === 2 ? "none" : "1px solid rgb(196, 204, 224)",
+                <>
+                  <Tab
+                    className={
+                      value === 0
+                        ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
+                        : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
                     }
-                  }
-                  label="SHARED REPORTS"
-                  {...a11yProps(2)}
-                />
+                    // sx={{
+                    //   // border: "1px solid rgb(196, 204, 224)",
+                    //   // borderRight: "none",
+                    //   // borderBottom:
+                    //     // value === 0 ? "none" : "1px solid rgb(196, 204, 224)",
+                    // }}
+                    label="Workspace(2)"
+                    {...a11yProps(0)}
+                  />
+                  <Tab
+                    className={
+                      value === 1
+                        ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
+                        : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
+                    }
+                    sx={{
+                      // border: "1px solid rgb(196, 204, 224)",
+                      borderRight: "none",
+                      // borderBottom:
+                      //   value === 1 ? "none" : "1px solid rgb(196, 204, 224)",
+                    }}
+                    label="MULTI-USER(7)"
+                    {...a11yProps(1)}
+                  />
+                  {console.log(value === 2, "value === 2")}
+                  <Tab
+                    className={
+                      value === 2
+                        ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-b-0"
+                        : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded]"
+                    }
+                    sx={
+                      {
+                        // border: "1px solid rgb(196, 204, 224)",
+                        // borderBottom:
+                        //   value === 2 ? "none" : "1px solid rgb(196, 204, 224)",
+                      }
+                    }
+                    label="SHARED REPORTS"
+                    {...a11yProps(2)}
+                  />
+                </>
               </Tabs>
             </Box>
           </Box>
@@ -717,14 +719,13 @@ function WorkspaceManagement(session: any) {
                       label: "Cancel",
                       onClick: () => setOpenChildModal(true),
                       variant: "secondary",
-                      className: "modal-action-button bg-slate-100"
-                      
+                      className: "modal-action-button bg-slate-100",
                     },
                     {
                       label: "Save",
                       onClick: addPrivateWorkSpaceHandler,
                       variant: "primary",
-                      className: "modal-action-button bg-[#7B67E7] text-white"
+                      className: "modal-action-button bg-[#7B67E7] text-white",
                     },
                   ]}
                 >
