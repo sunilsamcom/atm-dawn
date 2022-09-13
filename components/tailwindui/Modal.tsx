@@ -35,7 +35,7 @@ const ModalComponent: React.FC<ModalProps> = ({
   return (
     <Dialog {...props}>
       <header className="flex align-middle justify-between">
-        {title && <Title className="font-bold">{title}</Title>}
+        {title && <Title className="font-bold pt-3 pb-2">{title}</Title>}
         {!disableClose && (
           <IconButton onClick={onClose}>
             <CloseIcon />

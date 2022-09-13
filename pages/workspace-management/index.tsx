@@ -555,8 +555,8 @@ function WorkspaceManagement(session: any) {
                 </p>
                 <Box
                   display={"flex"}
-                  className="w-s-full"
-                  flexWrap="wrap"
+                  className="sm:w-full justify-end"
+                  // flexWrap="wrap"
                   gap="15px"
                   mb={"25px"}
                 >
@@ -728,7 +728,7 @@ function WorkspaceManagement(session: any) {
                     },
                   ]}
                 >
-                  <form className="border-t-2">
+                  <form>
                     <Typography
                       id="modal-modal-description"
                       sx={{ mt: 2, fontWeight: "bold" }}
