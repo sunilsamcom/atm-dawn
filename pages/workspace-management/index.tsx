@@ -39,6 +39,7 @@ import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import GroupIcon from "@mui/icons-material/Group";
+import ModalComponent from "@app/components/tailwindui/Modal";
 
 const style = {
   position: "absolute" as "absolute",
@@ -147,7 +148,7 @@ function WorkspaceManagement(session: any) {
 
       newSelectedItem.push(event.target.value.trim());
       setSelectedWorkerItem(newSelectedItem);
-      setTags(newSelectedItem)
+      setTags(newSelectedItem);
       setInputWorkerValue("");
     }
     if (
@@ -155,7 +156,9 @@ function WorkspaceManagement(session: any) {
       !inputWorkerValue.length &&
       event.key === "Backspace"
     ) {
-      setSelectedWorkerItem(selectedWorkerItem.slice(0, selectedWorkerItem.length - 1));
+      setSelectedWorkerItem(
+        selectedWorkerItem.slice(0, selectedWorkerItem.length - 1)
+      );
     }
   }
   function handleDomainKeyDown(event: any) {
@@ -173,7 +176,7 @@ function WorkspaceManagement(session: any) {
 
       newSelectedItem.push(event.target.value.trim());
       setSelectedDomainItem(newSelectedItem);
-      setDomains(newSelectedItem)
+      setDomains(newSelectedItem);
       setInputDomainValue("");
     }
     if (
@@ -181,7 +184,9 @@ function WorkspaceManagement(session: any) {
       !inputDomainValue.length &&
       event.key === "Backspace"
     ) {
-      setSelectedDomainItem(selectedDomainItem.slice(0, selectedDomainItem.length - 1));
+      setSelectedDomainItem(
+        selectedDomainItem.slice(0, selectedDomainItem.length - 1)
+      );
     }
   }
 
@@ -189,16 +194,15 @@ function WorkspaceManagement(session: any) {
     const newSelectedItem: any = [...selectedWorkerItem];
     newSelectedItem.splice(newSelectedItem.indexOf(item), 1);
     setSelectedWorkerItem(newSelectedItem);
-    setTags(newSelectedItem)
+    setTags(newSelectedItem);
   };
 
   const handleDomainDelete = (item) => () => {
     const newSelectedItem: any = [...selectedDomainItem];
     newSelectedItem.splice(newSelectedItem.indexOf(item), 1);
     setSelectedDomainItem(newSelectedItem);
-    setDomains(newSelectedItem)
+    setDomains(newSelectedItem);
   };
-
 
   function handleDomainChange(item) {
     let newSelectedItem: any = [...selectedDomainItem];
@@ -209,12 +213,10 @@ function WorkspaceManagement(session: any) {
     setSelectedDomainItem(newSelectedItem);
   }
   const handleOpen = () => {
-    setOpen(true),
-      setOpenChildModal(false)
+    setOpen(true), setOpenChildModal(false);
   };
   const handleClose = () => {
-    setOpen(false),
-      setOpenChildModal(false)
+    setOpen(false), setOpenChildModal(false);
   };
 
   const settingGeneralMenu = [
@@ -304,10 +306,7 @@ function WorkspaceManagement(session: any) {
     const { value } = e.target;
     setWorkSpaceFormValue(value);
   };
-  const handleChange = (
-    event: React.SyntheticEvent,
-    newValue: number,
-  ) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
   // eslint-disable-next-line no-unused-vars
@@ -353,30 +352,29 @@ function WorkspaceManagement(session: any) {
       setCollapse(false);
     }
   };
-  const [rowId, setrowId] = useState(0)
+  const [rowId, setrowId] = useState(0);
 
   const handleDelete = (item) => () => {
     const newSelectedItem: any = [...pvtWorkSpace];
     newSelectedItem.splice(newSelectedItem.indexOf(item), 1);
     setPvtWorkSpace(newSelectedItem);
   };
-  const [submitFlag, setSubmitFlag] = useState('add')
+  const [submitFlag, setSubmitFlag] = useState("add");
 
   const editHandler = (row) => {
-    setSubmitFlag('edit')
-    setrowId(row)
+    setSubmitFlag("edit");
+    setrowId(row);
     const editData: any = pvtWorkSpace.find((cur: any) => cur?.code == row);
     setWorkSpaceFormValue(editData.name);
     setTags(editData.workers);
-    setSelectedWorkerItem(editData.workers)
-    setSelectedDomainItem(editData.domains)
+    setSelectedWorkerItem(editData.workers);
+    setSelectedDomainItem(editData.domains);
     setDomains(editData.domains);
   };
   useEffect(() => {
     menuCollapse();
-  }, [color, setColor]);
+  }, [color, menuCollapse, setColor]);
   const addPrivateWorkSpaceHandler = () => {
-
     const id = Math.floor(Math.random() * 1000000000);
     const data = {
       code: id,
@@ -384,22 +382,25 @@ function WorkspaceManagement(session: any) {
       workers: tags,
       domains,
     };
-    if (submitFlag == 'add') {
+    if (submitFlag == "add") {
       setPvtWorkSpace((prev: any) => [...prev, data]);
-    }
-    else {
-      pvtWorkSpace.splice(pvtWorkSpace.findIndex((x: any) => x.code === rowId), 1, data)
+    } else {
+      pvtWorkSpace.splice(
+        pvtWorkSpace.findIndex((x: any) => x.code === rowId),
+        1,
+        data
+      );
       setPvtWorkSpace(pvtWorkSpace);
     }
     handleClose();
-    setTags([])
-    setDomains([])
-    setWorkSpaceFormValue("")
-    setInputDomainValue('')
-    setSelectedDomainItem([])
-    setInputWorkerValue('')
-    setSelectedWorkerItem([])
-  }
+    setTags([]);
+    setDomains([]);
+    setWorkSpaceFormValue("");
+    setInputDomainValue("");
+    setSelectedDomainItem([]);
+    setInputWorkerValue("");
+    setSelectedWorkerItem([]);
+  };
 
   return (
     <>
@@ -489,40 +490,57 @@ function WorkspaceManagement(session: any) {
                 className="text-blue-500"
                 value={value}
                 onChange={handleChange}
-                aria-label="basic tabs example"
+                aria-label="basic tabs example border border-b-1"
               >
-                <Tab
-                  className="font-semibold truncate text-slate-400"
-                  sx={{
-                    border: "1px solid rgb(196, 204, 224)",
-                    borderRight: "none",
-                    borderBottom:
-                      value === 0 ? "none" : "1px solid rgb(196, 204, 224)",
-                  }}
-                  label="Workspace(2)"
-                  {...a11yProps(0)}
-                />
-                <Tab
-                  className="font-semibold truncate text-slate-400"
-                  sx={{
-                    border: "1px solid rgb(196, 204, 224)",
-                    borderRight: "none",
-                    borderBottom:
-                      value === 1 ? "none" : "1px solid rgb(196, 204, 224)",
-                  }}
-                  label="MULTI-USER(7)"
-                  {...a11yProps(1)}
-                />
-                <Tab
-                  className="font-semibold truncate text-slate-400"
-                  sx={{
-                    border: "1px solid rgb(196, 204, 224)",
-                    borderBottom:
-                      value === 2 ? "none" : "1px solid rgb(196, 204, 224)",
-                  }}
-                  label="SHARED REPORTS"
-                  {...a11yProps(2)}
-                />
+                <>
+                  <Tab
+                    className={
+                      value === 0
+                        ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
+                        : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
+                    }
+                    // sx={{
+                    //   // border: "1px solid rgb(196, 204, 224)",
+                    //   // borderRight: "none",
+                    //   // borderBottom:
+                    //     // value === 0 ? "none" : "1px solid rgb(196, 204, 224)",
+                    // }}
+                    label="Workspace(2)"
+                    {...a11yProps(0)}
+                  />
+                  <Tab
+                    className={
+                      value === 1
+                        ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
+                        : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
+                    }
+                    sx={{
+                      // border: "1px solid rgb(196, 204, 224)",
+                      borderRight: "none",
+                      // borderBottom:
+                      //   value === 1 ? "none" : "1px solid rgb(196, 204, 224)",
+                    }}
+                    label="MULTI-USER(7)"
+                    {...a11yProps(1)}
+                  />
+                  {console.log(value === 2, "value === 2")}
+                  <Tab
+                    className={
+                      value === 2
+                        ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-b-0"
+                        : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded]"
+                    }
+                    sx={
+                      {
+                        // border: "1px solid rgb(196, 204, 224)",
+                        // borderBottom:
+                        //   value === 2 ? "none" : "1px solid rgb(196, 204, 224)",
+                      }
+                    }
+                    label="SHARED REPORTS"
+                    {...a11yProps(2)}
+                  />
+                </>
               </Tabs>
             </Box>
           </Box>
@@ -537,7 +555,13 @@ function WorkspaceManagement(session: any) {
                 <p className="font-bold">
                   AVAILABLE PRIVATE WORK SPACES: 48 of 50
                 </p>
-                <Box display={"flex"} flexWrap="wrap" gap="15px" mb={"25px"}>
+                <Box
+                  display={"flex"}
+                  className="sm:w-full justify-end"
+                  // flexWrap="wrap"
+                  gap="15px"
+                  mb={"25px"}
+                >
                   <Box display={"flex"} gap="10px" alignItems="center">
                     <RemoveRedEyeIcon style={{ color: "rgb(213, 0, 159)" }} />
                     Watch Video
@@ -549,7 +573,7 @@ function WorkspaceManagement(session: any) {
                   <Button
                     onClick={() => {
                       setFlag("Add");
-                      setSubmitFlag('add')
+                      setSubmitFlag("add");
                       handleOpen();
                     }}
                     style={{ color: "white", backgroundColor: "rgb(0,193,97)" }}
@@ -597,7 +621,7 @@ function WorkspaceManagement(session: any) {
                             {row.name}
                           </TableCell>
                           <TableCell>{row.code}</TableCell>
-                          <TableCell align="left"  >
+                          <TableCell align="left">
                             <Box style={{ display: "flex", gap: "5px" }}>
                               {row.workers.map((cur) => (
                                 <Box key={cur.code}>
@@ -608,7 +632,7 @@ function WorkspaceManagement(session: any) {
                               ))}
                             </Box>
                           </TableCell>
-                          <TableCell align="left"  >
+                          <TableCell align="left">
                             <Box style={{ display: "flex", gap: "5px" }}>
                               {row.domains.map((cur) => (
                                 <Box key={cur.code}>
@@ -633,8 +657,10 @@ function WorkspaceManagement(session: any) {
                                 />
                               </button>
                               <button>
-                                <DeleteIcon className="text-blue-900" onClick={
-                                  handleDelete(row)} />
+                                <DeleteIcon
+                                  className="text-blue-900"
+                                  onClick={handleDelete(row)}
+                                />
                               </button>
                             </>
                           </TableCell>
@@ -676,132 +702,133 @@ function WorkspaceManagement(session: any) {
                     {/* ****************************************************** */}
                   </Table>
                 </TableContainer>
-                <Modal
-                  open={open}
-                  onClose={handleClose}
+                <ModalComponent
+                  title={
+                    flag === "Add"
+                      ? "Add private Workspace"
+                      : "Edit private Workspace"
+                  }
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
-                  className="p-1 border-0"
+                  className="p-1 border"
+                  open={open}
+                  onClose={handleClose}
+                  fullWidth
+                  actions={[
+                    {
+                      label: "Cancel",
+                      onClick: () => setOpenChildModal(true),
+                      variant: "secondary",
+                      className: "modal-action-button bg-slate-100",
+                    },
+                    {
+                      label: "Save",
+                      onClick: addPrivateWorkSpaceHandler,
+                      variant: "primary",
+                      className: "modal-action-button bg-[#7B67E7] text-white",
+                    },
+                  ]}
                 >
-                  <Box
-                    sx={style} className={`border-none rounded-md p-4 w-full md:w-1/2 ${openChildModal ? "blur-sm" : ""}`}
-                    position="relative">
-
-                    <button className="absolute top-0 right-0" onClick={handleClose}><CloseIcon /></button>
-                    {flag === 'Add' ? <Typography id="modal-modal-title" variant="h5" component="h2">
-                      Add private Workspace
-                    </Typography> : <Typography id="modal-modal-title" variant="h5" component="h2">
-                      Edit private Workspace
+                  <form>
+                    <Typography
+                      id="modal-modal-description"
+                      sx={{ mt: 2, fontWeight: "bold" }}
+                    >
+                      Private workspace name
                     </Typography>
-                    }
-                    <hr className="mt-5 mb-5" />
+                    <Input
+                      id="standard-adornment-weight"
+                      name="workSpaceName"
+                      onChange={onInputChange}
+                      value={workSpaceFormValue}
+                      className="border"
+                      sx={{ width: "100%" }}
+                      endAdornment={<AdUnitsIcon />}
+                      aria-describedby="standard-weight-helper-text"
+                      inputProps={{
+                        "aria-label": "weight",
+                      }}
+                    />
 
-                    <form>
+                    <div className="flex items-end gap-1 mt-5 mb-1 align-center">
                       <Typography
                         id="modal-modal-description"
                         sx={{ mt: 2, fontWeight: "bold" }}
                       >
-                        Private workspace name
+                        Assigned Workers{" "}
                       </Typography>
-                      <Input
-                        id="standard-adornment-weight"
-                        name="workSpaceName"
-                        onChange={onInputChange}
-                        value={workSpaceFormValue}
-                        className="border"
-                        sx={{ width: "100%" }}
-                        endAdornment={<AdUnitsIcon />}
-                        aria-describedby="standard-weight-helper-text"
-                        inputProps={{
-                          "aria-label": "weight",
-                        }}
-                      />
-
-                      <div className="flex items-end gap-1 mt-5 mb-1 align-center">
-                        <Typography
-                          id="modal-modal-description"
-                          sx={{ mt: 2, fontWeight: "bold" }}
-                        >
-                          Assigned Workers{" "}
-                        </Typography>
-                        <HelpIcon color="disabled" />
-                      </div>
-                      <TagsInput
-                        placeholder="Assigned Worker"
-                        inputValue={inputWorkerValue}
-                        handleChange={handleWorkerChange}
-                        handleKeyDown={handleWorkerKeyDown}
-                        setInputValue={setInputWorkerValue}
-                        handleDelete={handleWorkerDelete}
-                        selectedItem={selectedWorkerItem}
-                        handleInputChange={handleInputWorkderChange}
-                        setSelectedItem={setSelectedWorkerItem}
-                      />
+                      <HelpIcon color="disabled" />
+                    </div>
+                    <TagsInput
+                      placeholder="Assigned Worker"
+                      inputValue={inputWorkerValue}
+                      handleChange={handleWorkerChange}
+                      handleKeyDown={handleWorkerKeyDown}
+                      setInputValue={setInputWorkerValue}
+                      handleDelete={handleWorkerDelete}
+                      selectedItem={selectedWorkerItem}
+                      handleInputChange={handleInputWorkderChange}
+                      setSelectedItem={setSelectedWorkerItem}
+                    />
+                    <Typography
+                      id="modal-modal-description"
+                      sx={{ fontSize: "13px" }}
+                    >
+                      Account owner and all Admins are assigned to all private
+                      workspace by default{" "}
+                    </Typography>
+                    <div className="flex items-end gap-1 mt-5 mb-1">
                       <Typography
                         id="modal-modal-description"
-                        sx={{ fontSize: "13px" }}
+                        sx={{ mt: 2, fontWeight: "bold" }}
                       >
-                        Account owner and all Admins are assigned to all private
-                        workspace by default{" "}
+                        Assigned Domains
                       </Typography>
-                      <div className="flex items-end gap-1 mt-5 mb-1">
-                        <Typography
-                          id="modal-modal-description"
-                          sx={{ mt: 2, fontWeight: "bold" }}
-                        >
-                          Assigned Domains
-                        </Typography>
-                        <HelpIcon color="disabled" />
-                      </div>
-                      <TagsInput
-                        placeholder="Assigned Domains"
-                        handleChange={handleDomainChange}
-                        inputValue={inputDomainValue}
-                        handleKeyDown={handleDomainKeyDown}
-                        handleDelete={handleDomainDelete}
-                        handleInputChange={handleInputDomainChange}
-                        setInputValue={setInputDomainValue}
-                        selectedItem={selectedDomainItem}
-                        setSelectedItem={setSelectedDomainItem}
-                      />
-                      <hr className="mt-5 mb-5" />
-                      <Box display={"flex"} justifyContent="space-between">
-                        <Button className="bg-slate-100" onClick={() => setOpenChildModal(true)}>Cancel</Button>
-                        <Button
-                          onClick={addPrivateWorkSpaceHandler}
-                          style={{
-                            color: "white",
-                            backgroundColor: "rgb(119,99,225)",
-                          }}
-                        >
-                          Save
-                        </Button>
-                      </Box>
-                    </form>
-                    <Modal
-                      hideBackdrop
-                      open={openChildModal}
-                      onClose={handleClose}
-                    >
-                      <Box className={`border-none rounded-md p-5 select-none ${openChildModal ? "" : "blur-sm"}`} sx={{ ...style, width: "auto", border: "none" }}>
-                        {/* eslint-disable-next-line react/no-unescaped-entities*/}
-                        <h2 className="font-bold text-lg mb-4">Close a Workspace's from without saving?</h2>
-                        <p>
-                          {/* eslint-disable-next-line react/no-unescaped-entities*/}
-                          You have entered changes to the workspace's form. if you close the form now, you will loose all input.
-                        </p>
-                        <hr className="mt-5 mb-2" />
-                        <Box display={"flex"} justifyContent='right'>
-                          <Button className="mr-4 bg-slate-100 truncate"
-                            onClick={() => setOpenChildModal(false)}>Go back</Button>
-                          <Button className="truncate"
-                            style={{ color: 'white', backgroundColor: '#28649c' }}
-                            onClick={handleClose}>Yes close form</Button>
-                        </Box>
-                      </Box>
-                    </Modal>
-                  </Box>
-                </Modal>
+                      <HelpIcon color="disabled" />
+                    </div>
+                    <TagsInput
+                      placeholder="Assigned Domains"
+                      handleChange={handleDomainChange}
+                      inputValue={inputDomainValue}
+                      handleKeyDown={handleDomainKeyDown}
+                      handleDelete={handleDomainDelete}
+                      handleInputChange={handleInputDomainChange}
+                      setInputValue={setInputDomainValue}
+                      selectedItem={selectedDomainItem}
+                      setSelectedItem={setSelectedDomainItem}
+                    />
+                  </form>
+                </ModalComponent>
+                <ModalComponent
+                  title="Close a Workspace`s from without saving?"
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                  className="backdrop-blur-lg p-1 border"
+                  open={openChildModal}
+                  onClose={handleClose}
+                  fullWidth
+                  hideBackdrop
+                  actions={[
+                    {
+                      label: "Go back",
+                      onClick: () => setOpenChildModal(false),
+                      variant: "secondary",
+                    },
+                    {
+                      label: "Yes close form",
+                      onClick: handleClose,
+                      variant: "primary",
+                    },
+                  ]}
+                >
+                  <p>
+                    {/* eslint-disable-next-line react/no-unescaped-entities*/}
+                    You have entered changes to the workspace's form. if you
+                    close the form now, you will loose all input.
+                  </p>
+                  <hr className="mt-5 mb-2" />
+                </ModalComponent>
+
                 {/* <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
