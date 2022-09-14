@@ -157,7 +157,7 @@ use `lingui-compile` to compile catalogs for production. This will generate `.js
 
 Also, language data (pluralizations) are written to the message catalog as well.
 
-Developer Note: Do not push/include `.js` files to source control.
+Developer Note: Include `.js` and `.po` files to source control so that pipeline will build successfully.
 
 ### How to add another locale/language
 

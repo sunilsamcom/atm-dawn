@@ -13,9 +13,8 @@ export function initTranslation(i18n: I18n): void {
 
 async function loadTranslation(locale: string, isProduction = true) {
   let data: { messages: any };
-  // data = await import(`../translations/locales/${locale}/messages`);
   if (isProduction) {
-    data = await import(`../translations/locales/${locale}/messages`);
+    data = await import(`../translations/locales/${locale}/messages.js`);
   } else {
     data = await import(
       `@lingui/loader!../translations/locales/${locale}/messages.po`

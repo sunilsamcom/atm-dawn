@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: pages/index.tsx:33
+#: pages/index.tsx:34
 msgid "My text to be translated"
 msgstr ""
 
