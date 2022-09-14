@@ -27,10 +27,9 @@ function Home() {
   }
   return (
     <>
-      <h1 className="text-3xl font-bold underline">
-        <h1>
-          <Trans>My text to be translated</Trans>
-        </h1>
+      <h1 className="text-3xl font-bold underline">Please login:</h1>
+      <h1>
+        <Trans>My text to be translated</Trans>
       </h1>
       Not signed in <br />
       <button onClick={() => signIn()}>Sign in</button>
