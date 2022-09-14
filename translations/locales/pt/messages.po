@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2022-09-08 12:26+0800\n"
+"POT-Creation-Date: 2022-09-15 00:39+0800\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,11 +13,14 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#~ msgid "login"
-#~ msgstr "Por favor entre:"
+#: pages/index.tsx:33
+msgid "My text to be translated"
+msgstr "Olá Mundo!"
 
-#~ msgid "welcome"
-#~ msgstr "Bem-vindo"
+#: pages/index.tsx:33
+#~ msgid "next-explanation"
+#~ msgstr "Hello World pt"
 
-#~ msgid "welcome-profile-page"
-#~ msgstr "Bem-vindo à página de perfil"
+#: pages/settings/profile.tsx:13
+msgid "welcome-profile-page"
+msgstr ""

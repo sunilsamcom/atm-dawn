@@ -1,1 +1,0 @@
-/*eslint-disable*/module.exports={messages:{"login":"الرجاء تسجيل الدخول:","welcome":"أهلا وسهلا","welcome-profile-page":"مرحبا بكم في صفحة الملف الشخصي"}};
