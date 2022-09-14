@@ -20,7 +20,7 @@
     "integration_test": "start-server-and-test start http://localhost:3000 cypress",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lingui-extract": "lingui extract",
+    "lingui-extract": "NODE_ENV=development lingui extract",
     "lingui-compile": "lingui compile"
   },
   "dependencies": {

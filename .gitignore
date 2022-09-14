@@ -43,3 +43,6 @@ next-env.d.ts
 
 # logger(winston)
 /logs
+
+# i18n
+/translations/locales/**/*.js

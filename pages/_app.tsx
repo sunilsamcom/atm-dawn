@@ -5,7 +5,7 @@ import { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 import { I18nProvider } from "@lingui/react";
 import { i18n } from "@lingui/core";
-import { initTranslation } from "../utils";
+import { initTranslation } from "utils/i18n";
 
 import { Page } from "@app/types/page";
 import { useRouter } from "next/router";

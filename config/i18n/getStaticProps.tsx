@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import { loadTranslation } from "utils";
+import { loadTranslation } from "utils/i18n";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const translation = await loadTranslation(

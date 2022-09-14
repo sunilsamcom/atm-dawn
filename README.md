@@ -86,15 +86,78 @@ This project supports [Internationalized Routing](https://nextjs.org/docs/advanc
 npm run lingui-extract
 ```
 
-use `lingui-extract` to update catalogs with new messages
+use `lingui-extract` to update catalogs with new messages. This will generate `.po` files
+
+Output:
+
+```
+Catalog statistics for translations/locales/{locale}/messages:
+┌─────────────┬─────────────┬─────────┐
+│ Language    │ Total count │ Missing │
+├─────────────┼─────────────┼─────────┤
+│ en (source) │      1      │    -    │
+│ ar          │      1      │    1    │
+│ pt          │      1      │    1    │
+│ pseudo      │      0      │    0    │
+└─────────────┴─────────────┴─────────┘
+```
+
+`Total count` is the total number of messages that need to be translated.
+
+`Missing` is the number of messages that need to be translated. In this case, there are 1 missing translation for the **Arabic** and **Portuguese** locale.
+
+To update the missing translations, go to `translations/locales/{locale}/messages.po` directory and provide your translation in each directory via `msgstr`.
+
+Note: `msgid` has been generated through `@lingui/macros` along with the `.po` message files
+
+`translations/locales/en/messages.po`
+
+```
+#~ msgid "login"
+#~ msgstr "Please Login:"
+```
+
+`translations/locales/pt/messages.po`
+
+```
+#~ msgid "login"
+#~ msgstr "Por favor entre:"
+```
+
+`translations/locales/ar/messages.po`
+
+```
+#~ msgid "login"
+#~ msgstr "الرجاء تسجيل الدخول:"
+```
+
+Running `npm run lingui-extract` again will produce these results. Now showing that all messages are translated.
+
+Output:
+
+```
+Catalog statistics for translations/locales/{locale}/messages:
+┌─────────────┬─────────────┬─────────┐
+│ Language    │ Total count │ Missing │
+├─────────────┼─────────────┼─────────┤
+│ en (source) │      1      │    -    │
+│ ar          │      1      │    0    │
+│ pt          │      1      │    0    │
+│ pseudo      │      0      │    0    │
+└─────────────┴─────────────┴─────────┘
+```
+
+--
 
 ```bash
 npm run lingui-compile
 ```
 
-use `lingui-compile` to compile catalogs for production
+use `lingui-compile` to compile catalogs for production. This will generate `.js` files
 
 Also, language data (pluralizations) are written to the message catalog as well.
+
+Developer Note: Do not push/include `.js` files to source control.
 
 ### How to add another locale/language
 
@@ -110,7 +173,7 @@ For this example we are going to add the locale for **Portuguese** with locale c
      },
    };
    ```
-2. Update `loadLocaleData` in `utils.ts` file
+2. Update `loadLocaleData` in `utils/i18n.ts` file
    ```js
    export function initTranslation(i18n: I18n): void {
      i18n.loadLocaleData({
@@ -133,14 +196,14 @@ For this example we are going to add the locale for **Portuguese** with locale c
 
 For example, we are going to translate the word "Please Login:"
 
-1. Import the `<Trans>` component from `@lingui/react`
+1. Import the `<Trans>` component from `@lingui/macro`
    ```js
-   import { Trans } from "@lingui/react";
+   import { Trans } from "@lingui/macro";
    ```
-2. Add the component and designate your preferred id
+2. Add the `<Trans>` component in your JSX
    ```js
    <h1 className="text-3xl font-bold underline">
-     <Trans id="login" />
+     <Trans>Please Login:</Trans>
    </h1>
    ```
 3. Extract the translations so that Lingui can generate the needed `.po` files. Run the command
@@ -164,24 +227,63 @@ For example, we are going to translate the word "Please Login:"
    #~ msgstr "Por favor entre:"
    ```
 
-6. Compile your translations by running this command:
-   ```bash
-   npm run lingui-compile
-   ```
-7. Go to your page where you placed your translation. Since this is configured using sub-path routing, we can test the translations like this:
+6. Go to your page where you placed your translation. Since this is configured using sub-path routing, we can test the translations like this:
 
-   - `localhost:3000/` - default locale
-   - `localhost:3000/en` - english locale
-   - `localhost:3000/pt` - portuguese locale
+   - `localhost:3000/` - default locale (english)
+   - `localhost:3000/en` - english locale subpath
+   - `localhost:3000/pt` - portuguese locale subpath
 
    You can also set your browser's default language to automatically route the appropriate locale.
 
-8. Lastly, don't forget to export getStaticProps from `configs/i18n/getStaticProps.tsx`
+7. Lastly, don't forget to export getStaticProps from `@app/configs/i18n/getStaticProps`
    ```js
-   export { getStaticProps } from "../configs/i18n/getStaticProps";
+   export { getStaticProps } from "@app/config/i18n/getStaticProps";
    ```
 
-For more examples: [Lingui API Reference](https://lingui.js.org/ref/react.html)
+### Translations with variables
+
+Given the page
+
+```js
+import { Trans } from '@lingui/macro'
+
+let name = "Nick";
+
+return (
+    <>
+      <p><Trans>Hello {name}</Trans></p>
+      ...
+    </>
+  );
+...
+```
+
+We run `npm run lingui-extract` and we update the generated `.po` file in each locale folder under translations:
+
+Portuguese - `translations/locales/pt/messages.po`
+
+```
+#~ msgid "Hello, {name}"
+#~ msgstr "Olá, {name}"
+```
+
+Arabic - `translations/locales/ar/messages.po`
+
+```
+#~ msgid "Hello, {name}"
+#~ msgstr "مرحبًا, {name}"
+```
+
+English - http://localhost:3000/
+<img width="264" alt="image" src="https://user-images.githubusercontent.com/17807945/189845583-758b7ad4-a464-4203-86c9-69d8c000c98a.png">
+
+Arabic - http://localhost:3000/ar
+<img width="317" alt="image" src="https://user-images.githubusercontent.com/17807945/189845714-c3a48015-b4f6-43d8-95da-17eb9c18de42.png">
+
+Arabic - http://localhost:3000/pt
+<img width="289" alt="image" src="https://user-images.githubusercontent.com/17807945/189845791-5c723815-19bb-459e-8ab9-b39412a84b03.png">
+
+For more examples and use cases: [Lingui API Reference](https://lingui.js.org/ref/react.html)
 
 ### Prerequisities:
 
