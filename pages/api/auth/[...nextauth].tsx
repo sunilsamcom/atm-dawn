@@ -6,6 +6,7 @@ import AWSCognitoProvider from 'next-auth/providers/cognito'
 import CredentialsProvider from "next-auth/providers/credentials";
 import { AuthData, Login, VoluumUser } from '@app/services/voluum/login';
 import { Dummy } from '@app/services/voluum/dummy';
+import {logger} from '@app/services/logger'
 
 //import { VoluumUser } from "../../../services/voluum/login";
 export default NextAuth({
@@ -19,7 +20,7 @@ export default NextAuth({
       clientId: process.env.AWS_COGNITO_APP_CLIENT_ID,
       clientSecret: process.env.AWS_COGNITO_APP_CLIENT_SECRET,
       issuer: process.env.AWS_COGNITO_APP_DOMAIN,
-      
+
     }),
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -100,9 +101,9 @@ export default NextAuth({
     },
     async session({ session, token, user }: any) {
       // Send properties to the client, like an access_token from a provider.
-      
+
       let token_expires = token.tokenExpires as number;
-      
+
       let now = Math.floor((new Date()).getTime() / 1000);
       if (now > token_expires) {
         session.expires = (new Date())+"";
@@ -110,10 +111,60 @@ export default NextAuth({
         return session;
       }
       session.token = token.accessToken;
-      
+
       session.expires = (new Date((token_expires * 1000)))+"";
 
       return session
     }
+  },
+  // cookies: {
+  //   sessionToken: {
+  //     name: `__Secure-next-auth.session-token`, // Make sure to add conditional logic so that the name of the cookie does not include `__Secure-` on localhost
+  //     options: { // All of these options must be specified, even if you're not changing them
+  //       httpOnly: true,
+  //       sameSite: 'lax',
+  //       path: '/',
+  //       secure: true,
+  //       domain: `example.com` // Ideally, you should use an environment variable for this
+  //     }
+  //   }
+  // },
+  debug: process.env.NODE_ENV !== "production",
+  logger: {
+    error(code, metadata) {
+      logger.error(code, metadata)
+    },
+    warn(code) {
+      logger.warn(code)
+    },
+    debug(code, metadata) {
+      logger.debug(code, metadata)
+    }
+  },
+  events: {
+    async signIn(message) {
+      /* on successful sign in */
+      logger.debug("NexAuth Event - signIn - Message:" + JSON.stringify(message));
+    },
+    async signOut(message) {
+      /* on signout */
+      logger.debug("NexAuth Event - signOut - " + JSON.stringify(message));
+    },
+    async createUser(message) {
+      /* user created */
+      logger.debug("NexAuth Event - createUser - " + JSON.stringify(message));
+    },
+    async updateUser(message) {
+      /* user updated - e.g. their email was verified */
+      logger.debug("NexAuth Event - updateUser - " + JSON.stringify(message));
+    },
+    async linkAccount(message) {
+      /* account (e.g. Twitter) linked to a user */
+      logger.debug("NexAuth Event - linkAccount - " + JSON.stringify(message));
+    },
+    async session(message) {
+      /* session is active */
+      logger.debug("NexAuth Event - session - " + JSON.stringify(message));
+    },
   }
 })
