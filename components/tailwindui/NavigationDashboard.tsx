@@ -18,7 +18,7 @@ import Image from "next/image";
 const navigation = [
   { name: "Tracker", href: "#", isActive: false },
   { name: "Automizer", href: "#", isActive: false },
-];
+];  
 
 const rightMenuItem = [
   {
