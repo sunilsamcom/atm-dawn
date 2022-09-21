@@ -26,6 +26,7 @@ exports[`renders homepage unchanged 1`] = `
   >
     <nav
       class="bg-gray-800"
+      data-headlessui-state=""
     >
       <div
         class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -178,12 +179,14 @@ exports[`renders homepage unchanged 1`] = `
               </a>
               <div
                 class="ml-3 relative"
+                data-headlessui-state=""
               >
                 <div>
                   <button
                     aria-expanded="false"
                     aria-haspopup="true"
                     class="icon max-w-xs bg-gray-800 rounded-full flex items-center text-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                    data-headlessui-state=""
                     id="headlessui-menu-button-1"
                     type="button"
                   >
@@ -209,6 +212,7 @@ exports[`renders homepage unchanged 1`] = `
             <button
               aria-expanded="false"
               class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              data-headlessui-state=""
               id="headlessui-disclosure-button-2"
               type="button"
             >

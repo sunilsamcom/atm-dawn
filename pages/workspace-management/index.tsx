@@ -523,7 +523,6 @@ function WorkspaceManagement(session: any) {
                   label="MULTI-USER(7)"
                   {...a11yProps(1)}
                 />
-                {console.log(value === 2, "value === 2")}
                 <Tab
                   className={
                     value === 2

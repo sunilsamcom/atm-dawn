@@ -13,6 +13,7 @@ export default MyApp;
 
 type Props = AppProps & {
   Component: Page;
+  pageProps: any;
 };
 
 // Initialize i18n
