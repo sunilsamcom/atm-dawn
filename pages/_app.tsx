@@ -7,12 +7,15 @@ import { I18nProvider } from "@lingui/react";
 import { i18n } from "@lingui/core";
 import { initTranslation } from "utils/i18n";
 
+import { MantineProvider } from "@mantine/core";
+
 import { Page } from "@app/types/page";
 import { useRouter } from "next/router";
 export default MyApp;
 
 type Props = AppProps & {
   Component: Page;
+  pageProps: any;
 };
 
 // Initialize i18n
@@ -36,9 +39,18 @@ function MyApp({ Component, pageProps }: Props) {
 
   return (
     <SessionProvider session={pageProps.session}>
-      <I18nProvider i18n={i18n} forceRenderOnLocaleChange={false}>
-        {getLayout(<Component {...pageProps} />)}
-      </I18nProvider>
+      <MantineProvider
+        withCSSVariables
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{
+          fontFamily: "Avenir",
+        }}
+      >
+        <I18nProvider i18n={i18n} forceRenderOnLocaleChange={false}>
+          {getLayout(<Component {...pageProps} />)}
+        </I18nProvider>
+      </MantineProvider>
     </SessionProvider>
   );
 }
