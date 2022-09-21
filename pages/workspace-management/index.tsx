@@ -19,8 +19,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import TableRow from "@mui/material/TableRow";
 import DeleteIcon from "@mui/icons-material/Delete";
 import HelpIcon from "@mui/icons-material/Help";
-import Modal from "@mui/material/Modal";
-import CloseIcon from "@mui/icons-material/Close";
 import AdUnitsIcon from "@mui/icons-material/AdUnits";
 import CommentIcon from "@mui/icons-material/Comment";
 import TagsInput from "@app/components/tailwindui/TagsInput";
@@ -345,13 +343,16 @@ function WorkspaceManagement(session: any) {
     },
   ];
   const [color, setColor] = useState("");
-  const menuCollapse = (e?: any) => {
-    if (color === e) {
-      setCollapse(true);
-    } else {
-      setCollapse(false);
-    }
-  };
+  const menuCollapse = React.useCallback(
+    (e?: any) => {
+      if (color === e) {
+        setCollapse(true);
+      } else {
+        setCollapse(false);
+      }
+    },
+    [color]
+  );
   const [rowId, setrowId] = useState(0);
 
   const handleDelete = (item) => () => {
@@ -492,55 +493,53 @@ function WorkspaceManagement(session: any) {
                 onChange={handleChange}
                 aria-label="basic tabs example border border-b-1"
               >
-                <>
-                  <Tab
-                    className={
-                      value === 0
-                        ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
-                        : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
-                    }
-                    // sx={{
-                    //   // border: "1px solid rgb(196, 204, 224)",
-                    //   // borderRight: "none",
-                    //   // borderBottom:
-                    //     // value === 0 ? "none" : "1px solid rgb(196, 204, 224)",
-                    // }}
-                    label="Workspace(2)"
-                    {...a11yProps(0)}
-                  />
-                  <Tab
-                    className={
-                      value === 1
-                        ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
-                        : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
-                    }
-                    sx={{
+                <Tab
+                  className={
+                    value === 0
+                      ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
+                      : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
+                  }
+                  // sx={{
+                  //   // border: "1px solid rgb(196, 204, 224)",
+                  //   // borderRight: "none",
+                  //   // borderBottom:
+                  //     // value === 0 ? "none" : "1px solid rgb(196, 204, 224)",
+                  // }}
+                  label="Workspace(2)"
+                  {...a11yProps(0)}
+                />
+                <Tab
+                  className={
+                    value === 1
+                      ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
+                      : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
+                  }
+                  sx={{
+                    // border: "1px solid rgb(196, 204, 224)",
+                    borderRight: "none",
+                    // borderBottom:
+                    //   value === 1 ? "none" : "1px solid rgb(196, 204, 224)",
+                  }}
+                  label="MULTI-USER(7)"
+                  {...a11yProps(1)}
+                />
+                {console.log(value === 2, "value === 2")}
+                <Tab
+                  className={
+                    value === 2
+                      ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-b-0"
+                      : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded]"
+                  }
+                  sx={
+                    {
                       // border: "1px solid rgb(196, 204, 224)",
-                      borderRight: "none",
                       // borderBottom:
-                      //   value === 1 ? "none" : "1px solid rgb(196, 204, 224)",
-                    }}
-                    label="MULTI-USER(7)"
-                    {...a11yProps(1)}
-                  />
-                  {console.log(value === 2, "value === 2")}
-                  <Tab
-                    className={
-                      value === 2
-                        ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-b-0"
-                        : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded]"
+                      //   value === 2 ? "none" : "1px solid rgb(196, 204, 224)",
                     }
-                    sx={
-                      {
-                        // border: "1px solid rgb(196, 204, 224)",
-                        // borderBottom:
-                        //   value === 2 ? "none" : "1px solid rgb(196, 204, 224)",
-                      }
-                    }
-                    label="SHARED REPORTS"
-                    {...a11yProps(2)}
-                  />
-                </>
+                  }
+                  label="SHARED REPORTS"
+                  {...a11yProps(2)}
+                />
               </Tabs>
             </Box>
           </Box>
