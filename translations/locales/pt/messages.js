@@ -1,0 +1,1 @@
+/*eslint-disable*/module.exports={messages:{"My text to be translated":"Olá Mundo!","next-explanation":"Hello World pt","welcome-profile-page":"welcome-profile-page"}};

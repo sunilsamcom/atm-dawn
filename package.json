@@ -19,17 +19,21 @@
     "e2e:headless": "start-server-and-test start http://localhost:3000 cypress:headless",
     "integration_test": "start-server-and-test start http://localhost:3000 cypress",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "lingui-extract": "NODE_ENV=development lingui extract",
+    "lingui-compile": "lingui compile"
   },
   "dependencies": {
     "@emotion/styled": "^11.9.3",
     "@emotion/react": "^11.10.4",
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "^1.0.6",
+    "@lingui/react": "^3.14.0",
+    "classnames": "^2.3.1",
+    "make-plural": "^7.1.0",
     "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "^5.10.2",
     "@mui/material": "^5.9.2",
-    "classnames": "^2.3.1",
     "downshift": "^6.1.9",
     "next": "^12.2.5",
     "next-auth": "^4.3.1",
@@ -43,7 +47,10 @@
     "node": ">=16.14.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.10",
+    "@babel/core": "^7.19.0",
+    "@lingui/cli": "^3.14.0",
+    "@lingui/loader": "^3.14.0",
+    "@lingui/macro": "^3.14.0",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-interactions": "^6.5.10",
@@ -59,6 +66,7 @@
     "@types/react": "^18.0.4",
     "autoprefixer": "^10.4.2",
     "babel-loader": "^8.2.5",
+    "babel-plugin-macros": "^3.1.0",
     "cypress": "^10.4.0",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
