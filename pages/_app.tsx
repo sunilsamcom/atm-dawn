@@ -11,6 +11,7 @@ import { MantineProvider } from "@mantine/core";
 
 import { Page } from "@app/types/page";
 import { useRouter } from "next/router";
+import { MANTINE_THEME } from "@app/common/theme/";
 export default MyApp;
 
 type Props = AppProps & {
@@ -43,9 +44,7 @@ function MyApp({ Component, pageProps }: Props) {
         withCSSVariables
         withGlobalStyles
         withNormalizeCSS
-        theme={{
-          fontFamily: "Avenir",
-        }}
+        theme={MANTINE_THEME}
       >
         <I18nProvider i18n={i18n} forceRenderOnLocaleChange={false}>
           {getLayout(<Component {...pageProps} />)}

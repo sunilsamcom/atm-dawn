@@ -6,6 +6,15 @@
   a {
     @apply underline text-blue-600 hover:text-blue-800 visited:text-purple-600;
   }
+
+  button {
+    background-color: transparent;
+    border: none;
+  }
+
+  button:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+  }
 }
 
 @layer components {
