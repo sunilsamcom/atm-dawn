@@ -38,17 +38,7 @@ import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import GroupIcon from "@mui/icons-material/Group";
 import ModalComponent from "@app/components/tailwindui/Modal";
-
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import TabPanel from "./component/TabPanel";
 
 interface Column {
   id: "name" | "code" | "workers" | "domains" | "size";
@@ -58,50 +48,19 @@ interface Column {
   // eslint-disable-next-line no-unused-vars
   format?: (value: number) => any;
 }
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-interface Data {
-  name: string;
-  code: string;
-  workers: any;
-  domains: any;
-  size?: number;
-}
-function createData(
-  name: string,
-  code: string,
-  workers: any,
-  domains: any,
-  size?: number
-): Data {
-  return { name, code, workers, domains, size };
+
+interface WorkspaceManagementType {
+  session: any;
 }
 
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-  return (
-    <div
-      role="tabpanel"
-      // hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    </div>
-  );
-}
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
-function WorkspaceManagement(session: any) {
-  const initUser = { workSpaceName: "", assignWorkers: "", assignDomains: "" };
+
+const WorkspaceManagement = ({ session }: WorkspaceManagementType) => {
   const [flag, setFlag] = useState("Add");
   const [open, setOpen] = useState(false);
   const [openChildModal, setOpenChildModal] = useState(false);
@@ -116,22 +75,26 @@ function WorkspaceManagement(session: any) {
   const [inputDomainValue, setInputDomainValue] = React.useState("");
   const [selectedDomainItem, setSelectedDomainItem] = React.useState([]);
 
-  function handleWorkerChange(item) {
+  const handleWorkerChange = (item: any) => {
     let newSelectedItem: any = [...selectedWorkerItem];
     if (newSelectedItem.indexOf(item) === -1) {
       newSelectedItem = [...newSelectedItem, item];
     }
     setInputWorkerValue("");
     setSelectedWorkerItem(newSelectedItem);
-  }
-  function handleInputWorkderChange(event) {
+  };
+  const handleInputWorkderChange = (event: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
     setInputWorkerValue(event.target.value);
-  }
-  function handleInputDomainChange(event) {
+  };
+  const handleInputDomainChange = (event: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
     setInputDomainValue(event.target.value);
-  }
+  };
 
-  function handleWorkerKeyDown(event: any) {
+  const handleWorkerKeyDown = (event: any) => {
     if (event.key === "Enter") {
       const newSelectedItem: any = [...selectedWorkerItem];
       const duplicatedValues = newSelectedItem.indexOf(
@@ -158,8 +121,8 @@ function WorkspaceManagement(session: any) {
         selectedWorkerItem.slice(0, selectedWorkerItem.length - 1)
       );
     }
-  }
-  function handleDomainKeyDown(event: any) {
+  };
+  const handleDomainKeyDown = (event: any) => {
     if (event.key === "Enter") {
       const newSelectedItem: any = [...selectedDomainItem];
       const duplicatedValues = newSelectedItem.indexOf(
@@ -186,23 +149,23 @@ function WorkspaceManagement(session: any) {
         selectedDomainItem.slice(0, selectedDomainItem.length - 1)
       );
     }
-  }
+  };
 
-  const handleWorkerDelete = (item) => () => {
+  const handleWorkerDelete = (item: any) => () => {
     const newSelectedItem: any = [...selectedWorkerItem];
     newSelectedItem.splice(newSelectedItem.indexOf(item), 1);
     setSelectedWorkerItem(newSelectedItem);
     setTags(newSelectedItem);
   };
 
-  const handleDomainDelete = (item) => () => {
+  const handleDomainDelete = (item: any) => () => {
     const newSelectedItem: any = [...selectedDomainItem];
     newSelectedItem.splice(newSelectedItem.indexOf(item), 1);
     setSelectedDomainItem(newSelectedItem);
     setDomains(newSelectedItem);
   };
 
-  function handleDomainChange(item) {
+  function handleDomainChange(item: any) {
     let newSelectedItem: any = [...selectedDomainItem];
     if (newSelectedItem.indexOf(item) === -1) {
       newSelectedItem = [...newSelectedItem, item];
@@ -285,17 +248,17 @@ function WorkspaceManagement(session: any) {
   const actionformater = () => {
     return (
       <>
-        <button
+        <Button
           onClick={() => {
             setFlag("Edit");
             handleOpen();
           }}
         >
           <EditIcon className="text-blue-900" />
-        </button>
-        <button>
+        </Button>
+        <Button>
           <DeleteIcon className="text-blue-900" />
-        </button>
+        </Button>
       </>
     );
   };
@@ -307,11 +270,7 @@ function WorkspaceManagement(session: any) {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-  // eslint-disable-next-line no-unused-vars
-  const [page, setPage] = React.useState(0);
-  // eslint-disable-next-line no-unused-vars
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const columns: readonly Column[] = [
+  const columns: Column[] = [
     { id: "name", label: "Private workspace name", minWidth: 170 },
     { id: "code", label: "Workspace id", minWidth: 100 },
     {
@@ -355,14 +314,14 @@ function WorkspaceManagement(session: any) {
   );
   const [rowId, setrowId] = useState(0);
 
-  const handleDelete = (item) => () => {
+  const handleDelete = (item: any) => () => {
     const newSelectedItem: any = [...pvtWorkSpace];
     newSelectedItem.splice(newSelectedItem.indexOf(item), 1);
     setPvtWorkSpace(newSelectedItem);
   };
   const [submitFlag, setSubmitFlag] = useState("add");
 
-  const editHandler = (row) => {
+  const editHandler = (row: React.SetStateAction<number>) => {
     setSubmitFlag("edit");
     setrowId(row);
     const editData: any = pvtWorkSpace.find((cur: any) => cur?.code == row);
@@ -621,29 +580,57 @@ function WorkspaceManagement(session: any) {
                           <TableCell>{row.code}</TableCell>
                           <TableCell align="left">
                             <Box style={{ display: "flex", gap: "5px" }}>
-                              {row.workers.map((cur) => (
-                                <Box key={cur.code}>
-                                  <span className="text-slate-400 border border-slate-400 items-center flex px-1 mx-1">
-                                    {cur}
-                                  </span>
-                                </Box>
-                              ))}
+                              {row.workers.map(
+                                (
+                                  cur:
+                                    | string
+                                    | number
+                                    | boolean
+                                    | React.ReactElement<
+                                        any,
+                                        | string
+                                        | React.JSXElementConstructor<any>
+                                      >
+                                    | React.ReactFragment
+                                    | React.ReactPortal
+                                ) => (
+                                  <Box key={cur.code}>
+                                    <span className="text-slate-400 border border-slate-400 items-center flex px-1 mx-1">
+                                      {cur}
+                                    </span>
+                                  </Box>
+                                )
+                              )}
                             </Box>
                           </TableCell>
                           <TableCell align="left">
                             <Box style={{ display: "flex", gap: "5px" }}>
-                              {row.domains.map((cur) => (
-                                <Box key={cur.code}>
-                                  <span className="text-slate-400 border border-slate-400 items-center flex px-1 mx-1">
-                                    {cur}
-                                  </span>
-                                </Box>
-                              ))}
+                              {row.domains.map(
+                                (
+                                  cur:
+                                    | string
+                                    | number
+                                    | boolean
+                                    | React.ReactElement<
+                                        any,
+                                        | string
+                                        | React.JSXElementConstructor<any>
+                                      >
+                                    | React.ReactFragment
+                                    | React.ReactPortal
+                                ) => (
+                                  <Box key={cur.code}>
+                                    <span className="text-slate-400 border border-slate-400 items-center flex px-1 mx-1">
+                                      {cur}
+                                    </span>
+                                  </Box>
+                                )
+                              )}
                             </Box>
                           </TableCell>
                           <TableCell align="left">
                             <>
-                              <button
+                              <Button
                                 onClick={() => {
                                   setFlag("Edit");
                                   handleOpen();
@@ -653,13 +640,13 @@ function WorkspaceManagement(session: any) {
                                   className="text-blue-900"
                                   onClick={() => editHandler(row.code)}
                                 />
-                              </button>
-                              <button>
+                              </Button>
+                              <Button>
                                 <DeleteIcon
                                   className="text-blue-900"
                                   onClick={handleDelete(row)}
                                 />
-                              </button>
+                              </Button>
                             </>
                           </TableCell>
                         </TableRow>
@@ -849,6 +836,6 @@ function WorkspaceManagement(session: any) {
       </NavigationDashboard>
     </>
   );
-}
+};
 
 export default WorkspaceManagement;
