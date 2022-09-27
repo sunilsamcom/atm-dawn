@@ -1,11 +1,7 @@
 import * as React from "react";
+import { Button, Dialog, Text as Title, Group, Alert } from "@mantine/core";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Dialog, { DialogProps } from "@mui/material/Dialog";
-import Title from "@mui/material/DialogTitle";
-import Content from "@mui/material/DialogContent";
-import Actions from "@mui/material/DialogActions";
-import { Button } from "@mui/material";
 
 export type ModalAction = {
   label: string | React.ReactNode;
@@ -14,10 +10,16 @@ export type ModalAction = {
   className?: string;
 };
 
-export interface ModalProps extends DialogProps {
+export interface ModalProps {
   actions?: ModalAction[];
   disableClose?: boolean;
   isFooterBtn?: boolean;
+  children?: any;
+  title?: any;
+  onClose?: any;
+  className?: any;
+  open: boolean;
+  size?: string;
 }
 
 const ModalComponent: React.FC<ModalProps> = ({
@@ -26,6 +28,7 @@ const ModalComponent: React.FC<ModalProps> = ({
   actions = [{ label: "Cancel" }, { label: "OK" }],
   isFooterBtn = true,
   disableClose,
+  open = false,
   ...props
 }) => {
   const onClose = React.useCallback(() => {
@@ -33,7 +36,7 @@ const ModalComponent: React.FC<ModalProps> = ({
   }, [props]);
 
   return (
-    <Dialog {...props}>
+    <Dialog opened={open} {...props}>
       <header className="flex align-middle justify-between">
         {title && <Title className="font-bold pt-3 pb-2">{title}</Title>}
         {!disableClose && (
@@ -42,9 +45,9 @@ const ModalComponent: React.FC<ModalProps> = ({
           </IconButton>
         )}
       </header>
-      {children && <Content>{children}</Content>}
+      {children && <Group>{children}</Group>}
       {isFooterBtn && actions && (
-        <Actions className="flex justify-between">
+        <Group className="flex justify-between">
           {actions.map(
             ({ variant = "primary", label, onClick = onClose, ...rest }) =>
               variant === "primary" ? (
@@ -67,7 +70,7 @@ const ModalComponent: React.FC<ModalProps> = ({
                 </Button>
               )
           )}
-        </Actions>
+        </Group>
       )}
     </Dialog>
   );

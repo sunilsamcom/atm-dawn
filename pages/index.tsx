@@ -1,10 +1,9 @@
-import Head from "next/head";
-import Image from "next/image";
+// import styles from '../styles/home.module.css'
 
-import styles from "@app/styles/home.module.css";
-import { Trans } from "@lingui/macro";
+import { Trans } from "@lingui/react";
 import { useSession, signIn, signOut } from "next-auth/react";
-import NavigationDashboard from "@app/components/tailwindui/NavigationDashboard";
+import NavigationDashboard from "../components/tailwindui/NavigationDashboard";
+
 
 function Home() {
   const { data: session } = useSession() || {}; //const session = useSession().data
@@ -29,13 +28,12 @@ function Home() {
     <>
       <h1 className="text-3xl font-bold underline">Please login:</h1>
       <h1>
-        <Trans>My text to be translated</Trans>
+        <Trans id={""}>My text to be translated</Trans>
       </h1>
       Not signed in <br />
       <button onClick={() => signIn()}>Sign in</button>
     </>
   );
 }
-export default Home;
 
-export { getStaticProps } from "@app/config/i18n/getStaticProps";
+export default Home;

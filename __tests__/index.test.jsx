@@ -24,6 +24,15 @@ jest.mock("next-auth/react", () => {
   };
 });
 
+
+// jest.mock('next/image', () => ({
+//   __esModule: true,
+//   default: (props) => {
+//     // eslint-disable-next-line @next/next/no-img-element
+//     return <img {...props} alt="img"/>
+//   },
+// }))
+
 describe('Home', () => {
   it('renders a heading', () => {
     render(<Home />)

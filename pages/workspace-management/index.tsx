@@ -1,20 +1,22 @@
 import React, { useState, useEffect, useCallback } from "react";
-import NavigationDashboard from "@app/components/tailwindui/NavigationDashboard";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
-import { Typography, Button, Alert, Input, Collapse } from "@mui/material";
+import {
+  Button,
+  Collapse,
+  Tabs,
+  Input,
+  Alert,
+  Table,
+  Paper,
+  Box,
+} from "@mantine/core";
+import { Typography } from "@mui/material";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-// eslint-disable-next-line no-unused-vars
-import TablePagination from "@mui/material/TablePagination";
 import EditIcon from "@mui/icons-material/Edit";
 import TableRow from "@mui/material/TableRow";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -39,6 +41,15 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import GroupIcon from "@mui/icons-material/Group";
 import ModalComponent from "@app/components/tailwindui/Modal";
 import TabPanel from "./component/TabPanel";
+import NavigationDashboard from "@app/components/tailwindui/NavigationDashboard";
+import NavBar from "@app/components/organisam/NavBar";
+import UserIcon from "../../assets/user.png";
+import Image from "next/image";
+import {
+  BellIcon,
+  CogIcon,
+  QuestionMarkCircleIcon,
+} from "@heroicons/react/solid";
 
 interface Column {
   id: "name" | "code" | "workers" | "domains" | "size";
@@ -53,18 +64,63 @@ interface WorkspaceManagementType {
   session: any;
 }
 
-function a11yProps(index: number) {
+function a11yProps(index: string) {
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
+const navigation = [
+  { name: "Tracker", href: "#", isActive: false },
+  { name: "Automizer", href: "#", isActive: false },
+];
+
+const rightMenuItem = [
+  {
+    name: "Notifications",
+    icon: <BellIcon className="h-6 w-6" aria-hidden="true" />,
+    submenu: [],
+  },
+  {
+    name: "Support",
+    icon: <QuestionMarkCircleIcon className="h-6 w-6" aria-hidden="true" />,
+    submenu: [
+      { title: "Technical Docs", href: "#" },
+      { title: "Academy", href: "#" },
+      { title: "Webinars", href: "#" },
+      { title: "Video Tutorials", href: "#" },
+      { title: "Blog", href: "#" },
+      { title: "Contact us", href: "#" },
+    ],
+  },
+  {
+    name: "Settings",
+    icon: <CogIcon className="h-6 w-6" aria-hidden="true" />,
+    submenu: [],
+  },
+  {
+    name: "Profile",
+    icon: (
+      <div className="h-8 w-8 rounded-full cursor-pointer">
+        <Image src={UserIcon} alt="userprofileicon" />
+      </div>
+    ),
+    submenu: [
+      { title: "Profile", href: "#" },
+      { title: "Security", href: "#" },
+      { title: "Key features", href: "#" },
+      { title: "General settings", href: "#" },
+      { title: "Give Feedback", href: "#" },
+    ],
+  },
+];
+
 const WorkspaceManagement = ({ session }: WorkspaceManagementType) => {
   const [flag, setFlag] = useState("Add");
   const [open, setOpen] = useState(false);
   const [openChildModal, setOpenChildModal] = useState(false);
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState<string>("0");
   const [workSpaceFormValue, setWorkSpaceFormValue] = useState("");
   const [collapse, setCollapse] = useState(false);
   const [tags, setTags] = useState([]);
@@ -267,9 +323,6 @@ const WorkspaceManagement = ({ session }: WorkspaceManagementType) => {
     const { value } = e.target;
     setWorkSpaceFormValue(value);
   };
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
   const columns: Column[] = [
     { id: "name", label: "Private workspace name", minWidth: 170 },
     { id: "code", label: "Workspace id", minWidth: 100 },
@@ -364,476 +417,450 @@ const WorkspaceManagement = ({ session }: WorkspaceManagementType) => {
 
   return (
     <>
-      {/* eslint-disable-next-line react/no-children-prop */}
-      <NavigationDashboard session={session}>
-        <div className="bg-white flex items-center flex-col md:flex-row sm: flex-wrap lg:flex-nowrap">
-          <Box className="flex-wrap flex items-start gap-5 py-5 px-7 flex-col md:flex-row">
-            {settingGeneralMenu.map((item) => {
-              return (
-                <>
-                  <Button
-                    variant="text"
-                    className={
-                      " sm:text-xs mb-1 ml-1 text-sm hover:text-white hover:bg-blue-600 text-blue-500 transform-none normal-case" +
-                      (color === item.name ? " text-white bg-blue-600 " : "")
-                    }
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      pr: "20px",
-                      cursor: "pointer",
-                      gap: "3px",
-                    }}
-                    onClick={() => {
-                      setColor(item.name);
-                    }}
-                  >
-                    {item.icon}
-                    {item.name}
-                  </Button>
-                </>
-              );
-            })}
-          </Box>
-        </div>
-        <hr />
-        <div className="bg-white flex justify-center md:justify-start">
-          <Box className="flex-wrap flex items-start  gap-5 py-5 px-7 flex-col md:flex-row">
-            {settingsMenu.map((item) => {
-              return (
-                <>
-                  <Button
-                    variant="text"
-                    className={
-                      " sm:text-xs mb-1 ml-1 text-sm hover:text-white hover:bg-blue-600  text-blue-500 transform-none normal-case" +
-                      (color === item.name ? " text-white bg-blue-600 " : "")
-                    }
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      pr: "20px",
-                      cursor: "pointer",
-                      gap: "3px",
-                    }}
-                    onClick={() => {
-                      setCollapse(!collapse);
-                      setColor(item.name);
-                    }}
-                  >
-                    {item.icon}
-                    {item.name}
-                  </Button>
-                </>
-              );
-            })}
-          </Box>
-        </div>
-        <hr />
-        <Collapse in={color === "Collabration tools"}>
-          <Box
-            sx={{
-              backgroundColor: "rgb(242, 243, 247)",
-              pl: "25px",
-              pt: "25px",
-            }}
-          >
-            <Box className="flex">
-              <h1 className="text-xl font-bold">Collaboration tools</h1>
-              <CommentIcon className=" text-40 text-fuchsia-600 font-extrabold w-5 h-5 ml-4 mt-1" />
-              <h6 className="text-blue-500  text-sm  mt-1"> Give feedback</h6>
-            </Box>
-            <Box className="mt-4" sx={{ width: "100%" }}>
-              <Tabs
-                TabIndicatorProps={{
-                  style: { background: "inherit", color: "red" },
-                }}
-                className="text-blue-500"
-                value={value}
-                onChange={handleChange}
-                aria-label="basic tabs example border border-b-1"
-              >
-                <Tab
-                  className={
-                    value === 0
-                      ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
-                      : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
-                  }
-                  // sx={{
-                  //   // border: "1px solid rgb(196, 204, 224)",
-                  //   // borderRight: "none",
-                  //   // borderBottom:
-                  //     // value === 0 ? "none" : "1px solid rgb(196, 204, 224)",
-                  // }}
-                  label="Workspace(2)"
-                  {...a11yProps(0)}
+      <div className="min-h-full">
+        <header className="bg-white shadow-sm">
+          <NavBar
+            leftMenuItems={navigation}
+            rightMenuItems={rightMenuItem}
+            mainIcon={
+              <div className="h-8 w-8">
+                <Image
+                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                  alt="Workflow"
+                  height="100%"
+                  width="100%"
                 />
-                <Tab
-                  className={
-                    value === 1
-                      ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
-                      : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
-                  }
-                  sx={{
-                    // border: "1px solid rgb(196, 204, 224)",
-                    borderRight: "none",
-                    // borderBottom:
-                    //   value === 1 ? "none" : "1px solid rgb(196, 204, 224)",
-                  }}
-                  label="MULTI-USER(7)"
-                  {...a11yProps(1)}
-                />
-                <Tab
-                  className={
-                    value === 2
-                      ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-b-0"
-                      : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded]"
-                  }
-                  sx={
-                    {
-                      // border: "1px solid rgb(196, 204, 224)",
-                      // borderBottom:
-                      //   value === 2 ? "none" : "1px solid rgb(196, 204, 224)",
-                    }
-                  }
-                  label="SHARED REPORTS"
-                  {...a11yProps(2)}
-                />
-              </Tabs>
-            </Box>
-          </Box>
-          <TabPanel value={value} index={0}>
-            <Box>
-              <Box
-                display={"flex"}
-                flexWrap="wrap"
-                justifyContent="space-between"
-                alignItems={"center"}
-              >
-                <p className="font-bold">
-                  AVAILABLE PRIVATE WORK SPACES: 48 of 50
-                </p>
-                <Box
-                  display={"flex"}
-                  className="sm:w-full justify-end"
-                  // flexWrap="wrap"
-                  gap="15px"
-                  mb={"25px"}
-                >
-                  <Box display={"flex"} gap="10px" alignItems="center">
-                    <RemoveRedEyeIcon style={{ color: "rgb(213, 0, 159)" }} />
-                    Watch Video
-                  </Box>
-                  <Box display={"flex"} gap="10px" alignItems="center">
-                    <CreditCardIcon style={{ color: "rgb(213, 0, 159)" }} />
-                    Learn More
-                  </Box>
-                  <Button
-                    onClick={() => {
-                      setFlag("Add");
-                      setSubmitFlag("add");
-                      handleOpen();
-                    }}
-                    style={{ color: "white", backgroundColor: "rgb(0,193,97)" }}
-                  >
-                    <AddCircleIcon />
-                    Add private workspace
-                  </Button>
-                </Box>
-              </Box>
-              <Box paddingBottom={"20px"}>
-                <Alert
-                  severity="info"
-                  style={{
-                    backgroundColor: "rgb(246,247,249)",
-                    borderLeft: "5px solid rgb(119, 99, 225)",
-                  }}
-                >
-                  By default, there is always one Public Workspace that can be
-                  managed by an Account Owner and all Admins. If you want to
-                  keep campaigns and its elements seperated, add Private
-                  Workspace.
-                </Alert>
-              </Box>
-              <Paper sx={{ width: "100%", overflow: "hidden" }}>
-                <TableContainer sx={{ maxHeight: 440 }}>
-                  <Table stickyHeader aria-label="sticky table">
-                    <TableHead>
-                      <TableRow>
-                        {columns.map((column) => (
-                          <TableCell
-                            className="bg-slate-500 text-white"
-                            key={column.id}
-                            align={column.align}
-                            style={{ minWidth: column.minWidth }}
-                          >
-                            {column.label}
-                          </TableCell>
-                        ))}
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {pvtWorkSpace.map((row: any) => (
-                        <TableRow key={row.code}>
-                          <TableCell component="th" scope="row">
-                            {row.name}
-                          </TableCell>
-                          <TableCell>{row.code}</TableCell>
-                          <TableCell align="left">
-                            <Box style={{ display: "flex", gap: "5px" }}>
-                              {row.workers.map(
-                                (
-                                  cur:
-                                    | string
-                                    | number
-                                    | boolean
-                                    | React.ReactElement<
-                                        any,
-                                        | string
-                                        | React.JSXElementConstructor<any>
-                                      >
-                                    | React.ReactFragment
-                                    | React.ReactPortal
-                                ) => (
-                                  <Box key={cur.code}>
-                                    <span className="text-slate-400 border border-slate-400 items-center flex px-1 mx-1">
-                                      {cur}
-                                    </span>
-                                  </Box>
-                                )
-                              )}
-                            </Box>
-                          </TableCell>
-                          <TableCell align="left">
-                            <Box style={{ display: "flex", gap: "5px" }}>
-                              {row.domains.map(
-                                (
-                                  cur:
-                                    | string
-                                    | number
-                                    | boolean
-                                    | React.ReactElement<
-                                        any,
-                                        | string
-                                        | React.JSXElementConstructor<any>
-                                      >
-                                    | React.ReactFragment
-                                    | React.ReactPortal
-                                ) => (
-                                  <Box key={cur.code}>
-                                    <span className="text-slate-400 border border-slate-400 items-center flex px-1 mx-1">
-                                      {cur}
-                                    </span>
-                                  </Box>
-                                )
-                              )}
-                            </Box>
-                          </TableCell>
-                          <TableCell align="left">
-                            <>
-                              <Button
-                                onClick={() => {
-                                  setFlag("Edit");
-                                  handleOpen();
-                                }}
-                              >
-                                <EditIcon
-                                  className="text-blue-900"
-                                  onClick={() => editHandler(row.code)}
-                                />
-                              </Button>
-                              <Button>
-                                <DeleteIcon
-                                  className="text-blue-900"
-                                  onClick={handleDelete(row)}
-                                />
-                              </Button>
-                            </>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                    {/* <TableBody>
-                      {rows
-                        .slice(
-                          page * rowsPerPage,
-                          page * rowsPerPage + rowsPerPage
-                        )
-                        .map((row) => {
-
-                          return (
-                            <TableRow
-                              hover
-                              role="checkbox"
-                              tabIndex={-1}
-                              key={row.code}
-                            >
-                              {columns.map((column) => {
-                                const value = row[column.id];
-                                return (
-                                  <TableCell
-                                    key={column.id}
-                                    align={column.align}
-                                  >
-                                    {column.format && typeof value === "number"
-                                      ? column.format(value)
-                                      : value}
-                                  </TableCell>
-                                );
-                              })}
-                            </TableRow>
-                          );
-                        })}
-                    </TableBody> */}
-                    {/* ****************************************************** */}
-                  </Table>
-                </TableContainer>
-                <ModalComponent
-                  title={
-                    flag === "Add"
-                      ? "Add private Workspace"
-                      : "Edit private Workspace"
-                  }
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                  className="p-1 border"
-                  open={open}
-                  onClose={handleClose}
-                  fullWidth
-                  actions={[
-                    {
-                      label: "Cancel",
-                      onClick: () => setOpenChildModal(true),
-                      variant: "secondary",
-                      className: "modal-action-button bg-slate-100",
-                    },
-                    {
-                      label: "Save",
-                      onClick: addPrivateWorkSpaceHandler,
-                      variant: "primary",
-                      className: "modal-action-button bg-[#7B67E7] text-white",
-                    },
-                  ]}
-                >
-                  <form>
-                    <Typography
-                      id="modal-modal-description"
-                      sx={{ mt: 2, fontWeight: "bold" }}
-                    >
-                      Private workspace name
-                    </Typography>
-                    <Input
-                      id="standard-adornment-weight"
-                      name="workSpaceName"
-                      onChange={onInputChange}
-                      value={workSpaceFormValue}
-                      className="border"
-                      sx={{ width: "100%" }}
-                      endAdornment={<AdUnitsIcon />}
-                      aria-describedby="standard-weight-helper-text"
-                      inputProps={{
-                        "aria-label": "weight",
+              </div>
+            }
+          />
+        </header>
+        <main>
+          <div className="bg-white flex items-center flex-col md:flex-row sm: flex-wrap lg:flex-nowrap">
+            <Box className="flex-wrap flex items-start gap-5 py-5 px-7 flex-col md:flex-row">
+              {settingGeneralMenu.map((item) => {
+                return (
+                  <>
+                    <Button
+                      className={
+                        " sm:text-xs mb-1 ml-1 text-sm hover:text-white hover:bg-blue-600 text-blue-500 transform-none normal-case" +
+                        (color === item.name ? " text-white bg-blue-600 " : "")
+                      }
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        pr: "20px",
+                        cursor: "pointer",
+                        gap: "3px",
                       }}
-                    />
-
-                    <div className="flex items-end gap-1 mt-5 mb-1 align-center">
-                      <Typography
-                        id="modal-modal-description"
-                        sx={{ mt: 2, fontWeight: "bold" }}
-                      >
-                        Assigned Workers{" "}
-                      </Typography>
-                      <HelpIcon color="disabled" />
-                    </div>
-                    <TagsInput
-                      placeholder="Assigned Worker"
-                      inputValue={inputWorkerValue}
-                      handleChange={handleWorkerChange}
-                      handleKeyDown={handleWorkerKeyDown}
-                      setInputValue={setInputWorkerValue}
-                      handleDelete={handleWorkerDelete}
-                      selectedItem={selectedWorkerItem}
-                      handleInputChange={handleInputWorkderChange}
-                      setSelectedItem={setSelectedWorkerItem}
-                    />
-                    <Typography
-                      id="modal-modal-description"
-                      sx={{ fontSize: "13px" }}
+                      onClick={() => {
+                        setColor(item.name);
+                      }}
                     >
-                      Account owner and all Admins are assigned to all private
-                      workspace by default{" "}
-                    </Typography>
-                    <div className="flex items-end gap-1 mt-5 mb-1">
-                      <Typography
-                        id="modal-modal-description"
-                        sx={{ mt: 2, fontWeight: "bold" }}
-                      >
-                        Assigned Domains
-                      </Typography>
-                      <HelpIcon color="disabled" />
-                    </div>
-                    <TagsInput
-                      placeholder="Assigned Domains"
-                      handleChange={handleDomainChange}
-                      inputValue={inputDomainValue}
-                      handleKeyDown={handleDomainKeyDown}
-                      handleDelete={handleDomainDelete}
-                      handleInputChange={handleInputDomainChange}
-                      setInputValue={setInputDomainValue}
-                      selectedItem={selectedDomainItem}
-                      setSelectedItem={setSelectedDomainItem}
-                    />
-                  </form>
-                </ModalComponent>
-                <ModalComponent
-                  title="Close a Workspace`s from without saving?"
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                  className="backdrop-blur-lg p-1 border"
-                  open={openChildModal}
-                  onClose={handleClose}
-                  fullWidth
-                  hideBackdrop
-                  actions={[
-                    {
-                      label: "Go back",
-                      onClick: () => setOpenChildModal(false),
-                      variant: "secondary",
-                    },
-                    {
-                      label: "Yes close form",
-                      onClick: handleClose,
-                      variant: "primary",
-                    },
-                  ]}
-                >
-                  <p>
-                    {/* eslint-disable-next-line react/no-unescaped-entities*/}
-                    You have entered changes to the workspace's form. if you
-                    close the form now, you will loose all input.
-                  </p>
-                  <hr className="mt-5 mb-2" />
-                </ModalComponent>
-
-                {/* <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-              /> */}
-              </Paper>
+                      {item.icon}
+                      {item.name}
+                    </Button>
+                  </>
+                );
+              })}
             </Box>
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            Item Two
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            Item Three
-          </TabPanel>
-        </Collapse>
-      </NavigationDashboard>
+          </div>
+          <hr />
+          <div className="bg-white flex justify-center md:justify-start">
+            <Box className="flex-wrap flex items-start  gap-5 py-5 px-7 flex-col md:flex-row">
+              {settingsMenu.map((item) => {
+                return (
+                  <>
+                    <Button
+                      className={
+                        " sm:text-xs mb-1 ml-1 text-sm hover:text-white hover:bg-blue-600  text-blue-500 transform-none normal-case" +
+                        (color === item.name ? " text-white bg-blue-600 " : "")
+                      }
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        pr: "20px",
+                        cursor: "pointer",
+                        gap: "3px",
+                      }}
+                      onClick={() => {
+                        setCollapse(!collapse);
+                        setColor(item.name);
+                      }}
+                    >
+                      {item.icon}
+                      {item.name}
+                    </Button>
+                  </>
+                );
+              })}
+            </Box>
+          </div>
+          <hr />
+          <div
+            tabIndex={0}
+            className="collapse border border-base-300 bg-base-100 rounded-box"
+          >
+            <div className="collapse-title text-xl font-medium">
+              Focus me to see content
+            </div>
+            <div className="collapse-content">
+              <p>
+                tabIndex={0} attribute is necessary to make the div focusable
+              </p>
+            </div>
+          </div>
+          <Collapse in={color === "Collabration tools"}>
+            <Box
+              sx={{
+                backgroundColor: "rgb(242, 243, 247)",
+                pl: "25px",
+                pt: "25px",
+              }}
+            >
+              <Box className="flex">
+                <h1 className="text-xl font-bold">Collaboration tools</h1>
+                <CommentIcon className=" text-40 text-fuchsia-600 font-extrabold w-5 h-5 ml-4 mt-1" />
+                <h6 className="text-blue-500  text-sm  mt-1"> Give feedback</h6>
+              </Box>
+              <Box className="mt-4" sx={{ width: "100%" }}>
+                <Tabs defaultValue={value} onTabChange={setValue}>
+                  <Tabs.List>
+                    <Tabs.Tab
+                      value="0"
+                      className={
+                        value === "0"
+                          ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
+                          : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
+                      }
+                      label="Workspace(2)"
+                      {...a11yProps("0")}
+                    >
+                      Workspace(2)
+                    </Tabs.Tab>
+                    <Tabs.Tab
+                      value={"1"}
+                      className={
+                        value === "1"
+                          ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
+                          : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
+                      }
+                      label="MULTI-USER(7)"
+                      {...a11yProps("1")}
+                    >
+                      MULTI-USER(7)
+                    </Tabs.Tab>
+                    <Tabs.Tab
+                      value={"2"}
+                      className={
+                        value === "2"
+                          ? "font-semibold truncate text-slate-400 bg-white border border-solid border-[#c2cded] border-r-0 border-b-0"
+                          : "font-semibold truncate text-slate-400 bg-gray border border-solid border-[#c2cded] border-r-0"
+                      }
+                      label="SHARED REPORTS"
+                      {...a11yProps("1")}
+                    >
+                      SHARED REPORTS
+                    </Tabs.Tab>
+                  </Tabs.List>
+
+                  <Tabs.Panel value="0">
+                    <Box>
+                      <Box
+                        display={"flex"}
+                        flexWrap="wrap"
+                        justifyContent="space-between"
+                        alignItems={"center"}
+                      >
+                        <p className="font-bold">
+                          AVAILABLE PRIVATE WORK SPACES: 48 of 50
+                        </p>
+                        <Box
+                          display={"flex"}
+                          className="sm:w-full justify-end"
+                          // flexWrap="wrap"
+                          gap="15rem"
+                          mb={"25rem"}
+                        >
+                          <Box display={"flex"} gap="10px" alignItems="center">
+                            <RemoveRedEyeIcon
+                              style={{ color: "rgb(213, 0, 159)" }}
+                            />
+                            Watch Video
+                          </Box>
+                          <Box display={"flex"} gap="10px" alignItems="center">
+                            <CreditCardIcon
+                              style={{ color: "rgb(213, 0, 159)" }}
+                            />
+                            Learn More
+                          </Box>
+                          <Button
+                            onClick={() => {
+                              setFlag("Add");
+                              setSubmitFlag("add");
+                              handleOpen();
+                            }}
+                            style={{
+                              color: "white",
+                              backgroundColor: "rgb(0,193,97)",
+                            }}
+                          >
+                            <AddCircleIcon />
+                            Add private workspace
+                          </Button>
+                        </Box>
+                      </Box>
+                      <Box paddingBottom={"20px"}>
+                        <Alert
+                          severity="info"
+                          style={{
+                            backgroundColor: "rgb(246,247,249)",
+                            borderLeft: "5px solid rgb(119, 99, 225)",
+                          }}
+                        >
+                          By default, there is always one Public Workspace that
+                          can be managed by an Account Owner and all Admins. If
+                          you want to keep campaigns and its elements seperated,
+                          add Private Workspace.
+                        </Alert>
+                      </Box>
+                      <Paper sx={{ width: "100%", overflow: "hidden" }}>
+                        <Table stickyHeader aria-label="sticky table">
+                          <thead>
+                            <tr>
+                              {columns.map((column) => (
+                                <th
+                                  className="bg-slate-500 text-white"
+                                  key={column.id}
+                                  align={column.align}
+                                  style={{ minWidth: column.minWidth }}
+                                >
+                                  {column.label}
+                                </th>
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {pvtWorkSpace.map((row: any) => (
+                              <tr key={row.code}>
+                                <td scope="row">{row.name}</td>
+                                <td>{row.code}</td>
+                                <td align="left">
+                                  <Box style={{ display: "flex", gap: "5px" }}>
+                                    {row.workers.map(
+                                      (
+                                        cur:
+                                          | string
+                                          | number
+                                          | boolean
+                                          | React.ReactElement<
+                                              any,
+                                              | string
+                                              | React.JSXElementConstructor<any>
+                                            >
+                                          | React.ReactFragment
+                                          | React.ReactPortal,
+                                        index: number
+                                      ) => (
+                                        <Box key={index}>
+                                          <span className="text-slate-400 border border-slate-400 items-center flex px-1 mx-1">
+                                            {cur}
+                                          </span>
+                                        </Box>
+                                      )
+                                    )}
+                                  </Box>
+                                </td>
+                                <td align="left">
+                                  <Box style={{ display: "flex", gap: "5px" }}>
+                                    {row.domains.map(
+                                      (
+                                        cur:
+                                          | string
+                                          | number
+                                          | boolean
+                                          | React.ReactElement<
+                                              any,
+                                              | string
+                                              | React.JSXElementConstructor<any>
+                                            >
+                                          | React.ReactFragment
+                                          | React.ReactPortal,
+                                        index: number
+                                      ) => (
+                                        <Box key={index}>
+                                          <span className="text-slate-400 border border-slate-400 items-center flex px-1 mx-1">
+                                            {cur}
+                                          </span>
+                                        </Box>
+                                      )
+                                    )}
+                                  </Box>
+                                </td>
+                                <td align="left">
+                                  <>
+                                    <Button
+                                      onClick={() => {
+                                        setFlag("Edit");
+                                        handleOpen();
+                                      }}
+                                    >
+                                      <EditIcon
+                                        className="text-blue-900"
+                                        onClick={() => editHandler(row.code)}
+                                      />
+                                    </Button>
+                                    <Button>
+                                      <DeleteIcon
+                                        className="text-blue-900"
+                                        onClick={handleDelete(row)}
+                                      />
+                                    </Button>
+                                  </>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </Table>
+                        <ModalComponent
+                          title={
+                            flag === "Add"
+                              ? "Add private Workspace"
+                              : "Edit private Workspace"
+                          }
+                          aria-labelledby="modal-modal-title"
+                          aria-describedby="modal-modal-description"
+                          className="p-1 border"
+                          open={open}
+                          onClose={handleClose}
+                          actions={[
+                            {
+                              label: "Cancel",
+                              onClick: () => setOpenChildModal(true),
+                              variant: "secondary",
+                              className: "modal-action-button bg-slate-100",
+                            },
+                            {
+                              label: "Save",
+                              onClick: addPrivateWorkSpaceHandler,
+                              variant: "primary",
+                              className:
+                                "modal-action-button bg-[#7B67E7] text-white",
+                            },
+                          ]}
+                        >
+                          <form>
+                            <Typography
+                              id="modal-modal-description"
+                              sx={{ mt: 2, fontWeight: "bold" }}
+                            >
+                              Private workspace name
+                            </Typography>
+                            <Input
+                              id="standard-adornment-weight"
+                              name="workSpaceName"
+                              onChange={onInputChange}
+                              value={workSpaceFormValue}
+                              className="border"
+                              sx={{ width: "100%" }}
+                              endAdornment={<AdUnitsIcon />}
+                              aria-describedby="standard-weight-helper-text"
+                              inputProps={{
+                                "aria-label": "weight",
+                              }}
+                            />
+
+                            <div className="flex items-end gap-1 mt-5 mb-1 align-center">
+                              <Typography
+                                id="modal-modal-description"
+                                sx={{ mt: 2, fontWeight: "bold" }}
+                              >
+                                Assigned Workers{" "}
+                              </Typography>
+                              <HelpIcon color="disabled" />
+                            </div>
+                            <TagsInput
+                              placeholder="Assigned Worker"
+                              inputValue={inputWorkerValue}
+                              handleChange={handleWorkerChange}
+                              handleKeyDown={handleWorkerKeyDown}
+                              setInputValue={setInputWorkerValue}
+                              handleDelete={handleWorkerDelete}
+                              selectedItem={selectedWorkerItem}
+                              handleInputChange={handleInputWorkderChange}
+                              setSelectedItem={setSelectedWorkerItem}
+                            />
+                            <Typography
+                              id="modal-modal-description"
+                              sx={{ fontSize: "13px" }}
+                            >
+                              Account owner and all Admins are assigned to all
+                              private workspace by default{" "}
+                            </Typography>
+                            <div className="flex items-end gap-1 mt-5 mb-1">
+                              <Typography
+                                id="modal-modal-description"
+                                sx={{ mt: 2, fontWeight: "bold" }}
+                              >
+                                Assigned Domains
+                              </Typography>
+                              <HelpIcon color="disabled" />
+                            </div>
+                            <TagsInput
+                              placeholder="Assigned Domains"
+                              handleChange={handleDomainChange}
+                              inputValue={inputDomainValue}
+                              handleKeyDown={handleDomainKeyDown}
+                              handleDelete={handleDomainDelete}
+                              handleInputChange={handleInputDomainChange}
+                              setInputValue={setInputDomainValue}
+                              selectedItem={selectedDomainItem}
+                              setSelectedItem={setSelectedDomainItem}
+                            />
+                          </form>
+                        </ModalComponent>
+                        <ModalComponent
+                          title="Close a Workspace`s from without saving?"
+                          aria-labelledby="modal-modal-title"
+                          aria-describedby="modal-modal-description"
+                          className="backdrop-blur-lg p-1 border"
+                          open={openChildModal}
+                          onClose={handleClose}
+                          size="lg"
+                          actions={[
+                            {
+                              label: "Go back",
+                              onClick: () => setOpenChildModal(false),
+                              variant: "secondary",
+                            },
+                            {
+                              label: "Yes close form",
+                              onClick: handleClose,
+                              variant: "primary",
+                            },
+                          ]}
+                        >
+                          <p>
+                            {/* eslint-disable-next-line react/no-unescaped-entities*/}
+                            You have entered changes to the workspace's form. if
+                            you close the form now, you will loose all input.
+                          </p>
+                          <hr className="mt-5 mb-2" />
+                        </ModalComponent>
+                      </Paper>
+                    </Box>
+                  </Tabs.Panel>
+                  <Tabs.Panel value="1">
+                    <Box>Item Two</Box>
+                  </Tabs.Panel>
+                  <Tabs.Panel value="2">
+                    <Box>Item Three</Box>
+                  </Tabs.Panel>
+                </Tabs>
+              </Box>
+            </Box>
+          </Collapse>
+        </main>
+      </div>
     </>
   );
 };

@@ -12,7 +12,6 @@ import { MantineProvider } from "@mantine/core";
 import { Page } from "@app/types/page";
 import { useRouter } from "next/router";
 import { MANTINE_THEME } from "@app/common/theme/";
-export default MyApp;
 
 type Props = AppProps & {
   Component: Page;
@@ -53,3 +52,4 @@ function MyApp({ Component, pageProps }: Props) {
     </SessionProvider>
   );
 }
+export default MyApp

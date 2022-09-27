@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ['tailwindui.com'],
+  },
   reactStrictMode: true,
   eslint: {
     dirs: [
@@ -16,9 +19,6 @@ const nextConfig = {
   i18n: {
     locales: ["en", "ar", "pt", "pseudo"],
     defaultLocale: "en",
-  },
-  images: {
-    domains: ["images.unsplash.com"],
   },
 };
 
