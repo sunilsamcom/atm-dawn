@@ -22,7 +22,7 @@ const purgeEnabled = process.env.NODE_ENV === "production";
 console.log("\n");
 console.log(`   TailwindCSS \n`);
 console.log(`   ----------- \n`);
-console.log(`   ✅ purgeEnabled=${purgeEnabled}\n`);
+console.log(`   ? purgeEnabled=${purgeEnabled}\n`);
 
 module.exports = {
   purge: [
@@ -43,4 +43,7 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  corePlugins: {
+    preflight: true,
+  },
 };

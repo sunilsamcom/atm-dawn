@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Button, Checkbox, JsonInput, MultiSelect } from "@mantine/core";
 
 import NavigationDashboard from "@app/components/tailwindui/NavigationDashboard";
+//import NavigationDashboard from ".././../components/tailwindui/NavigationDashboard";
 
 function Page1() {
   const data = [

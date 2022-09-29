@@ -18,8 +18,10 @@ module.exports = {
     // https://jestjs.io/docs/webpack#mocking-css-modules
     "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
 
+
     // Handle CSS imports (without CSS modules)
     "^.+\\.(css|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
+
 
     // Handle image imports
     "\\.(jpg|jpeg|png)$": "identity-obj-proxy",
@@ -28,6 +30,9 @@ module.exports = {
 
     // Handle module aliases
     "^@/components/(.*)$": "<rootDir>/components/$1",
+    "^@app/components(.*)$": "<rootDir>/components/$1",
+    "^@app/config(.*)$": "<rootDir>/config/$1",
+    "^utils(.*)$": "<rootDir>/utils/$1",
   },
   // Add more setup options before each test is run
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],

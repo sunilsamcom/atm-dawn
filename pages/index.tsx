@@ -1,9 +1,13 @@
 // import styles from '../styles/home.module.css'
+import Head from "next/head";
+import Image from "next/image";
 
-import { Trans } from "@lingui/react";
+import styles from "@app/styles/home.module.css";
+import { Trans } from "@lingui/macro";
 import { useSession, signIn, signOut } from "next-auth/react";
-import NavigationDashboard from "../components/tailwindui/NavigationDashboard";
-
+// import "react-date-range/dist/styles.css"; // main css file
+import NavigationDashboard from "@app/components/tailwindui/NavigationDashboard";
+// import "react-date-range/dist/theme/default.css"; // theme css file
 
 function Home() {
   const { data: session } = useSession() || {}; //const session = useSession().data
@@ -35,5 +39,6 @@ function Home() {
     </>
   );
 }
-
 export default Home;
+
+export { getStaticProps } from "@app/config/i18n/getStaticProps";
