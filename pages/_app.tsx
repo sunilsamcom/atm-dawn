@@ -6,12 +6,12 @@ import { SessionProvider } from "next-auth/react";
 import { I18nProvider } from "@lingui/react";
 import { i18n } from "@lingui/core";
 import { initTranslation } from "utils/i18n";
-
+import { wrapper } from "@app/store/store";
 import { MantineProvider } from "@mantine/core";
 
 import { Page } from "@app/types/page";
 import { useRouter } from "next/router";
-import { MANTINE_THEME } from "@app/common/theme/";
+// import { MANTINE_THEME } from "@app/common/theme/";
 
 type Props = AppProps & {
   Component: Page;
@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }: Props) {
         withCSSVariables
         withGlobalStyles
         withNormalizeCSS
-        theme={MANTINE_THEME}
+        // theme={MANTINE_THEME}
       >
         <I18nProvider i18n={i18n} forceRenderOnLocaleChange={false}>
           {getLayout(<Component {...pageProps} />)}
@@ -52,4 +52,4 @@ function MyApp({ Component, pageProps }: Props) {
     </SessionProvider>
   );
 }
-export default MyApp
+export default wrapper.withRedux(MyApp);

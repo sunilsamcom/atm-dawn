@@ -23,11 +23,13 @@ export interface ModalProps {
   className?: any;
   open: boolean;
   size?: string;
+  withCloseButton?:boolean;
 }
 
 const ModalComponent: React.FC<ModalProps> = ({
   children,
   title,
+  withCloseButton,
   actions = [{ label: "Cancel" }, { label: "OK" }],
   isFooterBtn = true,
   disableClose,

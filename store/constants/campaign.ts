@@ -1,0 +1,2 @@
+
+export const CAMPAIGN_LIST = 'CAMPAIGN_LIST';

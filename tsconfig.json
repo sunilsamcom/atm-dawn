@@ -27,6 +27,9 @@
       "@app/pages/*": [
         "./pages/*"
       ],
+      "@app/assets/*": [
+        "./assets/*"
+      ],
       "@app/components/*": [
         "./components/*"
       ],
@@ -44,6 +47,9 @@
       ],
       "@app/common/*": [
         "./common/*"
+      ],
+      "@app/store/*": [
+        "./store/*"
       ],
       "@app/config/*": [
         "./config/*"
